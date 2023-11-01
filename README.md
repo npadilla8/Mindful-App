@@ -6,7 +6,9 @@
 2. Add your teammates as collaborators on the repository
 3. Clone your repository locally
 4. Run `npm install` to install all the dependencies
-5. Run `npm run dev` to run locally
+5. Setup your `.env` file locally - you can use the `.env.example` as a guideline. In particular, you will need to setup `PORT` and `DATABASE_URL` environment variables. But you may as well at a `JWT_SECRET` while you're in there.
+6. Run `npm run dev` to run locally
+
 
 ### Starting the App
 
