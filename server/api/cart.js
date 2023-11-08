@@ -9,7 +9,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
     try {
         const cart = await prisma.cart.findUniqueOrThrow({
             where: {
-                id: Number(req.params.id)
+                id: Number(req.params.cartId)
             }
         });
         res.send(cart);
@@ -54,6 +54,18 @@ cartRouter.post("/", async (req, res, next) => {
 
 // PUT /api/cart
 
-// DELETE /api/cart
+
+// DELETE /api/cart/:cartId
+cartRouter.delete("/:cartId", async (req, res, next) => {
+    try {
+        const cart = await prisma.cart.delete({
+            where: {
+                id: Number(req.params.cartId)
+            }
+        });
+    } catch (next) {
+        next("Could not clear cart")
+    }
+});
 
 module.exports = cartRouter;
