@@ -24,11 +24,11 @@ app.get('/', (req, res, next) => {
 const cartRouter = require("./api/cart");
 app.use("/api/cart", cartRouter);
 
-const productsRouter = require("./api/products");
-app.use("/api/products", productsRouter);
+// const productsRouter = require("./api/products");
+// app.use("/api/products", productsRouter);
 
-const usersRouter = require("./api/users");
-app.use("/api/users", usersRouter);
+// const usersRouter = require("./api/users");
+// app.use("/api/users", usersRouter);
 
 // const cartItemRouter = require("./api/cartItem");
 // app.use("/api/cartItem", cartItemRouter);
