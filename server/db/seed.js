@@ -32,7 +32,7 @@ async function main() {
         }
     });
 
-    //seeding product table 
+    //seeding product table
     //collectibles & art
     await prisma.product.upsert({
         where: { title: 'Corner Bookmark' },
@@ -259,7 +259,7 @@ async function main() {
                             },
                             {
                                productId: 11,
-                               quantity: 1 
+                               quantity: 1
                             }
                         ]
                     }
