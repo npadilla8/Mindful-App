@@ -47,13 +47,30 @@ cartRouter.post("/", async (req, res, next) => {
                 }
             }
         });
+        res.send(cart);
     } catch (error) {
         next("Unable to create cart")
     }
 });
 
 // PUT /api/cart
-
+cartRouter.put("/:cartId", async (req, res, next) => {
+    try {
+        // how to get the product that was clicked from req.body?
+        // const { items } = req.body;
+        const cart = await prisma.cart.update({
+            where: {
+                id: Number(req.params.cartId)
+            },
+            data: {
+                items
+            }
+        });
+        res.send(cart);
+    } catch (error) {
+        next("Unable to update cart")
+    }
+});
 
 // DELETE /api/cart/:cartId
 cartRouter.delete("/:cartId", async (req, res, next) => {
@@ -63,6 +80,7 @@ cartRouter.delete("/:cartId", async (req, res, next) => {
                 id: Number(req.params.cartId)
             }
         });
+        res.send(cart);
     } catch (next) {
         next("Could not clear cart")
     }
