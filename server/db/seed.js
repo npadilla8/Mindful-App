@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-async function main(){
+async function main() {
     //seeding category table
     await prisma.category.upsert({
         where: { name: 'Clothing & Jewelry' },
@@ -206,6 +206,111 @@ async function main(){
             returnPolicy: true,
             quantity: 50,
             categoryId: 4
+        }
+    });
+
+    //seeding users table with a cart and products inside
+    //users with no admin permissions
+    await prisma.user.upsert({
+        where: { username: 'StellaP' },
+        update: {},
+        create: {
+            username: 'StellaP',
+            email: 'stellap@gmail.com',
+            hashedPassword: 'testuserpassword',
+            isAdmin: false,
+            cart: {
+                create: {
+                    items: {
+                        create: [
+                            {
+                                productId: 7,
+                                quantity: 2
+                            },
+                            {
+                                productId: 12,
+                                quantity: 2
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    });
+    await prisma.user.upsert({
+        where: { username: 'HenryS' },
+        update: {},
+        create: {
+            username: 'HenryS',
+            email: 'henrys@yahoo.com',
+            hashedPassword: 'testuserpassword',
+            isAdmin: false,
+            cart: {
+                create: {
+                    items: {
+                        create: [
+                            {
+                                productId: 10,
+                                quantity: 1
+                            },
+                            {
+                                productId: 3,
+                                quantity: 1
+                            },
+                            {
+                               productId: 11,
+                               quantity: 1 
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    });
+    await prisma.user.upsert({
+        where: { username: 'Melissa' },
+        update: {},
+        create: {
+            username: 'Melissa',
+            email: 'melissa2@gmail.com',
+            hashedPassword: 'testuserpassword',
+            isAdmin: false,
+            cart: {
+                create: {
+                    items: {
+                        create: [
+                            {
+                                productId: 2,
+                                quantity: 5
+                            },
+                            {
+                                productId: 4,
+                                quantity: 2
+                            },
+                            {
+                                productId: 8,
+                                quantity: 1
+                            },
+                            {
+                                productId: 12,
+                                quantity: 1
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    //user with admin permission
+    await prisma.user.upsert({
+        where: { username: 'secretAdmin'},
+        update: {},
+        create: {
+            username: 'secretAdmin',
+            email: 'secretAdmin@secret.com',
+            hashedPassword: 'secretAdminPassword',
+            isAdmin: true
         }
     });
 
