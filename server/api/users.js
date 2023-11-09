@@ -16,15 +16,15 @@ usersRouter.get('/', async (req, res, next) => {
     try {
         const users = await prisma.user.findMany();
 
-       const usersWithoutPassword = users.map((user) => {
+        const usersWithoutPassword = users.map((user) => {
             return {
-               id: user.id, 
-               username: user.username, 
-               email: user.email, 
-               isAdmin: user.isAdmin
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                isAdmin: user.isAdmin
             }
-        })
-        
+        });
+
         res.send(usersWithoutPassword)
     } catch (error) {
         res.send("unable to get users")
@@ -88,7 +88,7 @@ usersRouter.post("/register", async (req, res, next) => {
 })
 
 //POST /api/users/login - login existing user 
-usersRouter.post("/login", async(req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
     try {
         const password = req.body.password;
 
@@ -98,7 +98,7 @@ usersRouter.post("/login", async(req, res, next) => {
             }
         });
 
-        if(!user) {
+        if (!user) {
             return res.status(401).send("Invalid login credentials.")
         };
 
@@ -108,11 +108,11 @@ usersRouter.post("/login", async(req, res, next) => {
             return res.status(401).send("Invalid login credentials.");
         };
 
-        const token = jwt.sign({id: user.id}, JWT);
+        const token = jwt.sign({ id: user.id }, JWT);
 
-        delete(user.hashedPassword);
+        delete (user.hashedPassword);
 
-        res.send({user, token});
+        res.send({ user, token });
     } catch (error) {
         console.error(error);
         res.send("unable to login.")
