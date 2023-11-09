@@ -17,6 +17,9 @@ apiRouter.use('/users', usersRouter);
 const productsRouter = require('./products')
 apiRouter.use('/products', productsRouter)
 
+const cartItemRouter = require('./cartItem')
+apiRouter.use('/cartItem', cartItemRouter)
+
 
 
 module.exports = apiRouter
