@@ -3,12 +3,12 @@ const cartItemRouter = express.Router();
 const prisma = require("../db/client");
 
 
-//POST /api/cartItem/:productId - add cart items (products) to cart 
-cartItemRouter.post("/:productId", async (req, res, next) => {
+//POST /api/cartItem/ - add cart items (products) to cart 
+cartItemRouter.post("/", async (req, res, next) => {
     try {
         const cartItemInCart = await prisma.cartItem.create({
             data: {
-                productId: Number(req.params.productId),
+                productId: req.body.productId,
                 quantity: req.body.quantity,
                 cartId: req.body.cartId,
             }
@@ -19,6 +19,27 @@ cartItemRouter.post("/:productId", async (req, res, next) => {
         res.send("unable to place product in cart.")
     }
 });
+
+//PUT /api/cartItem/:cartItemId - update quanity in cart
+cartItemRouter.put("/:cartItemId", async (req, res, next) => {
+    try {
+        const updatedCartItem = await prisma.cartItem.update({
+            where: {
+                id: Number(req.params.cartItemId),
+            },
+            data: {
+                quantity: req.body.quantity
+            }
+        });
+        res.send(updatedCartItem)
+    } catch(error) {
+        console.error(error);
+        res.send("unable to update cart item quantity.")
+    }
+});
+
+//DELETE /api/cartItem/:cartItemId
+
 
 
 
