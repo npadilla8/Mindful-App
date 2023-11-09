@@ -23,6 +23,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
 // creates a new record in the relation table cartItem (items:create)
 // connects the product assignment to existing product (product:connect)
 // connects the cart to the user
+
 // cartRouter.post("/", async (req, res, next) => {
 //     try {
 //         const quantity = req.body.quantity;

@@ -18,7 +18,7 @@ app.get("/test", (req, res, next) => {
 
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
-})
+});
 
 // TODO: Add your routers here
 const cartRouter = require("./api/cart");
