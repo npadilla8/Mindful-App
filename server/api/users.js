@@ -2,7 +2,12 @@ const express = require("express");
 const usersRouter = express.Router();
 const prisma = require("../db/client");
 
-//TODO: SET UP SALT COUNT
+const bcrypt = require('bcrypt');
+const SALT_COUNT = 10;
+
+const jwt = require("jsonwebtoken");
+const { JWT } = process.env
+
 //SET UP DIFF PERMISSIONS FOR EACH ENDPOINT 
 
 
@@ -38,39 +43,36 @@ usersRouter.get('/:userId', async (req, res, next) => {
 });
 
 //POST /api/users/register - register new user
-usersRouter.post("/register", async(req, res, next) => {
+usersRouter.post("/register", async (req, res, next) => {
     const password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
     try {
         const user = await prisma.user.findUnique({
             where: {
-                email: req.body.email,
+                username: req.body.username,
             }
-        })
+        });
 
         if (user) {
             res.send("A user by that username already exist")
+        } else {
+
+            const newUser = await prisma.user.create({
+                data: {
+                    username: req.body.username,
+                    email: req.body.email,
+                    hashedPassword: hashedPassword,
+                }
+            });
+
+            delete newUser.hashedPassword
+
+            const token = jwt.sign({ id: newUser.id }, JWT);
+
+            res.send({ newUser, token });
         }
-
-        const newUser = await prisma.user.create({
-            data: {
-                email: req.body.email,
-                password: hashedPassword,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                role: req.body.role
-            }
-        })
-
-        delete newUser.password
-
-        const token = jwt.sign(
-            {id: newUser.id, role: newUser.role},
-            process.env.JWT);
-    //might need to change this part!!
-
-        res.send({newUser, token});     
     } catch (error) {
+        console.error(error);
         res.send("unable to register")
     }
 })
