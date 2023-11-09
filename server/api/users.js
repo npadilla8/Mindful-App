@@ -1,3 +1,6 @@
+const express = require("express");
+const usersRouter = express.Router();
+const prisma = require("../db/client");
 
 //TODO: SET UP SALT COUNT
 //SET UP DIFF PERMISSIONS FOR EACH ENDPOINT 
@@ -6,7 +9,7 @@
 //GET /api/users - get all users
 usersRouter.get('/', async (req, res, next) => {
     try {
-        const users = await prisma.users.findMany();
+        const users = await prisma.user.findMany();
         res.send(users)
     } catch (error) {
         res.send("unable to get users")
@@ -16,7 +19,7 @@ usersRouter.get('/', async (req, res, next) => {
 //GET /api/users/:userId - get individual shoppers with carts
 usersRouter.get('/:userId', async (req, res, next) => {
     try {
-        const shopperWithCart = await prisma.users.findUnique({
+        const shopperWithCart = await prisma.user.findUnique({
             where: {
                 id: Number(req.params.userId),
             },
@@ -39,7 +42,7 @@ usersRouter.post("/register", async(req, res, next) => {
     const password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
     try {
-        const user = await prisma.users.findUnique({
+        const user = await prisma.user.findUnique({
             where: {
                 email: req.body.email,
             }
@@ -49,7 +52,7 @@ usersRouter.post("/register", async(req, res, next) => {
             res.send("A user by that username already exist")
         }
 
-        const newUser = await prisma.users.create({
+        const newUser = await prisma.user.create({
             data: {
                 email: req.body.email,
                 password: hashedPassword,
@@ -74,3 +77,5 @@ usersRouter.post("/register", async(req, res, next) => {
 
 
 //POST /api/users/login - login existing user 
+
+module.exports = usersRouter;
