@@ -15,7 +15,17 @@ const { JWT } = process.env
 usersRouter.get('/', async (req, res, next) => {
     try {
         const users = await prisma.user.findMany();
-        res.send(users)
+
+       const usersWithoutPassword = users.map((user) => {
+            return {
+               id: user.id, 
+               username: user.username, 
+               email: user.email, 
+               isAdmin: user.isAdmin
+            }
+        })
+        
+        res.send(usersWithoutPassword)
     } catch (error) {
         res.send("unable to get users")
     }
