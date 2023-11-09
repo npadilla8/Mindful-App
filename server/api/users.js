@@ -72,6 +72,9 @@ usersRouter.post("/register", async (req, res, next) => {
                     username: req.body.username,
                     email: req.body.email,
                     hashedPassword: hashedPassword,
+                    cart: {
+                        create: {} 
+                    }
                 }
             });
 
