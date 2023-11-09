@@ -77,7 +77,37 @@ usersRouter.post("/register", async (req, res, next) => {
     }
 })
 
-
 //POST /api/users/login - login existing user 
+usersRouter.post("/login", async(req, res, next) => {
+    try {
+        const password = req.body.password;
+
+        const user = await prisma.user.findUnique({
+            where: {
+                username: req.body.username,
+            }
+        });
+
+        if(!user) {
+            return res.status(401).send("Invalid login credentials.")
+        };
+
+        const passwordsMatch = await bcrypt.compare(password, user.hashedPassword);
+
+        if (!passwordsMatch) {
+            return res.status(401).send("Invalid login credentials.");
+        };
+
+        const token = jwt.sign({id: user.id}, JWT);
+
+        delete(user.hashedPassword);
+
+        res.send({user, token});
+    } catch (error) {
+        console.error(error);
+        res.send("unable to login.")
+    }
+})
+
 
 module.exports = usersRouter;
