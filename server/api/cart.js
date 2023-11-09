@@ -23,6 +23,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
 // creates a new record in the relation table cartItem (items:create)
 // connects the product assignment to existing product (product:connect)
 // connects the cart to the user
+
 // cartRouter.post("/", async (req, res, next) => {
 //     try {
 //         const quantity = req.body.quantity;
@@ -34,7 +35,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
 //                             quantity,
 //                             product: {
 //                                 connect: {
-//                                     id: instructorId // FIX HERE - productId won't work
+//                                     id: productId // FIX HERE - productId won't work
 //                                 }
 //                             }
 //                         }
@@ -53,7 +54,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
 //     }
 // });
 
-// // PUT /api/cart
+// PUT /api/cart
 // cartRouter.put("/:cartId", async (req, res, next) => {
 //     try {
 //         // how to get the product that was clicked from req.body?
