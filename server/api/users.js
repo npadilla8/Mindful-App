@@ -11,7 +11,7 @@ const { JWT } = process.env
 //SET UP DIFF PERMISSIONS FOR EACH ENDPOINT 
 
 
-//GET /api/users - get all users
+//GET /api/users - get all users without their passwords
 usersRouter.get('/', async (req, res, next) => {
     try {
         const users = await prisma.user.findMany();
@@ -52,7 +52,7 @@ usersRouter.get('/:userId', async (req, res, next) => {
     }
 });
 
-//POST /api/users/register - register new user
+//POST /api/users/register - register new user (empty cart also created)
 usersRouter.post("/register", async (req, res, next) => {
     const password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
