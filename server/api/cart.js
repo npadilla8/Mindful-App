@@ -34,7 +34,7 @@ cartRouter.post("/", async (req, res, next) => {
                             quantity,
                             product: {
                                 connect: {
-                                    id: req.params. // FIX HERE - productId won't work
+                                    id: instructorId // FIX HERE - productId won't work
                                 }
                             }
                         }
