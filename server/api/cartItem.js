@@ -51,7 +51,7 @@ cartItemRouter.delete("/:cartItemId", async(req, res, next) => {
         console.error(error);
         res.send("unable to delete cart item from cart")
     }
-})
+});
 
 
 
