@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = () => {
-  const [username, setUsername] = useState('');
+function Login() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
     try {
-      const response = await axios.post('/login', { username, password });
+      const response = await axios.post('/api/login', { email, password });
+
       if (response.status === 200) {
-        console.log('Login successful');
+        navigate('/profile'); 
       } else {
         console.error('Login failed');
       }
@@ -17,23 +22,22 @@ const Login = () => {
       console.error('Login error:', error);
     }
   };
-  
 
   return (
-    <div>
+    <div className="login container">
       <h2>Login</h2>
-      <form>
+      <form onSubmit={handleLogin}>
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
@@ -41,12 +45,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
-};
+}
 
 export default Login;
