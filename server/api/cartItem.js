@@ -39,6 +39,19 @@ cartItemRouter.put("/:cartItemId", async (req, res, next) => {
 });
 
 //DELETE /api/cartItem/:cartItemId
+cartItemRouter.delete("/:cartItemId", async(req, res, next) => {
+    try{
+        const deletedCartItem = await prisma.cartItem.delete({
+            where: {
+                id: Number(req.params.cartItemId)
+            }
+        });
+        res.send(deletedCartItem)
+    } catch (error) {
+        console.error(error);
+        res.send("unable to delete cart item from cart")
+    }
+})
 
 
 
