@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
+import LoginPage from './components/LoginPage';
+import AdminAccountPage from './components/AdminAccountPage';
 
 import AccountPage from './components/AccountPage';
 
-import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 
 
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminAccountPage />} />
 
         <Route path="/account" element={<AccountPage />} />
 
