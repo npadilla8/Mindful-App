@@ -21,8 +21,8 @@ app.get('/', (req, res, next) => {
 });
 
 // TODO: Add your routers here
-const cartRouter = require("./api/cart");
-app.use("/api/cart", cartRouter);
+const apiRouter = require("./api");
+app.use("/api", apiRouter);
 
 // const productsRouter = require("./api/products");
 // app.use("/api/products", productsRouter);

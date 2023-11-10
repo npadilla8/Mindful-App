@@ -1,2 +1,25 @@
-// TODO: add API router here and all API sub-routers
+const express = require('express');
+const apiRouter = express.Router();
 
+//testing functionality of router
+apiRouter.get('/', (req, res, next)=> {
+    res.send("This is the apiRouter")
+})
+
+
+//subroutes of apiRouter
+const cartRouter = require('./cart')
+apiRouter.use('/cart', cartRouter);
+
+const usersRouter = require('./users')
+apiRouter.use('/users', usersRouter);
+
+const productsRouter = require('./products')
+apiRouter.use('/products', productsRouter)
+
+const cartItemRouter = require('./cartItem')
+apiRouter.use('/cartItem', cartItemRouter)
+
+
+
+module.exports = apiRouter

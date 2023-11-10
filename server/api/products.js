@@ -7,6 +7,30 @@ productsRouter.get('/', async (req, res, next) => {
         res.send("Unable to get products");
     }
 });
+const express = require("express");
+const productsRouter = express.Router();
+const prisma = require("../db/client");
+
+//GET /api/products - get all products
+productsRouter.get("/", async (req, res, next) => {
+    try {
+        const products = await prisma.product.findMany();
+        res.send(products)
+    } catch (error) {
+        res.send("unable to get products")
+    }
+})
+
+productsRouter.get("/", async (req, res, next) => {
+    try {
+      const products = await prisma.products.findMany({
+        where: { id: req.product.id },
+      });
+      res.send(products);
+    } catch (error) {
+      next(error);
+    }
+  });
 
 //GET /api/products/:productId - get individual product
 productsRouter.get('/:productId', async (req, res, next) => {
@@ -21,6 +45,7 @@ productsRouter.get('/:productId', async (req, res, next) => {
         res.send("Unable to get individual product");
     }
 });
+
 
 //POST /api/products - add new product
 productsRouter.post("/create", async(req, res, next) => {
@@ -75,3 +100,6 @@ productsRouter.delete('/:productId/delete', async (req, res, next) => {
         res.send("Unable to delete product");
     }
 });
+
+
+module.exports = productsRouter;
