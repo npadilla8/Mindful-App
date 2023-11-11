@@ -1,12 +1,3 @@
-//GET /api/products - get all products
-productsRouter.get('/', async (req, res, next) => {
-    try {
-        const products = await prisma.products.findMany();
-        res.send(products);
-    } catch (error) {
-        res.send("Unable to get products");
-    }
-});
 const express = require("express");
 const productsRouter = express.Router();
 const prisma = require("../db/client");
