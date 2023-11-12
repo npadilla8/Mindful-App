@@ -46,7 +46,7 @@ apiRouter.use(async (req, res, next) => {
             message: 'Authorization token must start with ' + prefix
         })
     }
-})
+});
 
 //subroutes of apiRouter
 const cartRouter = require('./cart')

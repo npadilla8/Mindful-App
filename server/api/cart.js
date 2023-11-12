@@ -33,7 +33,6 @@ cartRouter.get("/:cartId", async (req, res, next) => {
 });
 
 
-
 // POST /api/cart
 // creates a new post
 // creates a new record in the relation table cartItem (items:create)

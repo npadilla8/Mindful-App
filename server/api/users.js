@@ -90,7 +90,7 @@ usersRouter.post("/register", async (req, res, next) => {
         console.error(error);
         res.send("unable to register")
     }
-})
+});
 
 //POST /api/users/login - login existing user 
 usersRouter.post("/login", async (req, res, next) => {
