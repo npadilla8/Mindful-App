@@ -8,32 +8,21 @@ productsRouter.get("/", async (req, res, next) => {
         const products = await prisma.product.findMany();
         res.send(products)
     } catch (error) {
-        res.send("unable to get products")
+        res.send("Unable to get all products.")
     }
 })
-
-productsRouter.get("/", async (req, res, next) => {
-    try {
-      const products = await prisma.products.findMany({
-        where: { id: req.product.id },
-      });
-      res.send(products);
-    } catch (error) {
-      next(error);
-    }
-  });
 
 //GET /api/products/:productId - get individual product
 productsRouter.get('/:productId', async (req, res, next) => {
     try {
-        const product = await prisma.products.findUnique({
+        const product = await prisma.product.findUnique({
             where: {
                 id: Number(req.params.productId),
             },
         });
         res.send(product);
     } catch {
-        res.send("Unable to get individual product");
+        res.send("Unable to get individual product.");
     }
 });
 

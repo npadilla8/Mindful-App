@@ -8,11 +8,10 @@ const SALT_COUNT = 10;
 const jwt = require("jsonwebtoken");
 const { JWT } = process.env
 
-//SET UP DIFF PERMISSIONS FOR EACH ENDPOINT 
-
+const {requireUser, requireAdmin} = require('./utils');
 
 //GET /api/users - get all users without their passwords
-usersRouter.get('/', async (req, res, next) => {
+usersRouter.get('/', requireAdmin, async (req, res, next) => {
     try {
         const users = await prisma.user.findMany();
 
@@ -31,12 +30,12 @@ usersRouter.get('/', async (req, res, next) => {
     }
 });
 
-//GET /api/users/:userId - get individual shoppers with carts
-usersRouter.get('/:userId', async (req, res, next) => {
+//GET /api/users/cart - get individual shoppers with carts
+usersRouter.get('/cart', requireUser, async (req, res, next) => {
     try {
         const shopperWithCart = await prisma.user.findUnique({
             where: {
-                id: Number(req.params.userId),
+                id: req.user.id,
             },
             include: {
                 cart: {
@@ -45,7 +44,10 @@ usersRouter.get('/:userId', async (req, res, next) => {
                     }
                 }
             }
-        })
+        });
+
+        delete (shopperWithCart.hashedPassword);
+        
         res.send(shopperWithCart)
     } catch {
         res.send("unable to get individual user")
