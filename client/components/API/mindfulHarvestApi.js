@@ -18,7 +18,7 @@ const mindfulHarvestApi = createApi({
     }),
 
     endpoints: (builder) => ({
-        //---------------->USER ENDPOINTS<---------------------//
+        //----------------USER ENDPOINTS---------------------//
 
         //GET /api/users - get all users without their passwords
         getUsers: builder.query({
@@ -45,7 +45,7 @@ const mindfulHarvestApi = createApi({
             })
         }),
 
-        //----------------->PRODUCT ENDPOINTS<----------------------//
+        //-----------------PRODUCT ENDPOINTS----------------------//
        
         //GET /api/products - get all products
         getProducts: builder.query({
@@ -79,7 +79,7 @@ const mindfulHarvestApi = createApi({
             })
         }),
 
-        //----------------->CART ITEM ENDPOINTS<--------------------//
+        //-----------------CART ITEM ENDPOINTS--------------------//
 
         //POST /api/cartItem/ - add cart items (products) to cart 
         addCartItemtoCart: builder.mutation({
@@ -105,7 +105,19 @@ const mindfulHarvestApi = createApi({
             })
         }),
 
-        //--------------------->CART ENDPOINTS<-----------------------//
+        //---------------------CART ENDPOINTS-----------------------//
+        
+        //GET /api/cart/ - get cart by userId aka req.user.id 
+        getUserCart: builder.query({
+            query: () => "/api/cart",
+        }),
+        // DELETE /api/cart/:cartId - delete user's cart **May not want to bc cart only created on registration**
+        deleteUserCart: builder.mutation({
+            query: (cartId) => ({
+                url: `/api/cart/${cartId}`,
+                method: "DELETE"
+            })
+        }),
     })
 });
 
@@ -125,5 +137,8 @@ export const {
     useAddCartItemtoCartMutation,
     useUpdateQuantityOfCartItemMutation,
     useDeleteCartItemFromCartMutation,
+
+    useGetUserCartQuery,
+    useDeleteUserCartMutation,
 
 } = mindfulHarvestApi;

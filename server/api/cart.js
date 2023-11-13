@@ -12,6 +12,11 @@ cartRouter.get("/", requireUser, async (req, res, next) => {
                 userId: req.user.id
             }
         })
+        if (!cart) {
+            res.send({
+                message: "User does not have a cart."
+            })
+        }
         res.send(cart)
     } catch (error){
         res.send("Unable to get cart for the user.")
