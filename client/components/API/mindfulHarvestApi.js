@@ -46,6 +46,41 @@ const mindfulHarvestApi = createApi({
         }),
 
         //----------------->PRODUCT ENDPOINTS<----------------------//
+       
+        //GET /api/products - get all products
+        getProducts: builder.query({
+            query: () => "/api/products",
+        }),
+        //GET /api/products/:productId - get individual product
+        getSingleProduct: builder.query({
+            query: (productId) => `/api/products/${productId}`
+        }),
+        //POST /api/products - add new product only allowed for admins
+        addProduct: builder.mutation({
+            query: (product) => ({
+                url: "/api/products",
+                method: "POST",
+                body: product,
+            })
+        }),
+        //PUT /api/products/:productId - update existing product
+        updateProduct: builder.mutation({
+            query: (productId, product) => ({
+                url: `/api/products/${productId}`,
+                method: "PUT",
+                body: {productId, product},
+            })
+        }),
+        //DELETE /api/products/:productId - delete product 
+        deleteProduct: builder.mutation({
+            query: (productId) => ({
+                url: `/api/products/${productId}`,
+                method: "DELETE",
+            })
+        }),
+
+        //----------------->CART ITEM ENDPOINTS<--------------------//
+        
 
     })
 });
@@ -56,5 +91,11 @@ export const {
     useGetUserWithCartQuery,
     useRegisterUserMutation,
     useLoginUserMutation,
+
+    useGetProductsQuery,
+    useGetSingleProductQuery,
+    useAddProductMutation,
+    useUpdateProductMutation,
+    useDeleteProductMutation,
 
 } = mindfulHarvestApi;
