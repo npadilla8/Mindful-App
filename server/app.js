@@ -2,6 +2,10 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const cors = require('cors');
+
+// for ports security
+app.use(cors());
 
 // Logging middleware
 app.use(morgan("dev"));
