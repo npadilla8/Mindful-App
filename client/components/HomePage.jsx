@@ -1,7 +1,7 @@
 const HomePage = () => {
     return (
         <div>
-            <p>This is the Home Page of Mindful Harvest</p>
+            <p>This testtesttest is the Home Page of Mindful Harvest</p>
         </div>
     );
 }

@@ -10,10 +10,10 @@ import store from "./components/API/store"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
     <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+        <App />
     </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
