@@ -68,7 +68,7 @@ const mindfulHarvestApi = createApi({
             query: (productId, product) => ({
                 url: `/api/products/${productId}`,
                 method: "PUT",
-                body: {productId, product},
+                body: product,
             })
         }),
         //DELETE /api/products/:productId - delete product 
@@ -80,8 +80,32 @@ const mindfulHarvestApi = createApi({
         }),
 
         //----------------->CART ITEM ENDPOINTS<--------------------//
-        
 
+        //POST /api/cartItem/ - add cart items (products) to cart 
+        addCartItemtoCart: builder.mutation({
+            query: (productId, quantity) => ({
+                url: "/api/cartItem",
+                method: "POST",
+                body: {productId, quantity},
+            })
+        }),
+        //PUT /api/cartItem/:cartItemId - update quanity in cart
+        updateQuantityOfCartItem: builder.mutation({
+            query: (cartItemId, quantity) => ({
+                url: `/api/cartItem/${cartItemId}`,
+                method: "PUT",
+                body: quantity
+            })
+        }),
+        //DELETE /api/cartItem/:cartItemId - delete cartItem from cart
+        deleteCartItemFromCart: builder.mutation({
+            query: (cartItemId) => ({
+                url: `/api/cartItem/${cartItemId}`,
+                method: "DELETE",              
+            })
+        }),
+
+        //--------------------->CART ENDPOINTS<-----------------------//
     })
 });
 
@@ -97,5 +121,9 @@ export const {
     useAddProductMutation,
     useUpdateProductMutation,
     useDeleteProductMutation,
+
+    useAddCartItemtoCartMutation,
+    useUpdateQuantityOfCartItemMutation,
+    useDeleteCartItemFromCartMutation,
 
 } = mindfulHarvestApi;
