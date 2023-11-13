@@ -2,7 +2,21 @@ const express = require("express");
 const cartRouter = express.Router();
 const prisma = require("../db/client");
 
-// TODO: add {requireUser} function
+const {requireUser} = require('./utils');
+
+//GET /api/cart/ - get cart by userId aka req.user.id 
+cartRouter.get("/", requireUser, async (req, res, next) => {
+    try{
+        const cart = await prisma.cart.findUnique({
+            where: {
+                userId: req.user.id
+            }
+        })
+        res.send(cart)
+    } catch (error){
+        res.send("Unable to get cart for the user.")
+    }
+});
 
 // GET /api/cart/:cartId
 cartRouter.get("/:cartId", async (req, res, next) => {
@@ -17,6 +31,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
         next("Unable to get cart");
     }
 });
+
 
 // POST /api/cart
 // creates a new post
