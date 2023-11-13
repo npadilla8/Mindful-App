@@ -92,5 +92,4 @@ productsRouter.delete('/:productId/', requireAdmin, async (req, res, next) => {
 });
 
 
-
 module.exports = productsRouter;
