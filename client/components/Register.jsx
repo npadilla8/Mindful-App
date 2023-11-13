@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRegisterUserMutation } from './API/mindfulHarvestApi';
 
 const RegistrationForm = () => {
+  const [register] = useRegisterUserMutation();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
+    username: '',
     email: '',
     password: ''
   });
@@ -18,30 +19,21 @@ const RegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(formData)
-    navigate('/profile');
+    register(formData);
+    navigate('/account');
+    // console.log(formData);
   };
 
   return (
     <div className="registration-form container">
-      <h2>Registration Form</h2>
+      <h2>Sign-up</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>First Name:</label>
+          <label>Username:</label>
           <input
             type="text"
-            name="firstname"
-            value={formData.firstname}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="lastname"
-            value={formData.lastname}
+            name="username"
+            value={formData.username}
             onChange={handleInputChange}
             required
           />
