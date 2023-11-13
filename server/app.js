@@ -20,28 +20,9 @@ app.get("/test", (req, res, next) => {
   res.send("Test route");
 });
 
-app.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
 // TODO: Add your routers here
 const apiRouter = require("./api");
 app.use("/api", apiRouter);
-
-// const productsRouter = require("./api/products");
-// app.use("/api/products", productsRouter);
-
-// const usersRouter = require("./api/users");
-// app.use("/api/users", usersRouter);
-
-// const cartItemRouter = require("./api/cartItem");
-// app.use("/api/cartItem", cartItemRouter);
-
-// const categoriesRouter = require("./api/categories");
-// app.use("/api/categories", categoriesRouter);
-
-// const orderRouter = require("./api/order");
-// app.use("/api/order", orderRouter);
 
 // Error handling middleware
 app.use((error, req, res, next) => {
@@ -57,6 +38,12 @@ app.use((error, req, res, next) => {
     });
 });
 
+// TODO: find another way to send all routes to serve index.html
+// because otherwise faulty routes won't go to 404 below
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+
 // 404 handler
 app.get('*', (req, res) => {
     res.status(404).send({
@@ -64,6 +51,5 @@ app.get('*', (req, res) => {
         message: 'No route found for the requested URL',
     });
 });
-
 
 module.exports = app;
