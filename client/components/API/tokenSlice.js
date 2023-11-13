@@ -10,17 +10,17 @@ const tokenSlice = createSlice({
         }
     },
 
-    // extraReducers: (builder) => {
-    //     builder.addMatcher(
-    //         mindfulHarvestApi.endpoints.register.matchFulfilled,
-    //         (state, { payload }) => payload.token
-    //     );
+    extraReducers: (builder) => {
+        builder.addMatcher(
+            mindfulHarvestApi.endpoints.registerUser.matchFulfilled,
+            (state, { payload }) => payload.token
+        );
 
-    //     builder.addMatcher(
-    //         mindfulHarvestApi.endpoints.login.matchFulfilled,
-    //         (state, {payload}) => payload.token
-    //     )
-    // }
+        builder.addMatcher(
+            mindfulHarvestApi.endpoints.loginUser.matchFulfilled,
+            (state, {payload}) => payload.token
+        )
+    }
 });
 
 
