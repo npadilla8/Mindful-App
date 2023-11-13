@@ -30,7 +30,7 @@ cartRouter.get("/:cartId", async (req, res, next) => {
     } catch (error) {
         next("Unable to get cart");
     }
-});
+})
 
 
 // POST /api/cart

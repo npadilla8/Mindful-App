@@ -122,7 +122,7 @@ usersRouter.post("/login", async (req, res, next) => {
         console.error(error);
         res.send("unable to login.")
     }
-})
+});
 
 
 module.exports = usersRouter;
