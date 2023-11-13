@@ -1,5 +1,3 @@
-//test comment - will delete later after I know git pull is working 
-
 import { createSlice } from "@reduxjs/toolkit";
 import mindfulHarvestApi from "./mindfulHarvestApi";
 
