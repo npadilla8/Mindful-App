@@ -104,13 +104,17 @@ usersRouter.post("/login", async (req, res, next) => {
         });
 
         if (!user) {
-            return res.status(401).send("Invalid login credentials.")
+            return res.status(401).send({
+                message: "Unable to log in. User does not exist."
+            })
         };
 
         const passwordsMatch = await bcrypt.compare(password, user.hashedPassword);
 
         if (!passwordsMatch) {
-            return res.status(401).send("Invalid login credentials.");
+            return res.status(401).send({
+                message: "Invalid login credentials."
+            });
         };
 
         const token = jwt.sign({ id: user.id }, JWT);
@@ -119,8 +123,9 @@ usersRouter.post("/login", async (req, res, next) => {
 
         res.send({ user, token });
     } catch (error) {
-        console.error(error);
-        res.send("unable to login.")
+        res.send({
+            message: "Unable to log in."
+        })
     }
 });
 
