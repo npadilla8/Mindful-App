@@ -8,6 +8,13 @@ const SingleProduct = () => {
     const {data, error, isLoading} = useGetSingleProductQuery(productId);
     const navigate = useNavigate();
 
+    if(isLoading) {
+        return <div>Loading ...</div>
+    };
+    if(error) {
+        return <div>Unable to Get Product</div>
+    };
+
     // const handleAddToCart = async (e) => {
     //     e.preventDefault();
 
@@ -23,7 +30,18 @@ const SingleProduct = () => {
 
     return (
         <div className='single-product'>
-            <div key={data}>Single product page here</div>
+            <div key={data.id}>
+
+                <div className="single=product-details">
+                        <h2 className="product-title">{data.title}</h2>
+                        <p className="product-description">{data.description}</p>
+                </div>
+                
+                <div className="image-container">
+                        <img className="single-image" src={data.image} alt={data.title} />
+                </div>
+
+            </div>
         </div>
     );
 };
