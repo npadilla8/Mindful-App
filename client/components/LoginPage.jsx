@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLoginUserMutation, useRegisterUserMutation  } from './API/mindfulHarvestApi';
 import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [register, {isLoading}] = useRegisterMutation();
+  const [login] = useLoginMutation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
