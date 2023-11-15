@@ -19,9 +19,11 @@ const SingleProduct = () => {
         navigate('/cart');
     };
 
+    console.log(data);
+
     return (
-        <div>
-            <p>This is the single product page</p>
+        <div className='single-product'>
+            <div key={data}></div>
         </div>
     );
 };
