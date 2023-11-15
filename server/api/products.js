@@ -70,7 +70,7 @@ productsRouter.put('/:productId/', requireAdmin, async (req, res, next) => {
         });
         res.send(updatedProduct);
     } catch (error) {
-        res.send("Unable to update product.");
+        res.send({message:"Unable to update product."});
     }
 });
 
