@@ -39,7 +39,7 @@ async function main() {
     //collectibles & art
     await prisma.product.upsert({
         where: { title: 'Corner Bookmark' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/42183806/r/il/27351e/5186271600/il_300x300.5186271600_khi0.jpg"},
         create: {
             title: 'Corner Bookmark',
             image: './product_images/collectibles & art/Corner Bookmark.avif',
@@ -53,7 +53,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Acrylic Bookmark' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/29999846/r/il/848da9/4877551029/il_300x300.4877551029_8w6l.jpg"},
         create: {
             title: 'Acrylic Bookmark',
             image: './product_images/collectibles & art/Acrylic Bookmark.avif',
@@ -67,7 +67,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Watercolor Painting' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/30927076/r/il/2f461c/4217697582/il_600x600.4217697582_6yn0.jpg"},
         create: {
             title: 'Watercolor Painting',
             image: './product_images/collectibles & art/Watercolor Painting.webp',
@@ -83,7 +83,7 @@ async function main() {
     //clothing & jewelry
     await prisma.product.upsert({
         where: { title: 'Stethoscope Necklace' },
-        update: {},
+        update: {image:"https://i.etsystatic.com/15563617/c/1176/934/237/202/il/adb0ad/1535620899/il_340x270.1535620899_lffd.jpg"},
         create: {
             title: 'Stethoscope Necklace',
             image: './product_images/clothing & jewelry/Stethoscope Necklace.avif',
@@ -97,7 +97,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Birthstone Necklace' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/5634743/c/1937/1937/314/688/il/de81c0/3537979898/il_300x300.3537979898_9u4g.jpg"},
         create: {
             title: 'Birthstone Necklace',
             image: './product_images/clothing & jewelry/Birthstone Necklace.avif',
@@ -111,7 +111,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Personalized Sweater' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/28504538/r/il/b55b37/5318226455/il_300x300.5318226455_t2jn.jpg"},
         create: {
             title: 'Personalized Sweater',
             image: './product_images/clothing & jewelry/Stethoscope Necklace.avif',
@@ -127,7 +127,7 @@ async function main() {
     //toys
     await prisma.product.upsert({
         where: { title: 'Crochet Rattle' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/35391247/r/il/b1d72f/5284649590/il_794xN.5284649590_e2yg.jpg"},
         create: {
             title: 'Crochet Rattle',
             image: './product_images/toys/Crochet Rattle.avif',
@@ -141,7 +141,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Human Body Puzzle' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/32753543/r/il/8c72f6/3842617767/il_794xN.3842617767_gft1.jpg"},
         create: {
             title: 'Human Body Puzzle',
             image: './product_images/toys/Human Body Puzzle.avif',
@@ -155,7 +155,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Montessori Climber' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/21222226/r/il/9a8978/4172706705/il_794xN.4172706705_7bc4.jpg"},
         create: {
             title: 'Montessori Climber',
             image: './product_images/toys/Montessori Climber.avif',
@@ -171,7 +171,7 @@ async function main() {
     //home & living
     await prisma.product.upsert({
         where: { title: 'Breakfast Lover Candle' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/17198792/c/980/980/0/154/il/837491/4587060181/il_300x300.4587060181_mf0e.jpg"},
         create: {
             title: 'Breakfast Lover Candle',
             image: './product_images/home & living/Breakfast Lover Candle.webp',
@@ -185,7 +185,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Goat Milk Soap' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/5737923/r/il/64e13a/1754790624/il_300x300.1754790624_g6gs.jpg"},
         create: {
             title: 'Goat Milk Soap',
             image: 'capstone/Mindful-App/server/db/product_images/home & living/Goat Milk Soap.webp',
@@ -199,7 +199,7 @@ async function main() {
     });
     await prisma.product.upsert({
         where: { title: 'Aromatherapy Candle' },
-        update: {},
+        update: {image: "https://i.etsystatic.com/21554180/c/1299/1299/350/475/il/b6b6bf/5351630181/il_300x300.5351630181_37dn.jpg"},
         create: {
             title: 'Aromatherapy Candle',
             image: './product_images/home & living/Sleep & Relaxation Aromatherapy Candle.webp',
@@ -208,6 +208,20 @@ async function main() {
             available: true,
             returnPolicy: true,
             quantity: 50,
+            categoryId: 4
+        }
+    });
+    await prisma.product.upsert({
+        where: { title: 'Sofa Table' },
+        update: {},
+        create: {
+            title: 'Sofa Table',
+            image: 'https://i.etsystatic.com/9865605/r/il/dd391d/4583199743/il_794xN.4583199743_tdra.jpg',
+            description: 'Wood Sofa Table | Media Stand | Console Stand',
+            price: 250,
+            available: true,
+            returnPolicy: true,
+            quantity: 35,
             categoryId: 4
         }
     });
@@ -344,3 +358,4 @@ main()
         await prisma.$disconnect()
         process.exit(1)
     })
+
