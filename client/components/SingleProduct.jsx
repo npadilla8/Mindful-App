@@ -1,3 +1,7 @@
+import React from 'react';
+import { useGetSingleProductQuery } from './API/mindfulHarvestApi';
+import { useParams, useNavigate } from 'react-router-dom';
+
 const SingleProduct = () => {
     return (
         <div>
