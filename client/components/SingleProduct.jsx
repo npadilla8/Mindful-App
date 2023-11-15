@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAddCartItemtoCartMutation, useGetSingleProductQuery } from './API/mindfulHarvestApi';
+import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useGetUserCartQuery } from './API/mindfulHarvestApi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNextState } from '@reduxjs/toolkit';
 
@@ -8,6 +8,7 @@ const SingleProduct = () => {
     const {data, error, isLoading} = useGetSingleProductQuery(productId);
     const navigate = useNavigate();
     const [addToCart] = useAddCartItemtoCartMutation();
+    // const {data: cartData, error: productError, isLoading: isCartLoading} = useGetUserCartQuery();
 
     if(isLoading) {
         return <div>Loading ...</div>
@@ -34,7 +35,7 @@ const SingleProduct = () => {
         navigate('/cart');
     };
 
-    console.log(data);
+    console.log(cartData);
 
     return (
         <div className='single-product'>
