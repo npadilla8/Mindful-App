@@ -1,56 +1,56 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLoginUserMutation, useRegisterUserMutation  } from './API/mindfulHarvestApi';
 import axios from 'axios';
+import { useLoginUserMutation } from './API/mindfulHarvestApi';
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
-  const [register, {isLoading}] = useRegisterMutation();
-  const [login] = useLoginMutation();
+  const [login] = useLoginUserMutation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post('/api/login', { email, password });
+    const response = await login({
+      email: email,
+      password: password,
+    });
 
-      if (response.status === 200) {
-        navigate('/profile'); 
-      } else {
-        console.error('Login failed');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-    }
+    console.log(response)
+
+    setEmail("");
+    setPassword("")
+    
+    if(response.data.user.isAdmin === false) {
+      navigate("/account")
+    } 
+    if (response.data.user.isAdmin === true) {
+      navigate("/admin")
+    } 
+
+
   };
 
   return (
-    <div className="login container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
+    <>
+      <h3>Login</h3>
+      <form method="POST" onSubmit={handleLogin}>
+        <label>
+          Email: {" "}
+          <input value={email} onChange={(e) => setEmail(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Password: {" "}
+          <input value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <br />
+        <button>Submit</button>
       </form>
-    </div>
+    </>
   );
 }
 

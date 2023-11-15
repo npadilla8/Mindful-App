@@ -1,6 +1,9 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const bcrypt = require('bcrypt');
+const SALT_COUNT = 10;
+
 async function main() {
     //seeding category table
     await prisma.category.upsert({
@@ -258,8 +261,8 @@ async function main() {
                                 quantity: 1
                             },
                             {
-                               productId: 11,
-                               quantity: 1
+                                productId: 11,
+                                quantity: 1
                             }
                         ]
                     }
@@ -302,9 +305,10 @@ async function main() {
         }
     });
 
+
     //user with admin permission
     await prisma.user.upsert({
-        where: { username: 'secretAdmin'},
+        where: { username: 'secretAdmin' },
         update: {},
         create: {
             username: 'secretAdmin',
@@ -313,6 +317,22 @@ async function main() {
             isAdmin: true
         }
     });
+
+    //user with admin permission & hashed password
+    async function createAdmin() {
+       const  hashedPassword = await bcrypt.hash("admin", SALT_COUNT);
+        await prisma.user.upsert({
+            where: { username: 'Administrator' },
+            update: {},
+            create: {
+                username: 'Administrator',
+                email: 'admin@secret.com',
+                hashedPassword: hashedPassword,
+                isAdmin: true
+            }
+        });
+    }
+    createAdmin();
 
 }
 main()
