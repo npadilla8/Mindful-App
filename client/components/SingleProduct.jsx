@@ -49,6 +49,8 @@ const SingleProduct = () => {
                         <img className="single-image" src={data.image} alt={data.title} />
                 </div>
 
+                <button className='add-to-cart-button' onClick={handleAddToCart}>Add to Cart</button>
+
             </div>
         </div>
     );
