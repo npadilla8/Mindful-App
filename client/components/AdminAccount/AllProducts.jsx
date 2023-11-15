@@ -1,6 +1,7 @@
 import {React} from "react"
 import {useGetProductsQuery} from "../API/mindfulHarvestApi"
 
+
 export default function AllProducts(){
     const {data, error, isLoading} = useGetProductsQuery();
 
@@ -23,7 +24,10 @@ export default function AllProducts(){
                     <div key={product.id}>
                         <p>Title: {product.title}</p>
                         <p>Description: {product.description}</p>
-                        <img src={product.image} alt={product.title}/>
+                        <img style={{width: '30%'}} src={product.image} alt={product.title}/>
+                        <button>Edit</button>
+                        <button>Delete</button>
+
                 
                     </div>
                 )
