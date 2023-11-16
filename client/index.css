@@ -1,1 +1,74 @@
 /* Put your CSS in here! */
+/* Nav Bar */
+
+
+.navbar-container {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+.center-section {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.typography {
+    display: flex; 
+    align-items: left;
+    margin: 15px;
+}
+
+.dropdown {
+    display: flex; 
+    align-items: center; 
+}
+
+.dropbtn {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 20px; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    margin-top: 8px;
+}
+
+.dropdown-content p {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.sign-in {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.cart-icon {
+    padding: 10px;
+    border-radius: 5px;
+}
