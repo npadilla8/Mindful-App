@@ -2,10 +2,10 @@ import { React, useState } from "react";
 import { useUpdateProductMutation } from "../API/mindfulHarvestApi";
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useParams } from "react-router";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function ProductEdit() {
-    const token = useSelector(state=>state.token)
+    const token = useSelector(state => state.token)
     console.log(token)
     //getting id from params to render single product
     const params = useParams();
@@ -24,7 +24,7 @@ export default function ProductEdit() {
     //rendering single product and extracting function to update product
     const { data, error, isLoading } = useGetSingleProductQuery(singleProductId);
     const [updateProduct] = useUpdateProductMutation();
-    
+
     //handling error and loading for useGetSingleProductQuery
     if (isLoading) {
         return <div>Loading...</div>
@@ -38,27 +38,27 @@ export default function ProductEdit() {
         e.preventDefault();
 
         try {
-       const objFromState = {
-            title: title,
-            image: image,
-            description: description,
-            price: Number(price),
-            available: JSON.parse(available),
-            returnPolicy: JSON.parse(returnPolicy),
-            quantity: Number(quantity),
-            categoryId: Number(categoryId),    
-        };
+            const objFromState = {
+                title: title,
+                image: image,
+                description: description,
+                price: (price !== null ? Number(price) : null),
+                available: JSON.parse(available),
+                returnPolicy: JSON.parse(returnPolicy),
+                quantity: (quantity !== null ? Number(quantity) : null),
+                categoryId: (categoryId !== null ? Number(categoryId) : null),
+            };
 
-        const objTurnedtoArray = Object.entries(objFromState);
-        const filteredArray = objTurnedtoArray.filter(([key, value]) => value !== null);
-        const filteredProductObj = Object.fromEntries(filteredArray);
+            const objTurnedtoArray = Object.entries(objFromState);
+            const filteredArray = objTurnedtoArray.filter(([key, value]) => value !== null);
+            const filteredProductObj = Object.fromEntries(filteredArray);
 
-        console.log(filteredProductObj);
+            console.log("filteredObj:", filteredProductObj);
 
-        
             const response = await updateProduct(singleProductId, filteredProductObj)
-            console.log("response update function", response)
-        } catch (error){
+            console.log("singleProductId:", singleProductId)
+            console.log("backend response:", response)
+        } catch (error) {
             console.error(error)
         }
     }
@@ -76,7 +76,7 @@ export default function ProductEdit() {
                     <div>
                         <p>Price: {data.price}</p>
                         <p>Available: {data.available ? "Available" : "Not Available"}</p>
-                        <p>Return Policy: {data.returnPolicy? "Returnable" : "Non-Returnable"}</p>
+                        <p>Return Policy: {data.returnPolicy ? "Returnable" : "Non-Returnable"}</p>
                         <p>Quantity: {data.quantity}</p>
                         <p>Category Id: {data.categoryId}</p>
                     </div>
@@ -88,7 +88,7 @@ export default function ProductEdit() {
 
             <h3>Update Product Details</h3>
             <h5>Instructions: Edit one or more fields as needed. </h5>
-            <form method="PUT" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Title: {" "}
                     <input value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -143,8 +143,8 @@ export default function ProductEdit() {
                     </select>
                 </label>
                 <br />
-                
-                <button>Submit</button>
+
+                <button type="submit">Submit</button>
 
             </form>
 
