@@ -40,7 +40,7 @@ const SingleProduct = () => {
 // TODO: ADD quantity button
         try {
             await addToCart({
-                productId, quantity: '1'
+                productId, quantity: amount
             });
         } catch (error) {
             console.error(error);
