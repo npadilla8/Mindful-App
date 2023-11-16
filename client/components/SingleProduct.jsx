@@ -3,6 +3,10 @@ import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useGetUserCartQ
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNextState } from '@reduxjs/toolkit';
 import { useState } from 'react';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
+import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -55,6 +59,15 @@ const SingleProduct = () => {
                 <div className="image-container">
                         <img className="single-image" src={data.image} alt={data.title} />
                 </div>
+
+                <Stack direction="row" spacing={1}>
+                    <IconButton aria-label="remove">
+                        <RemoveCircleTwoToneIcon />
+                    </IconButton>
+                    <IconButton aria-label="add">
+                        <AddCircleTwoToneIcon />
+                    </IconButton>
+                </Stack>
 
                 <button className='add-to-cart-button' onClick={handleAddToCart}>Add to Cart</button>
 
