@@ -25,16 +25,13 @@ const NavBar = () => {
                         </button>
                         {showDropdown && (
                             <div className="dropdown-content">
-                                {/* Placeholder content for the dropdown */}
+                                {/*content dropdown */}
                                 <p>Category 1</p>
                                 <p>Category 2</p>
                                 <p>Category 3</p>
-                                {/* Add more categories as needed */}
                             </div>
                         )}
                     </div>
-                    {/* Search Bar */}
-                    <input type="text" placeholder="Search..." className="search-bar" />
                 </div>
                 <div className="right-section">
                     {/* Sign In Icon */}
