@@ -104,31 +104,28 @@ usersRouter.post("/login", async (req, res, next) => {
         });
 
         if (!user) {
-            return res.status(401).send({
-                message: "Unable to log in. User does not exist."
+            res.status(401)
+            next({ message: "Unable to log in. User does not exist."
             })
-        };
+        } else{
 
         const passwordsMatch = await bcrypt.compare(password, user.hashedPassword);
 
         if (!passwordsMatch) {
-            return res.status(401).send({
+         res.status(401)
+         next({
                 message: "Invalid login credentials."
             });
-        };
+        } else { 
 
         const token = jwt.sign({ id: user.id }, JWT);
 
         delete (user.hashedPassword);
 
-        res.send({ user, token });
+        res.send({ user, token });}}
     } catch (error) {
-        res.send({
-            message: "Unable to log in."
-        })
+        next(error)
     }
 });
-
-
 
 module.exports = usersRouter;
