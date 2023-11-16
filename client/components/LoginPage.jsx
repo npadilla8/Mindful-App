@@ -22,13 +22,13 @@ function Login() {
 
     setEmail("");
     setPassword("")
-    
+
     if(response.data.user.isAdmin === false) {
       navigate("/account")
-    } 
+    }
     if (response.data.user.isAdmin === true) {
       navigate("/admin")
-    } 
+    }
 
 
   };
