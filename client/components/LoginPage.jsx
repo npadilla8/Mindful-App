@@ -30,7 +30,6 @@ function Login() {
       navigate("/admin")
     }
 
-
   };
 
   return (

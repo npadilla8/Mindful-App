@@ -36,7 +36,7 @@ const mindfulHarvestApi = createApi({
                 body: user,
             })
         }),
-        //POST /api/users/login - login existing user 
+        //POST /api/users/login - login existing user
         loginUser: builder.mutation({
             query: (user) => ({
                 url: "/api/users/login",
@@ -46,7 +46,7 @@ const mindfulHarvestApi = createApi({
         }),
 
         //-----------------PRODUCT ENDPOINTS----------------------//
-       
+
         //GET /api/products - get all products
         getProducts: builder.query({
             query: () => "/api/products",
@@ -71,7 +71,7 @@ const mindfulHarvestApi = createApi({
                 body: product,
             })
         }),
-        //DELETE /api/products/:productId - delete product 
+        //DELETE /api/products/:productId - delete product
         deleteProduct: builder.mutation({
             query: (productId) => ({
                 url: `/api/products/${productId}`,
@@ -81,9 +81,9 @@ const mindfulHarvestApi = createApi({
 
         //-----------------CART ITEM ENDPOINTS--------------------//
 
-        //POST /api/cartItem/ - add cart items (products) to cart 
+        //POST /api/cartItem/ - add cart items (products) to cart
         addCartItemtoCart: builder.mutation({
-            query: (productId, quantity) => ({
+            query: ({productId, quantity}) => ({
                 url: "/api/cartItem",
                 method: "POST",
                 body: {productId, quantity},
@@ -91,7 +91,7 @@ const mindfulHarvestApi = createApi({
         }),
         //PUT /api/cartItem/:cartItemId - update quanity in cart
         updateQuantityOfCartItem: builder.mutation({
-            query: (cartItemId, quantity) => ({
+            query: ({cartItemId, quantity}) => ({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "PUT",
                 body: quantity
@@ -99,15 +99,15 @@ const mindfulHarvestApi = createApi({
         }),
         //DELETE /api/cartItem/:cartItemId - delete cartItem from cart
         deleteCartItemFromCart: builder.mutation({
-            query: (cartItemId) => ({
+            query: ({cartItemId}) => ({
                 url: `/api/cartItem/${cartItemId}`,
-                method: "DELETE",              
+                method: "DELETE",
             })
         }),
 
         //---------------------CART ENDPOINTS-----------------------//
-        
-        //GET /api/cart/ - get cart by userId aka req.user.id 
+
+        //GET /api/cart/ - get cart by userId aka req.user.id
         getUserCart: builder.query({
             query: () => "/api/cart",
         }),

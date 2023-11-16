@@ -7,6 +7,7 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
+import { useSelector } from 'react-redux';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -15,6 +16,7 @@ const SingleProduct = () => {
     const navigate = useNavigate();
     const [addToCart] = useAddCartItemtoCartMutation();
     // const {data: cartData, error: productError, isLoading: isCartLoading} = useGetUserCartQuery();
+    const token = useSelector(state => state.token)
 
     const setDecrease = () => {
         setAmount(amount - 1);
@@ -37,19 +39,21 @@ const SingleProduct = () => {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-// TODO: ADD quantity button
+
         try {
-            await addToCart({
-                productId, quantity: amount
+            const response = await addToCart({
+                productId: Number(productId),
+                quantity: amount
             });
+            console.log(response);
         } catch (error) {
             console.error(error);
         };
-        navigate('/cart');
     };
 
     console.log(data);
     // console.log(cartData);
+    console.log(token);
 
     return (
         <div className='single-product'>

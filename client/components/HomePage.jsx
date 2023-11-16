@@ -30,7 +30,7 @@ const HomePage = () => {
                     <Link to="/login"> Got to Login </Link>
             </div>
         </div>
-        
+
     );
 }
 
