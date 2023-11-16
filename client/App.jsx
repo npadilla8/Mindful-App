@@ -5,6 +5,7 @@ import AdminAccountPage from './components/AdminAccount/AdminAccountPage';
 import AccountPage from './components/AccountPage';
 import Register from './components/Register';
 import Cart from './components/Cart';
+import ProductEdit from './components/AdminAccount/ProductEdit';
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/adminEdit/:productId" element={<ProductEdit/>} />
       </Routes>
     );
   }

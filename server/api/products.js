@@ -87,7 +87,7 @@ productsRouter.delete('/:productId/', requireAdmin, async (req, res, next) => {
             deletedProduct
         });
     } catch (error) {
-        res.send("Unable to delete product");
+        res.send({message:"Unable to delete product"});
     }
 });
 
