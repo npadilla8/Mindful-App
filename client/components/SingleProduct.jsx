@@ -24,10 +24,10 @@ const SingleProduct = () => {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-
+// TODO: ADD quantity button
         try {
             await addToCart({
-                productId, quantity
+                productId, quantity: '1'
             });
         } catch (error) {
             console.error(error);
@@ -35,7 +35,8 @@ const SingleProduct = () => {
         navigate('/cart');
     };
 
-    console.log(cartData);
+    console.log(data);
+    // console.log(cartData);
 
     return (
         <div className='single-product'>
