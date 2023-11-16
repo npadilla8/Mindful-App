@@ -31,7 +31,7 @@ const AccountPage = () => {
             </div>
 
            ):(
-            <p>Please Log in to See Account Details.</p>
+            <p>User information not available.</p>
            ) }
             </div>
 
