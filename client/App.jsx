@@ -6,6 +6,7 @@ import AccountPage from './components/AccountPage';
 import Register from './components/Register';
 import Cart from './components/Cart';
 import NavBar from './components/Navigation';
+import SingleProduct from './components/SingleProduct';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/products/:productId" element={<SingleProduct />} />
       </Routes>
       </div>
     );
