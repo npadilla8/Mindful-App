@@ -5,10 +5,13 @@ import AdminAccountPage from './components/AdminAccount/AdminAccountPage';
 import AccountPage from './components/AccountPage';
 import Register from './components/Register';
 import Cart from './components/Cart';
+import NavBar from './components/Navigation';
 
 const App = () => {
 
     return (
+      <div> 
+      <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -17,6 +20,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      </div>
     );
   }
   export default App;
