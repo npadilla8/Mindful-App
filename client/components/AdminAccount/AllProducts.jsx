@@ -17,7 +17,6 @@ export default function AllProducts() {
     if (error) {
         return <div>Unable to Get Products</div>
     };
-    console.log(data);
     
     //onClick function to delete product using function from delete mutation
     async function adminDeleteProduct(productId) {
