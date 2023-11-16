@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from './API/mindfulHarvestApi';
 
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,14 +22,13 @@ function Login() {
 
     setEmail("");
     setPassword("")
-    
+
     if(response.data.user.isAdmin === false) {
       navigate("/account")
-    } 
+    }
     if (response.data.user.isAdmin === true) {
       navigate("/admin")
-    } 
-
+    }
 
   };
 
