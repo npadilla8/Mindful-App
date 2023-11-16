@@ -8,7 +8,7 @@ const mindfulHarvestApi = createApi({
         prepareHeaders: (headers, {getState}) => {
             headers.set("Content-Type", "application/json");
             const {token} = getState();
-
+            console.log("token " + token);
             if(token){
                 headers.set("authorization", `Bearer ${token}`);
             }

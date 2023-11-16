@@ -1,12 +1,13 @@
 import React from 'react';
-import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useGetUserCartQuery } from './API/mindfulHarvestApi';
+import { useAddCartItemtoCartMutation, useGetSingleProductQuery } from './API/mindfulHarvestApi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCart } from './API/cartSlice';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -14,7 +15,9 @@ const SingleProduct = () => {
     const {data, error, isLoading} = useGetSingleProductQuery(productId);
     const navigate = useNavigate();
     const [addToCart] = useAddCartItemtoCartMutation();
-    const token = useSelector(state => state.token)
+    const token = useSelector(state => state.token);
+    const cart = useSelector(state => state.cart);
+    const dispatch = useDispatch();
 
     const setDecrease = () => {
         setAmount(amount - 1);
@@ -39,11 +42,17 @@ const SingleProduct = () => {
         e.preventDefault();
 
         try {
-            const response = await addToCart({
-                productId: Number(productId),
-                quantity: amount
-            });
-            console.log(response);
+            if(token) {
+                await addToCart({
+                    productId: Number(productId),
+                    quantity: amount
+                });
+            } else {
+                await dispatch(setCart({
+                    productId: Number(productId),
+                    quantity: amount
+                }));
+            }
         } catch (error) {
             console.error(error);
         };
