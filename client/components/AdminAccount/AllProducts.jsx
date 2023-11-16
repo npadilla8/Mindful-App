@@ -1,11 +1,14 @@
 import { React } from "react"
 import { useGetProductsQuery } from "../API/mindfulHarvestApi"
 import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
+import {useNavigate} from 'react-router-dom';
 
 
 export default function AllProducts() {
     const { data, error, isLoading } = useGetProductsQuery();
     const [deleteProduct] = useDeleteProductMutation();
+
+    const navigate = useNavigate();
 
     //handling error and loading states for getProductsQuery
     if (isLoading) {
@@ -16,7 +19,7 @@ export default function AllProducts() {
     };
     console.log(data);
     
-    //onClick function to delete product
+    //onClick function to delete product using function from delete mutation
     async function adminDeleteProduct(productId) {
         try {
             const response = await deleteProduct(productId);
@@ -37,7 +40,7 @@ export default function AllProducts() {
                             <p>Title: {product.title}</p>
                             <p>Description: {product.description}</p>
                             <img style={{ width: '30%' }} src={product.image} alt={product.title} />
-                            <button>Edit</button>
+                            <button onClick={() => (navigate(`/adminEdit/${product.id}`))}>Edit</button>
                             <button onClick={() => adminDeleteProduct(product.id)}>Delete</button>
 
 
