@@ -99,8 +99,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
         const user = await prisma.user.findUnique({
             where: {
-                // email: req.body.email,
-                name:"foo"
+                email: req.body.email,
             }
         });
 
@@ -128,7 +127,5 @@ usersRouter.post("/login", async (req, res, next) => {
         next(error)
     }
 });
-
-
 
 module.exports = usersRouter;
