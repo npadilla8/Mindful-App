@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useGetUserCartQuery } from './API/mindfulHarvestApi';
 import { useParams, useNavigate } from 'react-router-dom';
-import { createNextState } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
@@ -15,7 +14,6 @@ const SingleProduct = () => {
     const {data, error, isLoading} = useGetSingleProductQuery(productId);
     const navigate = useNavigate();
     const [addToCart] = useAddCartItemtoCartMutation();
-    // const {data: cartData, error: productError, isLoading: isCartLoading} = useGetUserCartQuery();
     const token = useSelector(state => state.token)
 
     const setDecrease = () => {
@@ -50,10 +48,6 @@ const SingleProduct = () => {
             console.error(error);
         };
     };
-
-    console.log(data);
-    // console.log(cartData);
-    console.log(token);
 
     return (
         <div className='single-product'>
