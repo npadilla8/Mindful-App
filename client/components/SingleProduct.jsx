@@ -2,13 +2,18 @@ import React from 'react';
 import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useGetUserCartQuery } from './API/mindfulHarvestApi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNextState } from '@reduxjs/toolkit';
+import { useState } from 'react';
 
 const SingleProduct = () => {
+    const [amount, setAmount] = useState(1);
     const { productId } = useParams();
     const {data, error, isLoading} = useGetSingleProductQuery(productId);
     const navigate = useNavigate();
     const [addToCart] = useAddCartItemtoCartMutation();
     // const {data: cartData, error: productError, isLoading: isCartLoading} = useGetUserCartQuery();
+
+    const setDecrease = () => { };
+    const setIncrease = () => { };
 
     if(isLoading) {
         return <div>Loading ...</div>
