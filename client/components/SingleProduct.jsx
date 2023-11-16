@@ -16,8 +16,12 @@ const SingleProduct = () => {
     const [addToCart] = useAddCartItemtoCartMutation();
     // const {data: cartData, error: productError, isLoading: isCartLoading} = useGetUserCartQuery();
 
-    const setDecrease = () => { };
-    const setIncrease = () => { };
+    const setDecrease = () => {
+        setAmount(amount - 1);
+    };
+    const setIncrease = () => {
+        setAmount(amount + 1);
+    };
 
     if(isLoading) {
         return <div>Loading ...</div>
@@ -61,10 +65,11 @@ const SingleProduct = () => {
                 </div>
 
                 <Stack direction="row" spacing={1}>
-                    <IconButton aria-label="remove">
+                    <IconButton aria-label="remove-button" onClick={setDecrease}>
                         <RemoveCircleTwoToneIcon />
                     </IconButton>
-                    <IconButton aria-label="add">
+                    <p>{amount}</p>
+                    <IconButton aria-label="add-button" onClick={setIncrease}>
                         <AddCircleTwoToneIcon />
                     </IconButton>
                 </Stack>
