@@ -88,7 +88,7 @@ export default function ProductEdit() {
 
             <h3>Update Product Details</h3>
             <h5>Instructions: Edit one or more fields as needed. </h5>
-            <form onSubmit={handleSubmit}>
+            <form method="PUT" onSubmit={handleSubmit}>
                 <label>
                     Title: {" "}
                     <input value={title} onChange={(e) => setTitle(e.target.value)} />
