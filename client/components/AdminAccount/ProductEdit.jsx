@@ -55,7 +55,9 @@ export default function ProductEdit() {
 
             console.log("filteredObj:", filteredProductObj);
 
-            const response = await updateProduct(singleProductId, filteredProductObj)
+            const response = await updateProduct({
+                productId: singleProductId, 
+                product: filteredProductObj});
             console.log("singleProductId:", singleProductId)
             console.log("backend response:", response)
         } catch (error) {

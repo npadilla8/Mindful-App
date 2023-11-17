@@ -65,7 +65,7 @@ const mindfulHarvestApi = createApi({
         }),
         //PUT /api/products/:productId - update existing product
         updateProduct: builder.mutation({
-            query: (productId, product) => ({
+            query: ({productId, product}) => ({
                 url: `/api/products/${productId}`,
                 method: "PUT",
                 body: product,
