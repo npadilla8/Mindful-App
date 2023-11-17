@@ -42,10 +42,17 @@ const NavBar = () => {
                 </div>
 
                 <div className="right-section">
-                    {/*  "Sign In"  */}
-                    <div className="sign-in-icon" onClick={handleSignInClick}>
-                        Sign In
-                    </div>
+                    {token ? (
+                        // If user is signed in, show account information
+                        <Link to="/account" className="account-icon">
+                            Account
+                        </Link>
+                    ) : (
+                        // If user is a guest, show "Sign In"
+                        <div className="sign-in-icon" onClick={handleSignInClick}>
+                            Sign In
+                        </div>
+                    )}
                     {/* "Cart" */}
                     <Link to="/cart" className="cart-icon">
                         Cart
