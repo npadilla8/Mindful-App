@@ -19,8 +19,6 @@ const SingleProduct = () => {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
 
-    console.log(cart);
-
     const setDecrease = () => {
         setAmount(amount - 1);
     };
