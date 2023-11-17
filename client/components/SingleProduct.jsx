@@ -42,6 +42,7 @@ const SingleProduct = () => {
         e.preventDefault();
 
         try {
+            console.log(cart);
             if(token) {
                 await addToCart({
                     productId: Number(productId),
@@ -53,6 +54,7 @@ const SingleProduct = () => {
                     quantity: amount
                 }));
             }
+            console.log(cart);
         } catch (error) {
             console.error(error);
         };
@@ -63,12 +65,16 @@ const SingleProduct = () => {
             <div key={data.id}>
 
                 <div className="single=product-details">
-                        <h2 className="product-title">{data.title}</h2>
-                        <p className="product-description">{data.description}</p>
+                    <h2 className="product-title">{data.title}</h2>
+                    <p className="product-description">{data.description}</p>
                 </div>
 
                 <div className="image-container">
-                        <img className="single-image" src={data.image} alt={data.title} />
+                    <img className="single-image" src={data.image} alt={data.title} />
+                </div>
+
+                <div className="product-price">
+                    <p>$ {data.price}</p>
                 </div>
 
                 <Stack direction="row" spacing={1}>
