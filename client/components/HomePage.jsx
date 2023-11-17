@@ -1,44 +1,33 @@
-import { React } from 'react';
-
+import React, { useState } from 'react';
 import { useGetProductsQuery } from './API/mindfulHarvestApi';
-
 const HomePage = () => {
-    const {data, isLoading, error} = useGetProductsQuery();
-
+    const [searchQuery, setSearchQuery] = useState('');
+    const { data, isLoading, error } = useGetProductsQuery();
     if (isLoading) {
-        return <p> Loading </p>
+        return <p>Loading</p>;
     }
-
     if (error) {
-        return <p> error </p>
+        return <p>Error</p>;
     }
-
-    console.log(isLoading? "Loading result" : "from useGetProductsQuery", data.products);
-
+    console.log(isLoading ? "Loading result" : "from useGetProductsQuery", data);
+    const handleSearch = () => {
+        console.log(`Search query: ${searchQuery}`);
+    };
     return (
         <>
-        <h3>Products</h3>
-        {data ? (
-            data.map((product) => {
-                return (
+            <h3>Products</h3>
+            {data && data.length > 0 ? (
+                data.map((product) => (
                     <div key={product.id}>
-                        <p> {product.title}</p>
-                        <p> {product.description}</p>
-                        <img style={{width: '30%'}} src={product.image} alt={product.title}/>
-                        <button>Buy Now</button>
-                      
-                
+                        <p>{product.title}</p>
+                        <p>{product.description}</p>
+                        <img src={product.image} alt={product.title} />
                     </div>
-                )
-            })
-        ): (
-            <p>Unable to View Products.</p>
-        )}
+                ))
+            ) : (
+                <p>Unable to view products.</p>
+            )}
         </>
-                    <Link to="/login"> Got to Login </Link>
-            </div>
-        </div>
     );
 };
-
 export default HomePage;
