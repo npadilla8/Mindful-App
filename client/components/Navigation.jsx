@@ -1,47 +1,54 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
     const token = useSelector((state) => state.token);
-
-    // Entire dropdown
     const [showDropdown, setShowDropdown] = useState(false);
+    const navigate = useNavigate();
 
-    // Toggle the visibility of the entire dropdown
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
+    };
+
+    const handleSignInClick = () => {
+        navigate('/login');
+    };
+
+    const handleMindfullAppClick = () => {
+        navigate('/');
     };
 
     return (
         <div className="navigations">
             <div className="app-bar">
-                <div className="typography">Mindfull App</div>
-                <div className="center-section">
-                    {/* Categories Button with Dropdown */}
-                    <div className="dropdown">
-                        <button className="dropbtn" onClick={toggleDropdown}>
-                            Categories
-                        </button>
-                        {showDropdown && (
-                            <div className="dropdown-content">
-                                {/* Placeholder content for the dropdown */}
-                                <p>Category 1</p>
-                                <p>Category 2</p>
-                                <p>Category 3</p>
-                                {/* Add more categories as needed */}
-                            </div>
-                        )}
-                    </div>
-                    {/* Search Bar */}
-                    <input type="text" placeholder="Search..." className="search-bar" />
+                <div className="dropdown">
+                    <button className="dropbtn" onClick={toggleDropdown}>
+                        Categories
+                    </button>
+                    {showDropdown && (
+                        <div className="dropdown-content">
+                            <p>Category 1</p>
+                            <p>Category 2</p>
+                            <p>Category 3</p>
+                        </div>
+                    )}
                 </div>
+
+                {/* "Mindfull App" with click handler */}
+                <div className="typography" onClick={handleMindfullAppClick}>
+                    Mindfull App
+                </div>
+
                 <div className="right-section">
-                    {/* Sign In Icon */}
-                    <div className="sign-in-icon">Sign In</div>
-                    {/* Shopping Cart */}
-                    <Link to={`/cart`} className="nav-link">
-                        <div className="cart-icon">Cart</div>
+                    {/*  "Sign In"  */}
+                    <div className="sign-in-icon" onClick={handleSignInClick}>
+                        Sign In
+                    </div>
+                    {/* "Cart" */}
+                    <Link to="/cart" className="cart-icon">
+                        Cart
                     </Link>
                 </div>
             </div>

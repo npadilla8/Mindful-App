@@ -15,7 +15,6 @@ const HomePage = () => {
 
     console.log(isLoading? "Loading result" : "from useGetProductsQuery", data.products);
 
-
     return (
         <>
         <h3>Products</h3>
@@ -36,6 +35,9 @@ const HomePage = () => {
             <p>Unable to View Products.</p>
         )}
         </>
+                    <Link to="/login"> Got to Login </Link>
+            </div>
+        </div>
     );
 };
 
