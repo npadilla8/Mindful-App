@@ -124,6 +124,10 @@ usersRouter.post("/login", async (req, res, next) => {
 
         res.send({ user, token });}}
     } catch (error) {
+        
+        res.send({
+            message: "Unable to log in."
+        })
         next(error)
     }
 });
