@@ -8,7 +8,7 @@ const cartSlice = createSlice({
             state.push({
                 productId: payload.productId,
                 quantity: payload.quantity
-            })
+            });
         }
     },
 });
