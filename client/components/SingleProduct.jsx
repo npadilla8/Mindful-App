@@ -42,19 +42,17 @@ const SingleProduct = () => {
         e.preventDefault();
 
         try {
-            console.log(cart);
             if(token) {
                 await addToCart({
                     productId: Number(productId),
                     quantity: amount
                 });
             } else {
-                await dispatch(setCart({
+                dispatch(setCart({
                     productId: Number(productId),
                     quantity: amount
                 }));
             }
-            console.log(cart);
         } catch (error) {
             console.error(error);
         };
