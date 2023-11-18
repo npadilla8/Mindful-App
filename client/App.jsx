@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 import NavBar from './components/Navigation';
 import SingleProduct from './components/SingleProduct';
 import EditProduct from './components/AdminAccount/EditProduct';
+import CreateProduct from './components/AdminAccount/CreateProduct';
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/adminEdit/:productId" element={<EditProduct/>} />
         <Route path="/products/:productId" element={<SingleProduct />} />
+        <Route path="/adminCreate" element={<CreateProduct />}/>
       </Routes>
       </div>
     );

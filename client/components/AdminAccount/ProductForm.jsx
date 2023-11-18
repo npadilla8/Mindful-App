@@ -1,11 +1,7 @@
 import { React, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAddProductMutation, useUpdateProductMutation } from '../API/mindfulHarvestApi';
 
 export default function ProductForm(props) {
-    console.log(props);
-
-    // states for form
     const [productId, setProductId] = useState(props.productId ?? '');
     const [title, setTitle] = useState(props.title ?? '');
     const [image, setImage] = useState(props.image ?? '');
@@ -48,20 +44,8 @@ export default function ProductForm(props) {
                 quantity: Number(quantity),
                 categoryId: Number(categoryId),
             });
-            console.log("Add response " + addResponse);
+            // console.log("Add response " + addResponse);
         }
-
-
-
-
-        // setTitle("");
-        // setImage("");
-        // setDescription("");
-        // setPrice("");
-        // setAvailable("");
-        // setReturnPolicy("");
-        // setQuantity("");
-        // setCategoryId("");
     }
 
     return (
