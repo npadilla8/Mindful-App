@@ -29,7 +29,7 @@ productsRouter.get('/:productId', async (req, res, next) => {
 });
 
 
-//POST /api/products - add new product only allowed for admins 
+//POST /api/products - add new product only allowed for admins
 productsRouter.post("/", requireAdmin, async(req, res, next) => {
     try {
         const newProduct = await prisma.product.create({
@@ -65,7 +65,7 @@ productsRouter.put('/:productId/', requireAdmin, async (req, res, next) => {
                 available: req.body.available,
                 returnPolicy: req.body.returnPolicy,
                 quantity: req.body.quantity,
-                categoryId: req.body.categoryId     
+                categoryId: req.body.categoryId
             },
         });
         res.send(updatedProduct);
@@ -75,7 +75,7 @@ productsRouter.put('/:productId/', requireAdmin, async (req, res, next) => {
     }
 });
 
-//DELETE /api/products/:productId - delete product 
+//DELETE /api/products/:productId - delete product
 productsRouter.delete('/:productId/', requireAdmin, async (req, res, next) => {
     try {
        const deletedProduct = await prisma.product.delete({
