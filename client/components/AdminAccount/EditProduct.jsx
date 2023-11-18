@@ -3,23 +3,14 @@ import { useUpdateProductMutation } from "../API/mindfulHarvestApi";
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
+import ProductForm from "./ProductForm";
 
-export default function ProductEdit() {
+export default function EditProduct() {
     const token = useSelector(state => state.token)
     console.log(token)
     //getting id from params to render single product
     const params = useParams();
     const singleProductId = params.productId;
-
-    //states for edit product form
-    const [title, setTitle] = useState(null);
-    const [image, setImage] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [price, setPrice] = useState(null);
-    const [available, setAvailable] = useState(null);
-    const [returnPolicy, setReturnPolicy] = useState(null);
-    const [quantity, setQuantity] = useState(null);
-    const [categoryId, setCategoryId] = useState(null);
 
     //rendering single product and extracting function to update product
     const { data, error, isLoading } = useGetSingleProductQuery(singleProductId);
@@ -56,7 +47,7 @@ export default function ProductEdit() {
             console.log("filteredObj:", filteredProductObj);
 
             const response = await updateProduct({
-                productId: singleProductId, 
+                productId: singleProductId,
                 product: filteredProductObj});
             console.log("singleProductId:", singleProductId)
             console.log("backend response:", response)
@@ -90,66 +81,8 @@ export default function ProductEdit() {
 
             <h3>Update Product Details</h3>
             <h5>Instructions: Edit one or more fields as needed. </h5>
-            <form method="PUT" onSubmit={handleSubmit}>
-                <label>
-                    Title: {" "}
-                    <input value={title} onChange={(e) => setTitle(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Image Link: {" "}
-                    <input value={image} onChange={(e) => setImage(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Description: {" "}
-                    <input value={description} onChange={(e) => setDescription(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Price: {" "}
-                    <input value={price} onChange={(e) => setPrice(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Available: {" "}
-                    <select value={available} onChange={(e) => setAvailable(e.target.value)}>
-                        <option value="">--Select--</option>
-                        <option value={true}>True</option>
-                        <option value={false}>False</option>
-                    </select>
-                </label>
-                <br />
-                <label>
-                    Return Policy: {" "}
-                    <select value={returnPolicy} onChange={(e) => setReturnPolicy(e.target.value)}>
-                        <option value="">--Select--</option>
-                        <option value={true}>True</option>
-                        <option value={false}>False</option>
-                    </select>
-                </label>
-                <br />
-                <label>
-                    Quantity: {" "}
-                    <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Category: {" "}
-                    <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
-                        <option value="">--Select--</option>
-                        <option value={1}>Clothing & Jewelry</option>
-                        <option value={2}>Toys</option>
-                        <option value={3}>Collectibles & Art</option>
-                        <option value={4}>Home & Living</option>
-                    </select>
-                </label>
-                <br />
 
-                <button type="submit">Submit</button>
-
-            </form>
-
+            <ProductForm onSubmit={handleSubmit} title={data.title} image={data.image} description={data.description} price={data.price} available={data.available} returnPolicy={data.returnPolicy} quantity={data.quantity} categoryId={data.categoryId} />
 
         </>
     )

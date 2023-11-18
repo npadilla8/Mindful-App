@@ -2,15 +2,18 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAddProductMutation } from '../API/mindfulHarvestApi';
 
-export default function ProductForm() {
-    const [title, setTitle] = useState('');
-    const [image, setImage] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState('');
-    const [available, setAvailable] = useState('');
-    const [returnPolicy, setReturnPolicy] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [categoryId, setCategoryId] = useState('');
+export default function ProductForm(props) {
+    console.log(props);
+
+    // states for form
+    const [title, setTitle] = useState(props.title ?? '');
+    const [image, setImage] = useState(props.image ?? '');
+    const [description, setDescription] = useState(props.description ?? '');
+    const [price, setPrice] = useState(props.price ?? '');
+    const [available, setAvailable] = useState(props.available ?? '');
+    const [returnPolicy, setReturnPolicy] = useState(props.returnPolicy ?? '');
+    const [quantity, setQuantity] = useState(props.quantity ?? '');
+    const [categoryId, setCategoryId] = useState(props.categoryId ?? '');
 
     const [addProduct] = useAddProductMutation();
 
@@ -29,7 +32,7 @@ export default function ProductForm() {
         });
 
         console.log(response);
-        
+
 
         setTitle("");
         setImage("");
@@ -43,7 +46,6 @@ export default function ProductForm() {
 
     return (
         <>
-            <h3>Add New Product</h3>
             <form method="POST" onSubmit={handleSubmit}>
                 <label>
                     Title: {" "}
@@ -99,7 +101,7 @@ export default function ProductForm() {
                     </select>
                 </label>
                 <br />
-                
+
                 <button>Submit</button>
 
             </form>
