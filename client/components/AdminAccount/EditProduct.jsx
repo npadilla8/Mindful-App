@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { useUpdateProductMutation } from "../API/mindfulHarvestApi";
+// import { useUpdateProductMutation } from "../API/mindfulHarvestApi";
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
@@ -9,12 +9,21 @@ export default function EditProduct() {
     const token = useSelector(state => state.token)
     console.log(token)
     //getting id from params to render single product
-    const params = useParams();
-    const singleProductId = params.productId;
+    const {productId} = useParams();
+    // const singleProductId = params.productId;
 
     //rendering single product and extracting function to update product
-    const { data, error, isLoading } = useGetSingleProductQuery(singleProductId);
-    const [updateProduct] = useUpdateProductMutation();
+    const { data, error, isLoading } = useGetSingleProductQuery(productId);
+    // const [updateProduct] = useUpdateProductMutation();
+
+    // const [title, setTitle] = useState();
+    // const [image, setImage] = useState();
+    // const [description, setDescription] = useState();
+    // const [price, setPrice] = useState();
+    // const [available, setAvailable] = useState();
+    // const [returnPolicy, setReturnPolicy] = useState();
+    // const [quantity, setQuantity] = useState();
+    // const [categoryId, setCategoryId] = useState();
 
     //handling error and loading for useGetSingleProductQuery
     if (isLoading) {
@@ -29,28 +38,25 @@ export default function EditProduct() {
         e.preventDefault();
 
         try {
-            const objFromState = {
-                title: title,
-                image: image,
-                description: description,
-                price: (price !== null ? Number(price) : null),
-                available: JSON.parse(available),
-                returnPolicy: JSON.parse(returnPolicy),
-                quantity: (quantity !== null ? Number(quantity) : null),
-                categoryId: (categoryId !== null ? Number(categoryId) : null),
-            };
+            // const objFromState = {
+            //     title: title,
+            //     image: image,
+            //     description: description,
+            //     price: (price !== null ? Number(price) : null),
+            //     available: JSON.parse(available),
+            //     returnPolicy: JSON.parse(returnPolicy),
+            //     quantity: (quantity !== null ? Number(quantity) : null),
+            //     categoryId: (categoryId !== null ? Number(categoryId) : null),
+            // };
 
-            const objTurnedtoArray = Object.entries(objFromState);
-            const filteredArray = objTurnedtoArray.filter(([key, value]) => value !== null);
-            const filteredProductObj = Object.fromEntries(filteredArray);
-
-            console.log("filteredObj:", filteredProductObj);
+            // const objTurnedtoArray = Object.entries(objFromState);
+            // const filteredArray = objTurnedtoArray.filter(([key, value]) => value !== null);
+            // const filteredProductObj = Object.fromEntries(filteredArray);
 
             const response = await updateProduct({
-                productId: singleProductId,
-                product: filteredProductObj});
-            console.log("singleProductId:", singleProductId)
-            console.log("backend response:", response)
+                productId: productId,
+                product: obj
+            });
         } catch (error) {
             console.error(error)
         }
@@ -82,7 +88,17 @@ export default function EditProduct() {
             <h3>Update Product Details</h3>
             <h5>Instructions: Edit one or more fields as needed. </h5>
 
-            <ProductForm onSubmit={handleSubmit} title={data.title} image={data.image} description={data.description} price={data.price} available={data.available} returnPolicy={data.returnPolicy} quantity={data.quantity} categoryId={data.categoryId} />
+            <ProductForm
+                productId={productId}
+                title={data.title}
+                image={data.image}
+                description={data.description}
+                price={data.price}
+                available={data.available}
+                returnPolicy={data.returnPolicy}
+                quantity={data.quantity}
+                categoryId={data.categoryId}
+            />
 
         </>
     )

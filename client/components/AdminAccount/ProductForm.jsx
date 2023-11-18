@@ -1,11 +1,12 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAddProductMutation } from '../API/mindfulHarvestApi';
+import { useAddProductMutation, useUpdateProductMutation } from '../API/mindfulHarvestApi';
 
 export default function ProductForm(props) {
     console.log(props);
 
     // states for form
+    const [productId, setProductId] = useState(props.productId ?? '');
     const [title, setTitle] = useState(props.title ?? '');
     const [image, setImage] = useState(props.image ?? '');
     const [description, setDescription] = useState(props.description ?? '');
@@ -15,33 +16,52 @@ export default function ProductForm(props) {
     const [quantity, setQuantity] = useState(props.quantity ?? '');
     const [categoryId, setCategoryId] = useState(props.categoryId ?? '');
 
+    const [updateProduct] = useUpdateProductMutation();
     const [addProduct] = useAddProductMutation();
 
     async function handleSubmit(e) {
         e.preventDefault();
-
-        const response = await addProduct({
+        const updatedProduct = {
             title: title,
             image: image,
             description: description,
-            price: Number(price),
-            available: JSON.parse(available),
-            returnPolicy: JSON.parse(returnPolicy),
-            quantity: Number(quantity),
-            categoryId: Number(categoryId),
-        });
+            price: price,
+            available: available,
+            returnPolicy: returnPolicy,
+            quantity: quantity,
+            categoryId: categoryId
+        };
 
-        console.log(response);
+        if (productId) {
+            const updateResponse = await updateProduct({
+                productId: productId,
+                product: updatedProduct
+            });
+        } else {
+            const addResponse = await addProduct({
+                title: title,
+                image: image,
+                description: description,
+                price: Number(price),
+                available: JSON.parse(available),
+                returnPolicy: JSON.parse(returnPolicy),
+                quantity: Number(quantity),
+                categoryId: Number(categoryId),
+            });
+            console.log("Add response " + addResponse);
+        }
 
 
-        setTitle("");
-        setImage("");
-        setDescription("");
-        setPrice("");
-        setAvailable("");
-        setReturnPolicy("");
-        setQuantity("");
-        setCategoryId("");
+
+
+        // setTitle("");
+        // setImage("");
+        // setDescription("");
+        // setPrice("");
+        // setAvailable("");
+        // setReturnPolicy("");
+        // setQuantity("");
+        // setCategoryId("");
     }
 
     return (
