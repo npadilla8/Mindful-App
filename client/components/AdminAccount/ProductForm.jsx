@@ -21,11 +21,11 @@ export default function ProductForm(props) {
             title: title,
             image: image,
             description: description,
-            price: price,
-            available: available,
-            returnPolicy: returnPolicy,
-            quantity: quantity,
-            categoryId: categoryId
+            price: Number(price),
+            available: JSON.parse(available),
+            returnPolicy: JSON.parse(returnPolicy),
+            quantity: Number(quantity),
+            categoryId: Number(categoryId)
         };
 
         if (productId) {
@@ -33,6 +33,7 @@ export default function ProductForm(props) {
                 productId: productId,
                 product: updatedProduct
             });
+            console.log("PUT product: ", updateResponse)
         } else {
             const addResponse = await addProduct({
                 title: title,
@@ -44,7 +45,7 @@ export default function ProductForm(props) {
                 quantity: Number(quantity),
                 categoryId: Number(categoryId),
             });
-            // console.log("Add response " + addResponse);
+            console.log("POST Product: ", addResponse)
         }
     }
 

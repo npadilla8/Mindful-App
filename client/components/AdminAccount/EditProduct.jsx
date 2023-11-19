@@ -7,11 +7,18 @@ import ProductForm from "./ProductForm";
 export default function EditProduct() {
     const token = useSelector(state => state.token)
     console.log(token)
+
+    if(!token) {
+        return (
+            <p> Need Special Permissions to Access Page. </p>
+        )
+    }
+    
     //getting id from params to render single product
     const { productId } = useParams();
     // const singleProductId = params.productId;
 
-    //rendering single product and extracting function to update product
+    //rendering single product 
     const { data, error, isLoading } = useGetSingleProductQuery(productId);
 
     //handling error and loading for useGetSingleProductQuery
