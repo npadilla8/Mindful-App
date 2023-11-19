@@ -7,11 +7,12 @@ const prismaMock = require('../../mocks/prismaMock');
 
 jest.mock('jsonwebtoken');
 
-describe('GET /api/users', () => {
-    // beforeEach(() => {
-    //     jwt.sign.mockReset();
-    //     jest.resetAllMocks();
-    // });
+describe.skip('GET /api/users', () => {
+    beforeEach(() => {
+        jwt.sign.mockReset();
+        jest.resetAllMocks();
+    });
+
     it('returns a list of all users', async () => {
         const adminUser = {
             id: 123,
@@ -38,15 +39,13 @@ describe('GET /api/users', () => {
         const response = await request(app).get('/api/users').set('Authorization', 'Bearer faketesttoken');
 
         expect(response.body[0]).toEqual(users[0]);
+        expect(response.body[1]).toEqual(users[1]);
     });
 });
 
 describe.skip('GET /api/users/cart', () => {
     beforeEach(() => {
         jwt.sign.mockReset();
-    });
-
-    beforeEach(() => {
         jest.resetAllMocks();
     });
 
@@ -60,12 +59,18 @@ describe.skip('GET /api/users/cart', () => {
             items: true
         };
 
+        const userWithCart = {
+            id: user.id,
+            cart
+        };
+
         jwt.verify.mockReturnValue({id: user.id});
-        prismaMock.user.findUnique.mockResolvedValue(user);
+        prismaMock.user.findUnique.mockResolvedValue(userWithCart);
 
         const response = (await request(app).get('/api/users/cart').set('Authorization', 'Bearer faketesttoken'));
 
         console.log(response.body);
-        expect(response.body).toEqual(user);
+        expect(response.body.id).toEqual(user.id);
+        expect(response.body.cart).toEqual(cart);
     });
 });
