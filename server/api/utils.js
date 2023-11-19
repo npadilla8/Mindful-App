@@ -10,7 +10,7 @@ function requireUser(req, res, next) {
     }
 };
 
-//function checks if a user is logged in first, then if that that user is an administrator 
+//function checks if a user is logged in first, then if that that user is an administrator
 function requireAdmin(req, res, next) {
     if (!req.user) {
        return res.send({
