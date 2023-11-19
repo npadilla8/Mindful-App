@@ -12,8 +12,8 @@ const NavBar = () => {
         setShowDropdown(!showDropdown);
     };
 
-    const handleSignInClick = () => {
-        navigate('/login');
+    const handleRegisterClick = () => {
+        navigate('/register');
     };
 
     const handleMindfullAppClick = () => {
@@ -38,7 +38,7 @@ const NavBar = () => {
 
                 {/* "Mindfull App" with click handler */}
                 <div className="typography" onClick={handleMindfullAppClick}>
-                    Mindfull App
+                    Mindful Harvest
                 </div>
 
                 <div className="right-section">
@@ -49,8 +49,8 @@ const NavBar = () => {
                         </Link>
                     ) : (
                         // If user is a guest, show "Sign In"
-                        <div className="sign-in-icon" onClick={handleSignInClick}>
-                            Sign In
+                        <div className="sign-in-icon" onClick={handleRegisterClick}>
+                            Register
                         </div>
                     )}
                     {/* "Cart" */}
