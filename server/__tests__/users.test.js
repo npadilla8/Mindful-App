@@ -4,20 +4,19 @@ const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const prismaMock = require('../../mocks/prismaMock');
 
-console.log(jest);
 
 jest.mock('jsonwebtoken');
 
 describe('GET /api/users', () => {
-    beforeEach(() => {
-        jwt.sign.mockReset();
-        jest.resetAllMocks();
-    });
+    // beforeEach(() => {
+    //     jwt.sign.mockReset();
+    //     jest.resetAllMocks();
+    // });
     it('returns a list of all users', async () => {
         const adminUser = {
             id: 123,
-            username: 'fakeUsername',
-            email: 'fakeEmail@email.com',
+            // username: 'fakeUsername',
+            // email: 'fakeEmail@email.com',
             isAdmin: true
         };
 
@@ -33,12 +32,10 @@ describe('GET /api/users', () => {
         ];
 
         jwt.verify.mockReturnValue({id: adminUser.id})
+        prismaMock.user.findUnique.mockResolvedValue(adminUser);
         prismaMock.user.findMany.mockResolvedValue(users);
 
         const response = await request(app).get('/api/users').set('Authorization', 'Bearer faketesttoken');
-
-
-        // console.log(response);
 
         expect(response.body[0]).toEqual(users[0]);
     });
