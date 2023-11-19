@@ -122,7 +122,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
         delete (user.hashedPassword);
 
-        res.send({ user, token });}}
+        res.send({ user, token })}}
     } catch (error) {
         
         res.send({
