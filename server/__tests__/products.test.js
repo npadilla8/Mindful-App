@@ -156,47 +156,47 @@ describe('/api/products', () => {
             expect(response.body.quantity).toEqual(updatedProduct.quantity);
             expect(response.body.categoryId).toEqual(updatedProduct.categoryId);
         })
+    })
 
-        describe('DELETE /api/products/productId', () => {
-            it('deletes a single product', async () => {
-                const adminUser = {
-                    id: 10,
-                    isAdmin: true,
-                }
+    describe('DELETE /api/products/:productId', () => {
+        it('deletes a single product', async () => {
+            const adminUser = {
+                id: 10,
+                isAdmin: true,
+            }
 
-                const deletedProduct = {
-                    id: 20,
-                    title: "title20",
-                    image: "image20",
-                    description: "description20",
-                    price: 40,
-                    available: true,
-                    returnPolicy: false,
-                    quantity: 3,
-                    categoryId: 1,
-                }
+            const deletedProduct = {
+                id: 20,
+                title: "title20",
+                image: "image20",
+                description: "description20",
+                price: 40,
+                available: true,
+                returnPolicy: false,
+                quantity: 3,
+                categoryId: 1,
+            }
 
-                jwt.verify.mockReturnValue({ id: 10 });
-                prismaMock.user.findUnique.mockResolvedValue(adminUser);
-                prismaMock.product.findUnique.mockResolvedValue(deletedProduct);
-                prismaMock.product.delete.mockResolvedValue(deletedProduct);
+            jwt.verify.mockReturnValue({ id: 10 });
+            prismaMock.user.findUnique.mockResolvedValue(adminUser);
+            prismaMock.product.findUnique.mockResolvedValue(deletedProduct);
+            prismaMock.product.delete.mockResolvedValue(deletedProduct);
 
-                const response = await request(app)
-                    .delete('/api/products/20')
-                    .set('Authorization', 'Bearer adminToken')      
-            
-                expect(response.status).toBe(200)
+            const response = await request(app)
+                .delete('/api/products/20')
+                .set('Authorization', 'Bearer adminToken')      
+        
+            expect(response.status).toBe(200)
 
-                expect(response.body.deletedProduct.title).toEqual(deletedProduct.title);
-                expect(response.body.deletedProduct.image).toEqual(deletedProduct.image);
-                expect(response.body.deletedProduct.description).toEqual(deletedProduct.description);
-                expect(response.body.deletedProduct.price).toEqual(deletedProduct.price);
-                expect(response.body.deletedProduct.available).toEqual(deletedProduct.available);
-                expect(response.body.deletedProduct.returnPolicy).toEqual(deletedProduct.returnPolicy);
-                expect(response.body.deletedProduct.quantity).toEqual(deletedProduct.quantity);
-                expect(response.body.deletedProduct.categoryId).toEqual(deletedProduct.categoryId);
+            expect(response.body.deletedProduct.title).toEqual(deletedProduct.title);
+            expect(response.body.deletedProduct.image).toEqual(deletedProduct.image);
+            expect(response.body.deletedProduct.description).toEqual(deletedProduct.description);
+            expect(response.body.deletedProduct.price).toEqual(deletedProduct.price);
+            expect(response.body.deletedProduct.available).toEqual(deletedProduct.available);
+            expect(response.body.deletedProduct.returnPolicy).toEqual(deletedProduct.returnPolicy);
+            expect(response.body.deletedProduct.quantity).toEqual(deletedProduct.quantity);
+            expect(response.body.deletedProduct.categoryId).toEqual(deletedProduct.categoryId);
 
-            })
         })
     })
 })
