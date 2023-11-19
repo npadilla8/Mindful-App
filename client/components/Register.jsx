@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from './API/mindfulHarvestApi';
+import {Link} from 'react-router-dom'
 
 const RegistrationForm = () => {
   const [register] = useRegisterUserMutation();
@@ -60,6 +61,9 @@ const RegistrationForm = () => {
         </div>
         <button type="submit">Register</button>
       </form>
+      <p>Already have an account? {" "}
+        <Link style={{textDecoration: "none"}} to="/login">Login here!</Link>
+      </p>
     </div>
   );
 };
