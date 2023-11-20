@@ -2,12 +2,14 @@ import {configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import mindfulHarvestApi from './mindfulHarvestApi';
 import tokenReducer from './tokenSlice';
 import cartReducer from './cartSlice';
+import adminBooleanReducer from './adminBoolean';
 
 export const store = configureStore({
     reducer: {
         [mindfulHarvestApi.reducerPath]: mindfulHarvestApi.reducer,
         token: tokenReducer,
-        cart: cartReducer
+        cart: cartReducer,
+        adminBoolean: adminBooleanReducer,
     },
 
     middleware: (getDefaultMiddleware) => {

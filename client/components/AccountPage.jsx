@@ -36,7 +36,7 @@ const AccountPage = () => {
             </div>
 
 
-            <Link to="/products/1"> Got to Products </Link>
+        
         </>
     );
 }
