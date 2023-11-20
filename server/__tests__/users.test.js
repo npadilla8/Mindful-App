@@ -3,9 +3,10 @@ const app = require('../app');
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const prismaMock = require('../../mocks/prismaMock');
-
+const bcrypt = require('bcrypt');
 
 jest.mock('jsonwebtoken');
+jest.mock('bcrypt');
 
 describe.skip('GET /api/users', () => {
     beforeEach(() => {
@@ -72,5 +73,54 @@ describe.skip('GET /api/users/cart', () => {
         console.log(response.body);
         expect(response.body.id).toEqual(user.id);
         expect(response.body.cart).toEqual(cart);
+    });
+});
+
+describe('POST /api/users/register', () => {
+    beforeEach(() => {
+        jwt.sign.mockReset();
+        jest.resetAllMocks();
+    });
+
+    it('creates a new user and a token', async () => {
+        const newUser = {
+            username: 'fakeUsername',
+            email: 'fakeEmail@email.com',
+            hashedPassword: 'fakePassword',
+        };
+
+        const createdUser = {
+            id: 1,
+            username: 'fakeUsername',
+            email: 'fakeEmail@email.com',
+        };
+
+        const token = "abcdef";
+        const hashedPassword = "somehashedpassword";
+
+        bcrypt.hash.mockResolvedValue(hashedPassword);
+        prismaMock.user.findUnique.mockResolvedValue(null);
+        prismaMock.user.create.mockResolvedValue(createdUser);
+        jwt.sign.mockReturnValue(token);
+
+        const response = await request(app).post('/api/users/register').send(newUser);
+
+        expect(response.body.newUser.username).toEqual(createdUser.username);
+        expect(response.body.newUser.email).toEqual(createdUser.email);
+        expect(response.body.token).toEqual(token);
+    });
+});
+
+describe.skip('POST /api/users/login', () => {
+    beforeEach(async () => {
+        await prismaMock.user.create.mockResolvedValue({
+            id: 1234,
+            username: 'testusername',
+            email: 'testemail@email.com'
+        });
+    });
+
+    it('logs in a user with valid username and password', () => {
+
     });
 });
