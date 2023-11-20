@@ -23,10 +23,12 @@ const mindfulHarvestApi = createApi({
         //GET /api/users - get all users without their passwords
         getUsers: builder.query({
             query: () => "/api/users",
+            providesTags: ["users"]
         }),
         //GET /api/users/cart - get individual shoppers with carts
         getUserWithCart: builder.query({
             query: () => "/api/users/cart",
+            providesTags: ["userwithcart"]
         }),
         //POST /api/users/register - register new user (empty cart also created)
         registerUser: builder.mutation({
@@ -34,7 +36,8 @@ const mindfulHarvestApi = createApi({
                 url: "/api/users/register",
                 method: "POST",
                 body: user,
-            })
+            }),
+            invalidatesTags: ["users", "userwithcart"]
         }),
         //POST /api/users/login - login existing user
         loginUser: builder.mutation({
@@ -42,7 +45,8 @@ const mindfulHarvestApi = createApi({
                 url: "/api/users/login",
                 method: "POST",
                 body: user,
-            })
+            }),
+            invalidatesTags: ["userwithcart"]
         }),
 
         //-----------------PRODUCT ENDPOINTS----------------------//
@@ -50,10 +54,12 @@ const mindfulHarvestApi = createApi({
         //GET /api/products - get all products
         getProducts: builder.query({
             query: () => "/api/products",
+            providesTags: ["products"]
         }),
         //GET /api/products/:productId - get individual product
         getSingleProduct: builder.query({
-            query: (productId) => `/api/products/${productId}`
+            query: (productId) => `/api/products/${productId}`,
+            providesTags: ["singleProduct"]
         }),
         //POST /api/products - add new product only allowed for admins
         addProduct: builder.mutation({
@@ -61,7 +67,8 @@ const mindfulHarvestApi = createApi({
                 url: "/api/products",
                 method: "POST",
                 body: product,
-            })
+            }),
+            invalidatesTags: ["products", "singleProduct"]
         }),
         //PUT /api/products/:productId - update existing product
         updateProduct: builder.mutation({
@@ -69,14 +76,16 @@ const mindfulHarvestApi = createApi({
                 url: `/api/products/${productId}`,
                 method: "PUT",
                 body: product,
-            })
+            }),
+            invalidatesTags: ["singleProduct", "products"]
         }),
         //DELETE /api/products/:productId - delete product
         deleteProduct: builder.mutation({
             query: (productId) => ({
                 url: `/api/products/${productId}`,
                 method: "DELETE",
-            })
+            }),
+            invalidatesTags: ["products", "singleProduct",]
         }),
 
         //-----------------CART ITEM ENDPOINTS--------------------//
@@ -87,7 +96,8 @@ const mindfulHarvestApi = createApi({
                 url: "/api/cartItem",
                 method: "POST",
                 body: {productId, quantity},
-            })
+            }),
+            invalidatesTags: ["userwithcart"]
         }),
         //PUT /api/cartItem/:cartItemId - update quanity in cart
         updateQuantityOfCartItem: builder.mutation({
@@ -95,14 +105,16 @@ const mindfulHarvestApi = createApi({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "PUT",
                 body: quantity
-            })
+            }),
+            invalidatesTags: ["userwithcart"]
         }),
         //DELETE /api/cartItem/:cartItemId - delete cartItem from cart
         deleteCartItemFromCart: builder.mutation({
             query: ({cartItemId}) => ({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "DELETE",
-            })
+            }),
+            invalidatesTags: ["userwithcart"]
         }),
 
         //---------------------CART ENDPOINTS-----------------------//
@@ -110,13 +122,15 @@ const mindfulHarvestApi = createApi({
         //GET /api/cart/ - get cart by userId aka req.user.id
         getUserCart: builder.query({
             query: () => "/api/cart",
+            providesTags: ["cart"]
         }),
         // DELETE /api/cart/:cartId - delete user's cart **May not want to bc cart only created on registration**
         deleteUserCart: builder.mutation({
             query: (cartId) => ({
                 url: `/api/cart/${cartId}`,
                 method: "DELETE"
-            })
+            }),
+            invalidatesTags: ["cart", "userwithcart"]
         }),
     })
 });
