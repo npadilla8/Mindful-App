@@ -5,14 +5,14 @@ import { useSelector } from "react-redux";
 import ProductForm from "./ProductForm";
 
 export default function EditProduct() {
-    const token = useSelector(state => state.token)
-    console.log(token)
+    const adminBoolean = useSelector(state => state.adminBoolean)
+    console.log("admin boolean", adminBoolean)
 
-    if(!token) {
+    if(adminBoolean === false) {
         return (
             <p> Need Special Permissions to Access Page. </p>
         )
-    }
+    };
     
     //getting id from params to render single product
     const { productId } = useParams();

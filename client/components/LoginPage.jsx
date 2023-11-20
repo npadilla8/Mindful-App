@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from './API/mindfulHarvestApi';
-
+import {useDispatch} from "react-redux";
+import { setAdminBoolean } from './API/adminBoolean';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [login] = useLoginUserMutation();
 
   const handleLogin = async (e) => {
@@ -24,9 +26,10 @@ function Login() {
     setPassword("")
 
     if(response.data.user.isAdmin === false) {
-      navigate("/account")
+      navigate("/account");
     }
     if (response.data.user.isAdmin === true) {
+      dispatch(setAdminBoolean({adminBoolean: true}));
       navigate("/admin")
     }
 
