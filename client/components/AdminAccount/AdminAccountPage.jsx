@@ -13,15 +13,12 @@ const AdminAccountPage = () => {
         return (
             <p> Need Special Permissions to Access Page. </p>
         )
-    }
-
-
+    };
 
     return (
         <>
 
         <Users/>
-        <Link to="/adminCreate">Add a Product</Link>
         <AllProducts/>
 
         </>
