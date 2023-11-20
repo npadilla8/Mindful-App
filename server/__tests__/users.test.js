@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 jest.mock('jsonwebtoken');
 jest.mock('bcrypt');
 
-describe.skip('GET /api/users', () => {
+describe('GET /api/users', () => {
     beforeEach(() => {
         jwt.sign.mockReset();
         jest.resetAllMocks();
@@ -44,7 +44,7 @@ describe.skip('GET /api/users', () => {
     });
 });
 
-describe.skip('GET /api/users/cart', () => {
+describe('GET /api/users/cart', () => {
     beforeEach(() => {
         jwt.sign.mockReset();
         jest.resetAllMocks();
@@ -111,16 +111,26 @@ describe('POST /api/users/register', () => {
     });
 });
 
-describe.skip('POST /api/users/login', () => {
-    beforeEach(async () => {
-        await prismaMock.user.create.mockResolvedValue({
+describe('POST /api/users/login', () => {
+    it('logs in a user with valid username and password', async () => {
+        const user = {
             id: 1234,
             username: 'testusername',
             email: 'testemail@email.com'
-        });
-    });
+        };
 
-    it('logs in a user with valid username and password', () => {
+        const token = "abcdef";
+        const hashedPassword = "testpassword";
 
+        bcrypt.hash.mockResolvedValue(hashedPassword);
+        bcrypt.compare.mockResolvedValue(true);
+        prismaMock.user.findUnique.mockResolvedValue(user);
+        jwt.sign.mockReturnValue(token);
+
+        const response = await request(app).post('/api/users/login').send({username: 'testusername', password: 'testpassword'})
+
+        expect(response.body.user.username).toEqual(user.username);
+        expect(response.body.user.email).toEqual(user.email);
+        expect(response.body.token).toEqual(token);
     });
 });

@@ -66,8 +66,7 @@ usersRouter.post("/register", async (req, res, next) => {
         });
 
         if (user) {
-            res.send("A user by that username already exist");
-            return;
+            res.send("A user by that username already exist")
         } else {
             const newUser = await prisma.user.create({
                 data: {
