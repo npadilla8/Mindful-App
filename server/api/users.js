@@ -47,7 +47,7 @@ usersRouter.get('/cart', requireUser, async (req, res, next) => {
         });
 
         delete (shopperWithCart.hashedPassword);
-        
+
         res.send(shopperWithCart)
     } catch {
         res.send("unable to get individual user")
@@ -68,14 +68,13 @@ usersRouter.post("/register", async (req, res, next) => {
         if (user) {
             res.send("A user by that username already exist")
         } else {
-
             const newUser = await prisma.user.create({
                 data: {
                     username: req.body.username,
                     email: req.body.email,
                     hashedPassword: hashedPassword,
                     cart: {
-                        create: {} 
+                        create: {}
                     }
                 }
             });
@@ -92,7 +91,7 @@ usersRouter.post("/register", async (req, res, next) => {
     }
 });
 
-//POST /api/users/login - login existing user 
+//POST /api/users/login - login existing user
 usersRouter.post("/login", async (req, res, next) => {
     try {
         const password = req.body.password;
@@ -116,7 +115,7 @@ usersRouter.post("/login", async (req, res, next) => {
          next({
                 message: "Invalid login credentials."
             });
-        } else { 
+        } else {
 
         const token = jwt.sign({ id: user.id }, JWT);
 
@@ -124,7 +123,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
         res.send({ user, token })}}
     } catch (error) {
-        
+
         res.send({
             message: "Unable to log in."
         })
