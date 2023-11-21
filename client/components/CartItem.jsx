@@ -34,6 +34,7 @@ const CartItem = (props) => {
         <p><b>{singleProductData.title}</b></p>
         <img style={{ width: "40%" }} src={singleProductData.image} alt={singleProductData.title} />
         <p>Price: ${singleProductData.price}</p>
+        <p>Quantity: {item.quantity}</p>
         <label>Quantity: {" "} 
         <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
         </label>
