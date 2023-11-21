@@ -33,7 +33,9 @@ const SingleProduct = () => {
     if(error) {
         return <div>Unable to Get Product</div>
     };
-
+    console.log("cart: ", cart);
+    console.log("cart[0]: ", cart[0] && cart[0].quantity);
+    console.log("cart.quantity: ", cart.quantity);
     if(!data) {
         return <p>Unable to view product</p>
     };

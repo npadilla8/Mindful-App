@@ -5,6 +5,12 @@ const cartSlice = createSlice({
     initialState: [],
     reducers: {
         setCart: (state, { payload }) => {
+            for (let i = 0; i < state.length; i++) {
+                if(state[i].productId === payload.productId) {
+                    state[i].quantity += payload.quantity;
+                    return;
+                }
+            }
             state.push({
                 productId: payload.productId,
                 quantity: payload.quantity
