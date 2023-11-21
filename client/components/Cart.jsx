@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 const Cart = () => {
   const token = useSelector((state) => state.token);
+
+  if(token) {
   const [deleteCartItem] = useDeleteCartItemFromCartMutation();
   const { data, error: userError, isLoading: userIsLoading } = useGetUserWithCartQuery();
 
@@ -42,8 +44,10 @@ const Cart = () => {
       )}
     </div>
   );
-};
-
+} else {
+    return <p> working on showing cart for not logged in user...</p>
+}
+}
 
 export default Cart;
 
