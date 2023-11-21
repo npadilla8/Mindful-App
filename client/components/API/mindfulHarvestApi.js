@@ -104,7 +104,7 @@ const mindfulHarvestApi = createApi({
             query: ({cartItemId, quantity}) => ({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "PUT",
-                body: quantity
+                body: {quantity: quantity}
             }),
             invalidatesTags: ["userwithcart"]
         }),

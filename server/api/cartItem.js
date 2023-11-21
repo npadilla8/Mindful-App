@@ -65,7 +65,7 @@ cartItemRouter.put("/:cartItemId", requireUser, async (req, res, next) => {
         res.send(updatedCartItem)
     } catch(error) {
         console.error(error);
-        res.send("unable to update cart item quantity.")
+        next({message: "unable to update cart item quantity."})
     }
 });
 
