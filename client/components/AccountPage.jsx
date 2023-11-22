@@ -4,39 +4,34 @@ import { useSelector } from "react-redux";
 
 const AccountPage = () => {
     const token = useSelector(state => state.token);
-    const {data, error, isLoading} = useGetUserWithCartQuery();
+    const { data, error, isLoading } = useGetUserWithCartQuery();
 
-    console.log("userwithcart:",data);
+    console.log("userwithcart:", data);
 
-    if(isLoading) {
+    if (isLoading) {
         return <div>Loading...</div>
     };
-    if(error) {
+    if (error) {
         return <div>Unable to Get User Information. </div>
     };
-    if(!token) {
+    if (!token) {
         return <div>Please Sign In. </div>
     }
     return (
         <>
-        <div>
-            {data ? (
-                <div>
-            <h3>Welcome Back, {data.username}</h3>
-            <h4>Account Details</h4>
-            <p><b>Username:</b> {data.username}</p>
-            <p><b>Email: </b>{data.email}</p>
+            <div>
+                {data ? (
+                    <div>
+                        <h3>Welcome Back, {data.username}</h3>
+                        <h4>Account Details</h4>
+                        <p><b>Username:</b> {data.username}</p>
+                        <p><b>Email: </b>{data.email}</p>
+                    </div>
 
-            <h4>Cart</h4>
+                ) : (
+                    <p>User information not available.</p>
+                )}
             </div>
-
-           ):(
-            <p>User information not available.</p>
-           ) }
-            </div>
-
-
-        
         </>
     );
 }
