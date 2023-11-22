@@ -37,6 +37,7 @@ const Cart = () => {
 
         return (
             <div>
+                <h2>{data.username}'s Shopping Cart</h2>
                 {cartWithItems.length > 0 ? (
                     cartWithItems.map((item) => (
                         <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
@@ -47,17 +48,22 @@ const Cart = () => {
             </div>
         );
     } else {
-        console.log("guest cart: ", guestCart)
-        console.log("guest cart length: ", guestCart.length)
-        if (guestCart.length > 0) {
-            return guestCart.map((itemObj) => (
-              <GuestCartItem itemObj={itemObj}/>
-            ));
-          } else {
-            return <p>Cart is empty. Please add items or sign in to your account.</p>;
-          }
-        
-}
+        return (
+            <div>
+                <h2>Guest Shopping Cart</h2>
+                {console.log("guest cart: ", guestCart)}
+                {console.log("guest cart length: ", guestCart.length)}
+
+                {guestCart.length > 0 ? (
+                    guestCart.map((itemObj) => (
+                        <GuestCartItem itemObj={itemObj} />
+                    ))
+                ) : (
+                    <p>Cart is empty. Please add items or sign in to your account.</p>
+                )}
+            </div>
+        )
+    }
 }
 export default Cart;
 
