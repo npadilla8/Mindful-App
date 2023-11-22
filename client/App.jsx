@@ -9,6 +9,7 @@ import NavBar from './components/Navigation';
 import SingleProduct from './components/SingleProduct';
 import EditProduct from './components/AdminAccount/EditProduct';
 import CreateProduct from './components/AdminAccount/CreateProduct';
+import ConfirmationPage from './components/Cart/ConfirmationPage'
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/adminEdit/:productId" element={<EditProduct/>} />
         <Route path="/products/:productId" element={<SingleProduct />} />
         <Route path="/adminCreate" element={<CreateProduct />}/>
+        <Route path="/confirmation" element={<ConfirmationPage/>}/>
       </Routes>
       </div>
     );
