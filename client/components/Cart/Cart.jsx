@@ -3,10 +3,12 @@ import { useDeleteCartItemFromCartMutation } from '../API/mindfulHarvestApi';
 import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const token = useSelector((state) => state.token);
     const guestCart = useSelector((state) => state.cart);
+    const navigate = useNavigate();
 
     if (token) {
         const [deleteCartItem] = useDeleteCartItemFromCartMutation();
@@ -39,9 +41,16 @@ const Cart = () => {
             <div>
                 <h2>{data.username}'s Shopping Cart</h2>
                 {cartWithItems.length > 0 ? (
-                    cartWithItems.map((item) => (
-                        <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
-                    ))
+                    <div>
+                        {cartWithItems.map((item) => (
+                            <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
+                        ))}
+                        <br />
+                        <br />
+                        <button onClick={() => navigate("/confirmation")} style={{ backgroundColor: 'lightgreen' }}>
+                            Place Order
+                        </button>
+                    </div>
                 ) : (
                     <p>Unable to view cart. Cart is empty.</p>
                 )}
@@ -55,9 +64,16 @@ const Cart = () => {
                 {console.log("guest cart length: ", guestCart.length)}
 
                 {guestCart.length > 0 ? (
-                    guestCart.map((itemObj) => (
-                        <GuestCartItem itemObj={itemObj} />
-                    ))
+                    <div>
+                        {guestCart.map((itemObj) => (
+                            <GuestCartItem itemObj={itemObj} />
+                        ))}
+                        <br />
+                        <br />
+                        <button onClick={() => navigate("/confirmation")} style={{ backgroundColor: 'lightgreen' }}>
+                            Place Order
+                        </button>
+                    </div>
                 ) : (
                     <p>Cart is empty. Please add items or sign in to your account.</p>
                 )}
