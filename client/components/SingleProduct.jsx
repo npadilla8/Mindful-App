@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAddCartItemtoCartMutation, useGetSingleProductQuery } from './API/mindfulHarvestApi';
+import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useUpdateQuantityOfCartItemMutation, useGetUserWithCartQuery } from './API/mindfulHarvestApi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
@@ -12,9 +12,11 @@ import { setCart } from './API/cartSlice';
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
     const { productId } = useParams();
-    const {data, error, isLoading} = useGetSingleProductQuery(productId);
     const navigate = useNavigate();
+    const {data: singleProductData, error: singleProductError, isLoading: singleProductIsLoading} = useGetSingleProductQuery(productId);
+    const {data: userWithCartData, error: userWithCartError, isLoading: userWithCartIsLoading} = useGetUserWithCartQuery();
     const [addToCart] = useAddCartItemtoCartMutation();
+    const [updateCart] = useUpdateQuantityOfCartItemMutation();
     const token = useSelector(state => state.token);
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
@@ -26,25 +28,35 @@ const SingleProduct = () => {
         setAmount(amount + 1);
     };
 
-    if(isLoading) {
+    if(singleProductIsLoading) {
         return <div>Loading ...</div>
     };
 
-    if(error) {
+    if(singleProductError) {
         return <div>Unable to Get Product</div>
     };
-    console.log("cart: ", cart);
-    console.log("cart[0]: ", cart[0] && cart[0].quantity);
-    console.log("cart.quantity: ", cart.quantity);
-    if(!data) {
+
+    if(!singleProductData) {
         return <p>Unable to view product</p>
     };
+
+console.log(userWithCartData);
+console.log(userWithCartData.cart.items);
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
 
         try {
             if(token) {
+                for (let i = 0; i < userWithCartData.cart.items.length; i++) {
+                    if(userWithCartData.cart.items[i].productId === Number(productId)) {
+                        await updateCart({
+                            cartItemId: userWithCartData.cart.items[i].id,
+                            quantity: amount + userWithCartData.cart.items[i].quantity
+                        });
+                        return;
+                    }
+                }
                 await addToCart({
                     productId: Number(productId),
                     quantity: amount
@@ -62,19 +74,19 @@ const SingleProduct = () => {
 
     return (
         <div className='single-product'>
-            <div key={data.id}>
+            <div key={singleProductData.id}>
 
                 <div className="single=product-details">
-                    <h2 className="product-title">{data.title}</h2>
-                    <p className="product-description">{data.description}</p>
+                    <h2 className="product-title">{singleProductData.title}</h2>
+                    <p className="product-description">{singleProductData.description}</p>
                 </div>
 
                 <div className="image-container">
-                    <img className="single-image" src={data.image} alt={data.title} />
+                    <img className="single-image" src={singleProductData.image} alt={singleProductData.title} />
                 </div>
 
                 <div className="product-price">
-                    <p>$ {data.price}</p>
+                    <p>$ {singleProductData.price}</p>
                 </div>
 
                 <Stack direction="row" spacing={1}>
