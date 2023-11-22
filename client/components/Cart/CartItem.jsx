@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useGetSingleProductQuery } from "./API/mindfulHarvestApi";
-import { useUpdateQuantityOfCartItemMutation } from "./API/mindfulHarvestApi";
+import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
+import { useUpdateQuantityOfCartItemMutation } from "../API/mindfulHarvestApi";
 
 const CartItem = (props) => {
     const item = props.item;

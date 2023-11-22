@@ -1,5 +1,5 @@
-import { useGetUserWithCartQuery } from './API/mindfulHarvestApi';
-import { useDeleteCartItemFromCartMutation } from './API/mindfulHarvestApi';
+import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
+import { useDeleteCartItemFromCartMutation } from '../API/mindfulHarvestApi';
 import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
 import { useSelector } from 'react-redux';

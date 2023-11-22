@@ -1,4 +1,4 @@
-import { useGetSingleProductQuery } from './API/mindfulHarvestApi';
+import { useGetSingleProductQuery } from '../API/mindfulHarvestApi';
 
 const GuestCartItem = () => {
     // const itemObj = props.itemObj

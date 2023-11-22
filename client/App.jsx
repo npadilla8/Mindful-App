@@ -4,7 +4,7 @@ import LoginPage from './components/LoginPage';
 import AdminAccountPage from './components/AdminAccount/AdminAccountPage';
 import AccountPage from './components/AccountPage';
 import Register from './components/Register';
-import Cart from './components/Cart';
+import Cart from './components/Cart/Cart';
 import NavBar from './components/Navigation';
 import SingleProduct from './components/SingleProduct';
 import EditProduct from './components/AdminAccount/EditProduct';
