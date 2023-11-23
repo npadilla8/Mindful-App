@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { useDispatch } from 'react-redux';
-
+import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
@@ -30,6 +31,8 @@ const NavBar = () => {
     };
 
     return (
+        <Box sx={{ felxGrow: 1}}>
+            <AppBar sx={{bgcolor:"#F6C28B"}} position="static">
         <div className="navigations">
             <div className="app-bar">
                 <div className="dropdown">
@@ -82,6 +85,8 @@ const NavBar = () => {
                 </div>
             </div>
         </div>
+        </AppBar>
+        </Box>
     );
 };
 
