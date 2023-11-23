@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCart } from './API/cartSlice';
+import { Box, Grid, Card, CardContent, Button, Typography } from '@mui/material';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -61,9 +62,13 @@ const SingleProduct = () => {
     };
 
     return (
+        <Box sx={{ margin: 5 }}>
+            <Grid container justifyContent="center">
+                <Grid item >
+                    <Card sx={{ maxWidth: 1000 }} >
         <div className='single-product'>
             <div key={data.id}>
-
+                <CardContent align="center">
                 <div className="single=product-details">
                     <h2 className="product-title">{data.title}</h2>
                     <p className="product-description">{data.description}</p>
@@ -74,23 +79,36 @@ const SingleProduct = () => {
                 </div>
 
                 <div className="product-price">
-                    <p>$ {data.price}</p>
+                    <Typography variant="body1">$ {data.price}</Typography>
                 </div>
-
+                     </CardContent>
+                        <CardContent align="center">
                 <Stack direction="row" spacing={1}>
-                    <IconButton aria-label="remove-button" onClick={setDecrease}>
+                    <IconButton aria-label="remove-button" color="secondary" align="center" onClick={setDecrease}>
                         <RemoveCircleTwoToneIcon />
                     </IconButton>
                     <p>{amount}</p>
-                    <IconButton aria-label="add-button" onClick={setIncrease}>
+                    <IconButton aria-label="add-button"  color="secondary" align="center" onClick={setIncrease}>
                         <AddCircleTwoToneIcon />
                     </IconButton>
                 </Stack>
 
-                <button className='add-to-cart-button' onClick={handleAddToCart}>Add to Cart</button>
-
+                <Button 
+                className='add-to-cart-button' 
+                variant="contained" 
+                color="secondary"
+                onClick={handleAddToCart}>Add to Cart
+                </Button>
+                </CardContent>
             </div>
+        
         </div>
+            
+        </Card>
+        </Grid>
+        </Grid>
+        </Box>
+       
     );
 };
 
