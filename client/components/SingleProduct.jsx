@@ -40,9 +40,6 @@ const SingleProduct = () => {
         return <p>Unable to view product</p>
     };
 
-console.log(userWithCartData);
-console.log(userWithCartData.cart.items);
-
     const handleAddToCart = async (e) => {
         e.preventDefault();
 
