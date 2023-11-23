@@ -2,6 +2,13 @@
 /* Nav Bar */
 
 
+body {
+    font-family: Georgia, serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+  }
+  
 .navbar-container {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
