@@ -27,6 +27,7 @@ const Cart = () => {
         }
 
         const cartWithItems = data.cart.items;
+        console.log("logged in user with cart",cartWithItems)
 
         async function handleCartItemRemoval(cartItemId) {
             try {
