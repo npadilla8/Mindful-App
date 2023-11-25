@@ -3,6 +3,7 @@ import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 
 const ConfirmationPage = () => {
     const token = useSelector((state) => state.token);
+    const guestCart = useSelector((state) => state.cart)
 
     //to display current date and time for order
     const currentDate = new Date();
@@ -20,9 +21,11 @@ const ConfirmationPage = () => {
             return <div>Unable to get user with cart.</div>
         };
         if (data.cart === null) {
-            return <div>No cart present to purchase items from.</div>
+            return <h3>No cart present to purchase items from.</h3>
         };
-
+        if ((data.cart.items).length < 1) {
+            return <h4>Please add items to your cart to complete a purchase.</h4>
+        };
 
         return (
             <div>
@@ -35,18 +38,20 @@ const ConfirmationPage = () => {
         )
 
     } else {
-        return (
-            <div>
-                <h3>Thank you for your order!</h3>
-                <p><b>Order Number:</b> AUK89076896</p>
-                <p><b>Order Date:</b> {formattedDate}</p>
-                <p><b>Order Time:</b> {formattedTime}</p>
-                <p>A summary of your order has been sent to your email.</p>
-            </div>
-        )
+        if (guestCart.length < 1) {
+            return <h4>Please add items to your cart to complete a purchase.</h4>
+        } else {
+            return (
+                <div>
+                    <h3>Thank you for your order!</h3>
+                    <p><b>Order Number:</b> AUK89076896</p>
+                    <p><b>Order Date:</b> {formattedDate}</p>
+                    <p><b>Order Time:</b> {formattedTime}</p>
+                    <p>A summary of your order has been sent to your email.</p>
+                </div>
+            )
+        }
     }
 }
 
-//if cart is empty, dont show any of these msgs
-//possible show items purchased and total if have time 
 export default ConfirmationPage
