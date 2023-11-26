@@ -15,8 +15,13 @@ const AccountPage = () => {
         return <div>Unable to Get User Information. </div>
     };
     if (!token) {
-        return <div>Please Sign In. </div>
-    }
+        return (
+            <h4>Please Sign In {" "}
+                <Link style={{ textDecoration: "none" }} to="/login">Here.</Link>
+            </h4>
+        )
+    };
+
     return (
         <>
             <div>
