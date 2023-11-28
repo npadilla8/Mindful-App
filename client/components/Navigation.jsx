@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
+import {setCategoryId} from './API/categoryIdSlice'
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -17,6 +18,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
+import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu'
+import { Dropdown } from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,6 +59,7 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
+    const categoryId = useSelector((state) => state.categoryId )
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -76,6 +81,14 @@ const NavBar = () => {
         }
     };
 
+    const handleClothingJewClick = () => {
+        dispatch(setCategoryId({categoryId: Number(1)}));
+        navigate("/");
+    }
+
+    console.log(categoryId)
+
+
     return (
         <div className="nav-container">
             <Box sx={{ flexGrow: 1 }}>
@@ -90,6 +103,27 @@ const NavBar = () => {
                         >
                             Mindful Harvest
                         </Typography>
+                        <div className="categories">
+                                <Dropdown>
+                                    <MenuButton>Categories</MenuButton>
+                                    <Menu slots={{ listbox: Listbox }}>
+                                        <MenuItem onClick={handleClothingJewClick}>
+                                            Clothing & Jewelry
+                                        </MenuItem>
+                                        <MenuItem onClick={()=>console.log("toys")}>
+                                            Toys
+                                        </MenuItem>
+                                        <MenuItem onClick={()=>console.log("art")}>
+                                            Collectibles & Art
+                                        </MenuItem>
+                                        <MenuItem onClick={()=>console.log("home")}>
+                                            Home & Living
+                                        </MenuItem>
+                                    </Menu>
+                                </Dropdown>
+
+                            </div>
+
                         <div className="right-section">
                             {/* Search Bar */}
                             <Search>
