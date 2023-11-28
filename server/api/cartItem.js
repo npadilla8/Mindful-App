@@ -5,7 +5,7 @@ const prisma = require("../db/client");
 const {requireUser} = require('./utils')
 
 
-//POST /api/cartItem/ - add cart items (products) to cart 
+//POST /api/cartItem/ - add cart items (products) to cart
 cartItemRouter.post("/", requireUser, async (req, res, next) => {
     try {
         const cart = await prisma.cart.findUnique({
@@ -51,12 +51,12 @@ cartItemRouter.put("/:cartItemId", requireUser, async (req, res, next) => {
             })
         };
 
-        const cartId = cart.id;
+        // const cartId = cart.id;
 
         const updatedCartItem = await prisma.cartItem.update({
             where: {
-                id: Number(req.params.cartItemId),
-                cartId: cartId
+                id: Number(req.params.cartItemId)
+                // cartId: cartId
             },
             data: {
                 quantity: req.body.quantity
@@ -65,7 +65,7 @@ cartItemRouter.put("/:cartItemId", requireUser, async (req, res, next) => {
         res.send(updatedCartItem)
     } catch(error) {
         console.error(error);
-        res.send("unable to update cart item quantity.")
+        next({message: "unable to update cart item quantity."})
     }
 });
 

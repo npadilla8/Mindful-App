@@ -6,6 +6,8 @@ import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { useDispatch } from 'react-redux';
 import './CSS/navbar.css'; 
+import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
 
 const NavBar = () => {
     const token = useSelector((state) => state.token);
@@ -32,6 +34,11 @@ const NavBar = () => {
 
     return (
         <div className="nav-container">
+
+        <Box sx={{ felxGrow: 1}}>
+            <AppBar sx={{bgcolor:"#F6C28B"}} position="static">
+        <div className="navigations">
+
             <div className="app-bar">
                 <div className="dropdown">
                     <button className="dropbtn" onClick={toggleDropdown}>
@@ -83,6 +90,8 @@ const NavBar = () => {
                 </div>
             </div>
         </div>
+        </AppBar>
+        </Box>
     );
 };
 

@@ -104,13 +104,13 @@ const mindfulHarvestApi = createApi({
             query: ({cartItemId, quantity}) => ({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "PUT",
-                body: quantity
+                body: {quantity}
             }),
             invalidatesTags: ["userwithcart"]
         }),
         //DELETE /api/cartItem/:cartItemId - delete cartItem from cart
         deleteCartItemFromCart: builder.mutation({
-            query: ({cartItemId}) => ({
+            query: (cartItemId) => ({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "DELETE",
             }),
