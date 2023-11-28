@@ -1,55 +1,60 @@
 import React, { useState } from 'react';
 import { useGetProductsQuery } from './API/mindfulHarvestApi';
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Card, CardActions, CardContent, CardMedia, Box, Grid } from '@mui/material';
-
+import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
 
 const HomePage = () => {
-    const [query, setQuery] = useState("");
-    const { data, isLoading, error } = useGetProductsQuery();
-    const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+  const { data, isLoading, error } = useGetProductsQuery();
+  const navigate = useNavigate();
 
-    if (isLoading) {
-        return <Typography>Loading...</Typography>;
-    }
-    if (error) {
-        return <Typography>Error</Typography>;
-    }
-    console.log(isLoading? "Loading result" : "from useGetProductsQuery", data.products)
+  if (isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
+  if (error) {
+    return <Typography>Error</Typography>;
+  }
 
-    return (
-       <Box>
+  console.log(isLoading ? 'Loading result' : 'from useGetProductsQuery', data.products);
 
-            <Typography variant="h3">Products</Typography>
-            {data && data.length > 0 ? (
-                data.map((product) => (
-                    <Grid item key={product.id}>
-                        <Card sx={{maxWidth: 350, margin: 2}} >
-                            <CardMedia
-                                component="img"
-                                alt={product.title}
-                                height="500"
-                                img src={product.image}
-                                />
-                    <CardContent>
-                        <Typography variant="h3">{product.title}</Typography>
-                        <Typography><b>Description: </b>{product.description}</Typography>
-                        </CardContent>
-                        <CardActions>
-                        <Button onClick={() => navigate("/products/" + product.id)} variant="outlined">
-              View Details
-            </Button>
-            </CardActions>
-            </Card>
+  return (
+    <Box p={3}> {/* Added padding */}
+      <Grid container spacing={1} justifyContent="center">
+        {data && data.length > 0 ? (
+          data.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={4}>
+              <Card>
+                <CardMedia
+                  component="img"
+                  alt={product.title}
+                  height="70%"
+                  image={product.image}
+                  style={{ objectFit: 'cover' }}
+                />
+                <CardContent style={{ textAlign: 'center' }}>
+                  <Typography variant="h6" style={{ margin: '10px 0' }}>
+                    {product.title}
+                  </Typography>
+                </CardContent>
+                <CardActions style={{ justifyContent: 'center' }}>
+                  <Button
+                    onClick={() => navigate(`/products/${product.id}`)}
+                    style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem' }}
+                  >
+                    View Details
+                  </Button>
+                </CardActions>
+              </Card>
             </Grid>
-                    
-                ))
-            ) : (
-                <p>Unable to view products.</p>
-            )}
-        </Box>
-    );
+          ))
+        ) : (
+          <Typography variant="body1">Unable to view products.</Typography>
+        )}
+      </Grid>
+    </Box>
+  );
 };
+
 export default HomePage;
