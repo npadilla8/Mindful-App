@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useUpdateQuantityOfCartItemMutation, useGetUserWithCartQuery } from './API/mindfulHarvestApi';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -73,15 +72,14 @@ const SingleProduct = () => {
     }
 
     return (
-        <Box sx={{ margin: 5 }}>
+        <Box p={3}>
             <Grid container justifyContent="center">
                 <Grid item>
-                    <Card sx={{ maxWidth: 1000 }} >
+                    <Card>
                         <CardContent align="center">
                             <div className="single-product-details">
                                 <h2 className="product-title">{singleProductData.title}</h2>
                                 <p className="product-description">{singleProductData.description}</p>
-
                             </div>
                             <div className="image-container">
                                 <img className="single-image" src={singleProductData.image} alt={singleProductData.title} />
@@ -92,11 +90,21 @@ const SingleProduct = () => {
                         </CardContent>
                         <CardContent align="center">
                             <Stack direction="row" spacing={1}>
-                                <IconButton aria-label="remove-button" color="secondary" align="center" onClick={setDecrease}>
+                                <IconButton
+                                    aria-label="remove-button"
+                                    style={{ color: '#FFAEAE' }}
+                                    align="center"
+                                    onClick={setDecrease}
+                                >
                                     <RemoveCircleTwoToneIcon />
                                 </IconButton>
                                 <p>{amount}</p>
-                                <IconButton aria-label="add-button" color="secondary" align="center" onClick={setIncrease}>
+                                <IconButton
+                                    aria-label="add-button"
+                                    style={{ color: '#FFAEAE' }}
+                                    align="center"
+                                    onClick={setIncrease}
+                                >
                                     <AddCircleTwoToneIcon />
                                 </IconButton>
                             </Stack>
@@ -104,8 +112,10 @@ const SingleProduct = () => {
                             <Button
                                 className='add-to-cart-button'
                                 variant="contained"
-                                color="secondary"
-                                onClick={handleAddToCart}>Add to Cart
+                                style={{ backgroundColor: '#FFAEAE', '&:hover': { backgroundColor: '#FF8A8A' } }}
+                                onClick={handleAddToCart}
+                            >
+                                Add to Cart
                             </Button>
                         </CardContent>
                     </Card>

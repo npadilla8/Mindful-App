@@ -2,7 +2,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from './API/mindfulHarvestApi';
 import { Link } from 'react-router-dom';
-import './CSS/registerpage.css'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Avatar from '@mui/material/Avatar';
+import './CSS/loginpage.css';
+
+const defaultTheme = createTheme();
 
 const RegistrationForm = () => {
   const [register] = useRegisterUserMutation();
@@ -11,7 +23,7 @@ const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
   });
 
   const handleInputChange = (e) => {
@@ -23,52 +35,97 @@ const RegistrationForm = () => {
     e.preventDefault();
     register(formData);
     navigate('/account');
-    // console.log(formData);
   };
 
   return (
-    <div className="registration-container"> {/* Add a div around the entire form */}
-      <h2>Sign-up</h2>
-      <form onSubmit={handleSubmit} className="registration-form">
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-      <p>
-        Already have an account?{' '}
-        <Link style={{ textDecoration: 'none' }} to="/login">
-          Login here!
-        </Link>
-      </p>
-    </div>
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="sm" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 8 }}>
+        <Card elevation={3} sx={{ width: '100%' }}>
+          <CardContent>
+            <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
+              Sign up
+            </Typography>
+            <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+                value={formData.username}
+                onChange={handleInputChange}
+                InputProps={{
+                  sx: {
+                    '&:focus': {
+                      borderColor: '#FFC5C5',
+                    },
+                  },
+                }}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                InputProps={{
+                  sx: {
+                    '&:focus': {
+                      borderColor: '#FFC5C5',
+                    },
+                  },
+                }}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: '#89B9AD',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#C7DCA7',
+                  },
+                }}
+              >
+                Sign Up
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Typography variant="body2" sx={{ textAlign: 'center' }}>
+                    Already have an account?{' '}
+                    <Link style={{ textDecoration: 'none', color: '#89B9AD' }} to="/login">
+                      Login here!
+                    </Link>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Container>
+    </ThemeProvider>
   );
 };
 

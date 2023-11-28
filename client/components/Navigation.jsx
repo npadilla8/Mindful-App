@@ -1,74 +1,131 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { useDispatch } from 'react-redux';
-import './CSS/navbar.css';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+import { styled, alpha } from '@mui/material/styles';
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const SearchInput = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+        width: '20ch',
+    },
+}));
+
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
-    const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const toggleDropdown = () => {
-        setShowDropdown((prev) => !prev);
-    };
+
     const handleSignOut = () => {
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
         navigate('/');
     };
+
     const handleMindfulAppClick = () => {
         navigate('/');
     };
+
+    const handleAccountClick = () => {
+        if (token) {
+            navigate('/account');
+        } else {
+            navigate('/login');
+        }
+    };
+
     return (
         <div className="nav-container">
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar sx={{ bgcolor: "#F6C28B" }} position="static">
-                    <div className="navigations">
-                        <div className="app-bar">
-                            {/* ... (dropdown) */}
-                            <div className="typography" onClick={handleMindfulAppClick}>
-                                Mindful Harvest
-                            </div>
-                            <div className="right-section">
-                                {!token ? (
-                                    <Link className="register-link" to="/register">
-                                        Register
-                                    </Link>
-                                ) : (
-                                    <div className="logout-link" onClick={handleSignOut}>
-                                        Logout
-                                    </div>
-                                )}
-                                {adminBoolean ? (
-                                    <Link to="/admin" className="account-link">
-                                        Admin Account
-                                    </Link>
-                                ) : (
-                                    <Link to="/account" className="account-link">
-                                        My Account
-                                    </Link>
-                                )}
-                                {adminBoolean ? (
-                                    <Link to="/adminCreate" className="add-product-link">
-                                        Add a Product
-                                    </Link>
-                                ) : (
-                                    <Link to="/cart" className="cart-link">
-                                        Cart
-                                    </Link>
-                                )}
-                            </div>
+                <AppBar sx={{ bgcolor: "#FF9494" }} position="static">
+                    <Toolbar>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ flexGrow: 1 }}
+                            onClick={handleMindfulAppClick}
+                        >
+                            Mindful Harvest
+                        </Typography>
+                        <div className="right-section">
+                            {/* Search Bar */}
+                            <Search>
+                                <SearchIconWrapper>
+                                    <SearchIcon />
+                                </SearchIconWrapper>
+                                <SearchInput placeholder="Search" />
+                            </Search>
+                            {!token ? (
+                                <div className="register-link" onClick={() => navigate('/register')}>
+                                </div>
+                            ) : (
+                                <div className="logout-link" onClick={handleSignOut}>
+                                    <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
+                                </div>
+                            )}
+                            {adminBoolean ? (
+                                <Link to="/admin" className="account-link">
+                                    <AdminPanelSettingsIcon sx={{ color: 'white', marginLeft: 2 }} />
+                                </Link>
+                            ) : (
+                                <div className="account-link" onClick={handleAccountClick}>
+                                    <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
+                                </div>
+                            )}
+                            <Link to="/cart" className="cart-link">
+                                <IconButton color="inherit" component={Link} to="/cart">
+                                    <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
+                                </IconButton>
+                            </Link>
                         </div>
-                    </div>
+                    </Toolbar>
                 </AppBar>
             </Box>
         </div>
     );
 };
+
 export default NavBar;

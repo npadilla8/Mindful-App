@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGetUserWithCartQuery } from './API/mindfulHarvestApi';
 import { useSelector } from "react-redux";
 
 const AccountPage = () => {
     const token = useSelector(state => state.token);
     const { data, error, isLoading } = useGetUserWithCartQuery();
+    const navigate = useNavigate();
 
     console.log("userwithcart:", data);
 
@@ -15,11 +17,9 @@ const AccountPage = () => {
         return <div>Unable to Get User Information. </div>
     };
     if (!token) {
-        return (
-            <h4>Please Sign In {" "}
-                <Link style={{ textDecoration: "none" }} to="/login">Here.</Link>
-            </h4>
-        )
+        // Redirect to login page if not signed in
+        navigate('/login');
+        return null; // Prevent rendering content when redirecting
     };
 
     return (
@@ -32,7 +32,6 @@ const AccountPage = () => {
                         <p><b>Username:</b> {data.username}</p>
                         <p><b>Email: </b>{data.email}</p>
                     </div>
-
                 ) : (
                     <p>User information not available.</p>
                 )}
