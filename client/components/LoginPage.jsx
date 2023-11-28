@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from './API/mindfulHarvestApi';
-import {useDispatch} from "react-redux";
+import { useDispatch } from 'react-redux';
 import { setAdminBoolean } from './API/adminBoolean';
+import './CSS/loginpage.css'; 
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -20,38 +21,35 @@ function Login() {
       password: password,
     });
 
-    console.log(response)
+    console.log(response);
 
-    setEmail("");
-    setPassword("")
+    setEmail('');
+    setPassword('');
 
-    if(response.data.user.isAdmin === false) {
-      navigate("/account");
+    if (response.data.user.isAdmin === false) {
+      navigate('/account');
     }
     if (response.data.user.isAdmin === true) {
-      dispatch(setAdminBoolean({adminBoolean: true}));
-      navigate("/admin")
+      dispatch(setAdminBoolean({ adminBoolean: true }));
+      navigate('/admin');
     }
-
   };
 
   return (
-    <>
+    <div className="login-container">
       <h3>Login</h3>
-      <form method="POST" onSubmit={handleLogin}>
+      <form method="POST" onSubmit={handleLogin} className="login-form">
         <label>
-          Email: {" "}
-          <input value={email} onChange={(e) => setEmail(e.target.value)} />
+          Email: <input className="login-input" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
         <label>
-          Password: {" "}
-          <input value={password} onChange={(e) => setPassword(e.target.value)} />
+          Password: <input className="login-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <br />
-        <button>Submit</button>
+        <button className="login-button">Submit</button>
       </form>
-    </>
+    </div>
   );
 }
 

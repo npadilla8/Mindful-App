@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { useDispatch } from 'react-redux';
+import './CSS/navbar.css'; 
 
 const NavBar = () => {
     const token = useSelector((state) => state.token);
@@ -22,15 +23,15 @@ const NavBar = () => {
     function handleSignOut() {
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
-        navigate("/");
+        navigate('/');
     }
 
-    const handleMindfullAppClick = () => {
+    const handleMindfulAppClick = () => {
         navigate('/');
     };
 
     return (
-        <div className="navigations">
+        <div className="nav-container">
             <div className="app-bar">
                 <div className="dropdown">
                     <button className="dropbtn" onClick={toggleDropdown}>
@@ -45,36 +46,36 @@ const NavBar = () => {
                     )}
                 </div>
 
-                {/* "Mindfull App" with click handler */}
-                <div className="typography" onClick={handleMindfullAppClick}>
+                {/* "Mindful App" with click handler */}
+                <div className="typography" onClick={handleMindfulAppClick}>
                     Mindful Harvest
                 </div>
 
                 <div className="right-section">
                     {(!token) ? (
-                        <Link className="register" to="/register">
+                        <Link className="register-link" to="/register">
                             Register
                         </Link>
                     ) : (
-                        <div onClick={() => handleSignOut()}>
+                        <div className="logout-link" onClick={() => handleSignOut()}>
                             Logout
                         </div>
                     )}
 
                     {adminBoolean ? (
-                        <Link to="/admin" className="account-icon">
+                        <Link to="/admin" className="account-link">
                             Admin Account
                         </Link>
                     ) : (
-                        <Link to="/account">MyAccount</Link>
+                        <Link to="/account" className="account-link">My Account</Link>
                     )}
 
                     {adminBoolean ? (
-                        <Link to="/adminCreate">
+                        <Link to="/adminCreate" className="add-product-link">
                             Add a Product
                         </Link>
                     ) : (
-                        <Link to="/cart" className="cart-icon">
+                        <Link to="/cart" className="cart-link">
                             Cart
                         </Link>
                     )}
