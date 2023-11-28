@@ -47,7 +47,7 @@ const ConfirmationPage = () => {
                     <p><b>Order Number:</b> AUK89076896</p>
                     <p><b>Order Date:</b> {formattedDate}</p>
                     <p><b>Order Time:</b> {formattedTime}</p>
-                    <p>A summary of your order has been sent to your email.</p>
+                    <p>Your order should arrive between 3-5 days.</p>
                 </div>
             )
         }
