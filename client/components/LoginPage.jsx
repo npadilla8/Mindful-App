@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from './API/mindfulHarvestApi';
 import { useDispatch } from 'react-redux';
+import { setAdminBoolean } from './API/adminBoolean';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -27,7 +28,10 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = { data: { user: { isAdmin: false } } };
+    const response = await login({
+      email: email,
+      password: password,
+    });
 
     console.log(response);
 
@@ -38,7 +42,8 @@ function Login() {
       navigate('/account');
     }
     if (response.data.user.isAdmin === true) {
-      navigate('/admin');
+      dispatch(setAdminBoolean({adminBoolean: true}));
+      navigate('/admin');  
     }
   };
 
