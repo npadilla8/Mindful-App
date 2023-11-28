@@ -5,89 +5,70 @@ import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { useDispatch } from 'react-redux';
+import './CSS/navbar.css';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
-
     const [showDropdown, setShowDropdown] = useState(false);
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+        setShowDropdown((prev) => !prev);
     };
-
-    function handleSignOut() {
+    const handleSignOut = () => {
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
-        navigate("/");
-    }
-
-    const handleMindfullAppClick = () => {
         navigate('/');
     };
-
+    const handleMindfulAppClick = () => {
+        navigate('/');
+    };
     return (
-        <Box sx={{ felxGrow: 1}}>
-            <AppBar sx={{bgcolor:"#F6C28B"}} position="static">
-        <div className="navigations">
-            <div className="app-bar">
-                <div className="dropdown">
-                    <button className="dropbtn" onClick={toggleDropdown}>
-                        Categories
-                    </button>
-                    {showDropdown && (
-                        <div className="dropdown-content">
-                            <p>Category 1</p>
-                            <p>Category 2</p>
-                            <p>Category 3</p>
+        <div className="nav-container">
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar sx={{ bgcolor: "#F6C28B" }} position="static">
+                    <div className="navigations">
+                        <div className="app-bar">
+                            {/* ... (dropdown) */}
+                            <div className="typography" onClick={handleMindfulAppClick}>
+                                Mindful Harvest
+                            </div>
+                            <div className="right-section">
+                                {!token ? (
+                                    <Link className="register-link" to="/register">
+                                        Register
+                                    </Link>
+                                ) : (
+                                    <div className="logout-link" onClick={handleSignOut}>
+                                        Logout
+                                    </div>
+                                )}
+                                {adminBoolean ? (
+                                    <Link to="/admin" className="account-link">
+                                        Admin Account
+                                    </Link>
+                                ) : (
+                                    <Link to="/account" className="account-link">
+                                        My Account
+                                    </Link>
+                                )}
+                                {adminBoolean ? (
+                                    <Link to="/adminCreate" className="add-product-link">
+                                        Add a Product
+                                    </Link>
+                                ) : (
+                                    <Link to="/cart" className="cart-link">
+                                        Cart
+                                    </Link>
+                                )}
+                            </div>
                         </div>
-                    )}
-                </div>
-
-                {/* "Mindfull App" with click handler */}
-                <div className="typography" onClick={handleMindfullAppClick}>
-                    Mindful Harvest
-                </div>
-
-                <div className="right-section">
-                    {(!token) ? (
-                        <Link className="register" to="/register">
-                            Register
-                        </Link>
-                    ) : (
-                        <div onClick={() => handleSignOut()}>
-                            Logout
-                        </div>
-                    )}
-
-                    {adminBoolean ? (
-                        <Link to="/admin" className="account-icon">
-                            Admin Account
-                        </Link>
-                    ) : (
-                        <Link to="/account">MyAccount</Link>
-                    )}
-
-                    {adminBoolean ? (
-                        <Link to="/adminCreate">
-                            Add a Product
-                        </Link>
-                    ) : (
-                        <Link to="/cart" className="cart-icon">
-                            Cart
-                        </Link>
-                    )}
-                    
-                </div>
-            </div>
+                    </div>
+                </AppBar>
+            </Box>
         </div>
-        </AppBar>
-        </Box>
     );
 };
-
 export default NavBar;

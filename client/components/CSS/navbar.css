@@ -1,0 +1,80 @@
+/* NavBar.css */
+.nav-container {
+  background-color: #FFC5C5;
+  padding: 1px 3px; 
+}
+
+.app-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #FFC5C5;
+  color: #333;
+  padding: 8px 10px; 
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 4px 8px;
+  z-index: 1;
+}
+
+.dropdown-content p {
+  padding: 10px 12px; 
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  
+}
+
+.typography {
+  cursor: pointer;
+}
+
+.right-section {
+  display: flex;
+  gap: 10px; 
+}
+
+.register-link,
+.logout-link,
+.account-link,
+.add-product-link,
+.cart-link {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.register-link:hover,
+.logout-link:hover,
+.account-link:hover,
+.add-product-link:hover,
+.cart-link:hover {
+  background-color: #FFC5C5;
+}
+
+.dropdown:hover {
+    background-color: #FFC5C5;
+}
+
+.dropbtn:hover {
+    background-color: white; 
+  }

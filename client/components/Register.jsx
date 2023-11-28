@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from './API/mindfulHarvestApi';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './CSS/registerpage.css'
 
 const RegistrationForm = () => {
   const [register] = useRegisterUserMutation();
@@ -26,9 +27,9 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="registration-form container">
+    <div className="registration-container"> {/* Add a div around the entire form */}
       <h2>Sign-up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="registration-form">
         <div className="form-group">
           <label>Username:</label>
           <input
@@ -61,8 +62,11 @@ const RegistrationForm = () => {
         </div>
         <button type="submit">Register</button>
       </form>
-      <p>Already have an account? {" "}
-        <Link style={{textDecoration: "none"}} to="/login">Login here!</Link>
+      <p>
+        Already have an account?{' '}
+        <Link style={{ textDecoration: 'none' }} to="/login">
+          Login here!
+        </Link>
       </p>
     </div>
   );
