@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { useDispatch } from 'react-redux';
+import { setCategoryId } from './API/categoryIdSlice';
 import './CSS/navbar.css';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
-
 import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu'
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
@@ -17,6 +17,8 @@ import { Menu } from '@mui/base/Menu';
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
+    const categoryId = useSelector((state) => state.categoryId);
+   
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -25,15 +27,17 @@ const NavBar = () => {
         dispatch(setAdminBoolean({ adminBoolean: false }));
         navigate('/');
     };
+
     const handleMindfulAppClick = () => {
         navigate('/');
     };
 
-    const createHandleMenuClick = (menuItem) => {
-        return () => {
-            console.log(`Clicked on ${menuItem}`);
-        };
-    };
+    const handleClothingJewClick = () => {
+        dispatch(setCategoryId({categoryId: Number(1)}));
+        navigate("/");
+    }
+
+    console.log(categoryId)
 
     return (
         <div className="nav-container">
@@ -49,16 +53,16 @@ const NavBar = () => {
                                 <Dropdown>
                                     <MenuButton>Categories</MenuButton>
                                     <Menu slots={{ listbox: Listbox }}>
-                                        <MenuItem onClick={createHandleMenuClick('Profile')}>
+                                        <MenuItem onClick={handleClothingJewClick}>
                                             Clothing & Jewelry
                                         </MenuItem>
-                                        <MenuItem onClick={createHandleMenuClick('Language settings')}>
+                                        <MenuItem onClick={()=>console.log("toys")}>
                                             Toys
                                         </MenuItem>
-                                        <MenuItem onClick={createHandleMenuClick('Log out')}>
+                                        <MenuItem onClick={()=>console.log("art")}>
                                             Collectibles & Art
                                         </MenuItem>
-                                        <MenuItem onClick={createHandleMenuClick('Log out')}>
+                                        <MenuItem onClick={()=>console.log("home")}>
                                             Home & Living
                                         </MenuItem>
                                     </Menu>
