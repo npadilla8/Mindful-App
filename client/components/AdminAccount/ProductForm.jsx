@@ -35,7 +35,8 @@ export default function ProductForm(props) {
                 productId: productId,
                 product: updatedProduct
             });
-            console.log("PUT product: ", updateResponse)
+            console.log("PUT product: ", updateResponse);
+
         } else {
             const addResponse = await addProduct({
                 title: title,
@@ -112,6 +113,8 @@ export default function ProductForm(props) {
                 <button>Submit</button>
 
             </form>
+            <br />
+            <button onClick={()=> navigate("/admin/allproducts")}>Back</button>
         </>
     )
 }
