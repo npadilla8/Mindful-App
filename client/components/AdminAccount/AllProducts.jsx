@@ -2,12 +2,20 @@ import React from "react";
 import { useGetProductsQuery } from "../API/mindfulHarvestApi";
 import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import '../CSS/adminpage.css';
 
 export default function AllProducts() {
+  const adminBoolean = useSelector(state => state.adminBoolean)
   const { data, error, isLoading } = useGetProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
   const navigate = useNavigate();
+
+   if (adminBoolean === false) {
+    return (
+      <p className="permissionMessage"> Need Special Permissions to Access Page. </p>
+    );
+  };
 
   // Handling error and loading states for getProductsQuery
   if (isLoading) {

@@ -43,7 +43,7 @@ function Login() {
     }
     if (response.data.user.isAdmin === true) {
       dispatch(setAdminBoolean({adminBoolean: true}));
-      navigate('/admin');  
+      navigate('/admin/users');  
     }
   };
 
