@@ -51,7 +51,6 @@ export default function ProductForm(props) {
             navigate("/admin/allproducts");
         }
     }
-
     return (
         <>
             <form method="POST" onSubmit={handleSubmit}>
