@@ -31,7 +31,7 @@ export const blue = {
   
   export const Listbox = styled('ul')(
     ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: Roboto;
     font-size: 0.875rem;
     box-sizing: border-box;
     padding: 6px;
@@ -73,7 +73,7 @@ export const blue = {
     }
   
     &:hover:not(.${menuItemClasses.disabled}) {
-      background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
+      background-color: ${theme.palette.mode === 'dark' ? blue[900] : "#FF9494"};
       color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
     }
     `,
@@ -82,10 +82,10 @@ export const blue = {
   export const MenuButton = styled(BaseMenuButton)(
     ({ theme }) => `
     font-family: IBM Plex Sans, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5;
-    padding: 8px 16px;
+    padding: 6px 6px;
     border-radius: 8px;
     color: white;
     transition: all 150ms ease;
