@@ -25,7 +25,14 @@ const GuestCartItem = (props) => {
         }));
     };
 
- 
+    const handleRemoveItem = async (event) => {
+        event.preventDefault();
+
+        dispatch(updateCart({
+            productId: data.id,
+            quantity: 0
+        }));
+    };
 
     return (
         <div>
@@ -37,10 +44,9 @@ const GuestCartItem = (props) => {
                 <input value={quantity} onChange={(event) => setQuantity(event.target.value)} />
             </label>
             <button onClick={handleEditItemQuantity} >Edit</button>
+            <br />
+            <br />
             <button onClick={handleRemoveItem} >Remove</button>
-            <br />
-            <br />
-            {/* <button onClick={}>Remove</button> */}
         </div>
     )
 
