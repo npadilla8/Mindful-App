@@ -3,7 +3,7 @@ import { useGetProductsQuery } from './API/mindfulHarvestApi';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, CardActions, Grid, TextField } from '@mui/material';
 
 const HomePage = () => {
   const [query, setQuery] = useState('');
@@ -20,6 +20,7 @@ const HomePage = () => {
   console.log(isLoading ? 'Loading result' : 'from useGetProductsQuery', data.products);
 
   return (
+  
     <Box p={3}> {/* Added padding */}
       <Grid container spacing={1} justifyContent="center">
         {data && data.length > 0 ? (
@@ -54,6 +55,7 @@ const HomePage = () => {
         )}
       </Grid>
     </Box>
+
   );
 };
 
