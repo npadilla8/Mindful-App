@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useGetProductsQuery } from './API/mindfulHarvestApi';
+import {useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
 
 const HomePage = () => {
+  const categoryId = useSelector((state) => state.categoryId)
   const [query, setQuery] = useState('');
   const { data, isLoading, error } = useGetProductsQuery();
   const navigate = useNavigate();
@@ -15,9 +17,25 @@ const HomePage = () => {
   }
   if (error) {
     return <Typography>Error</Typography>;
-  }
+  };
 
-  console.log(isLoading ? 'Loading result' : 'from useGetProductsQuery', data.products);
+  if (categoryId && data) {
+    const filteredProductsArray = data.filter((product) => product.categoryId === categoryId);
+    console.log(filteredProductsArray);
+    return (
+      <div>
+        {filteredProductsArray.map((product) => (
+          <Grid item key={product.id} >
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
+          </Grid>
+        ))}
+      </div>
+    );
+  }
+else {
+
+  
 
   return (
     <Box p={3}> {/* Added padding */}
@@ -55,6 +73,7 @@ const HomePage = () => {
       </Grid>
     </Box>
   );
+        }
 };
 
 export default HomePage;

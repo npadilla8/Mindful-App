@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
-import {setCategoryId} from './API/categoryIdSlice'
+import { setCategoryId } from './API/categoryIdSlice'
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -25,7 +25,7 @@ import { Menu } from '@mui/base/Menu';
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    
+
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
@@ -59,7 +59,7 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
-    const categoryId = useSelector((state) => state.categoryId )
+    const categoryId = useSelector((state) => state.categoryId)
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -70,6 +70,7 @@ const NavBar = () => {
     };
 
     const handleMindfulAppClick = () => {
+        dispatch(setCategoryId({ categoryId: null }))
         navigate('/');
     };
 
@@ -81,12 +82,30 @@ const NavBar = () => {
         }
     };
 
-    const handleClothingJewClick = () => {
-        dispatch(setCategoryId({categoryId: Number(1)}));
+    // functions to set categoryId in redux based on dropdown selected
+    // drop down will display items only within that category
+    const handleClothingJewelryClick = () => {
+        dispatch(setCategoryId({ categoryId: Number(1) }));
+        navigate("/");
+    };
+    const handleToyClick = () => {
+        dispatch(setCategoryId({ categoryId: Number(2) }));
+        navigate("/");
+    };
+    const handleCollectibleArtClick = () => {
+        dispatch(setCategoryId({ categoryId: Number(3) }));
+        navigate("/");
+    };
+    const handleHomeLivingClick = () => {
+        dispatch(setCategoryId({ categoryId: Number(4) }));
+        navigate("/");
+    }
+    const handleAllCategoriesClick = () => {
+        dispatch(setCategoryId({ categoryId: null }));
         navigate("/");
     }
 
-    console.log(categoryId)
+    console.log("categoryId in redux", categoryId);
 
 
     return (
@@ -104,25 +123,28 @@ const NavBar = () => {
                             Mindful Harvest
                         </Typography>
                         <div className="categories">
-                                <Dropdown>
-                                    <MenuButton>Categories</MenuButton>
-                                    <Menu slots={{ listbox: Listbox }}>
-                                        <MenuItem onClick={handleClothingJewClick}>
-                                            Clothing & Jewelry
-                                        </MenuItem>
-                                        <MenuItem onClick={()=>console.log("toys")}>
-                                            Toys
-                                        </MenuItem>
-                                        <MenuItem onClick={()=>console.log("art")}>
-                                            Collectibles & Art
-                                        </MenuItem>
-                                        <MenuItem onClick={()=>console.log("home")}>
-                                            Home & Living
-                                        </MenuItem>
-                                    </Menu>
-                                </Dropdown>
+                            <Dropdown>
+                                <MenuButton>Categories</MenuButton>
+                                <Menu slots={{ listbox: Listbox }}>
+                                    <MenuItem onClick={handleAllCategoriesClick}>
+                                        All
+                                    </MenuItem>
+                                    <MenuItem onClick={handleClothingJewelryClick}>
+                                        Clothing & Jewelry
+                                    </MenuItem>
+                                    <MenuItem onClick={handleToyClick}>
+                                        Toys
+                                    </MenuItem>
+                                    <MenuItem onClick={handleCollectibleArtClick}>
+                                        Collectibles & Art
+                                    </MenuItem>
+                                    <MenuItem onClick={handleHomeLivingClick}>
+                                        Home & Living
+                                    </MenuItem>
+                                </Menu>
+                            </Dropdown>
 
-                            </div>
+                        </div>
 
                         <div className="right-section">
                             {/* Search Bar */}
