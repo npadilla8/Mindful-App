@@ -173,10 +173,10 @@ const NavBar = () => {
                                             <MenuItem onClick={() => navigate("/admin/users")}>
                                                 List of Users
                                             </MenuItem>
-                                            <MenuItem onClick={() => navigate("/")}>
+                                            <MenuItem onClick={() => navigate("/admin/allproducts")}>
                                                 Edit/Delete Products
                                             </MenuItem>
-                                            <MenuItem onClick={handleToyClick}>
+                                            <MenuItem onClick={() => navigate("/adminCreate")}>
                                                 Add New Product
                                             </MenuItem>
                                         </Menu>

@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { useAddProductMutation, useUpdateProductMutation } from '../API/mindfulHarvestApi';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductForm(props) {
     const [productId, setProductId] = useState(props.productId ?? '');
@@ -14,6 +15,7 @@ export default function ProductForm(props) {
 
     const [updateProduct] = useUpdateProductMutation();
     const [addProduct] = useAddProductMutation();
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -45,7 +47,8 @@ export default function ProductForm(props) {
                 quantity: Number(quantity),
                 categoryId: Number(categoryId),
             });
-            console.log("POST Product: ", addResponse)
+            console.log("POST Product: ", addResponse);
+            navigate("/admin/allproducts");
         }
     }
 
