@@ -31,7 +31,7 @@ export const blue = {
   
   export const Listbox = styled('ul')(
     ({ theme }) => `
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 0.875rem;
     box-sizing: border-box;
     padding: 6px;
@@ -81,7 +81,7 @@ export const blue = {
   
   export const MenuButton = styled(BaseMenuButton)(
     ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: Arial;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5;
