@@ -67,6 +67,7 @@ const NavBar = () => {
     const handleSignOut = () => {
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
+        dispatch(setCategoryId({ categoryId: null}));
         navigate('/');
     };
 
