@@ -21,6 +21,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu'
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
+import { pink } from '@mui/material/colors';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -163,9 +164,25 @@ const NavBar = () => {
                                 </div>
                             )}
                             {adminBoolean ? (
-                                <Link to="/admin" className="account-link">
-                                    <AdminPanelSettingsIcon sx={{ color: 'white', marginLeft: 2 }} />
-                                </Link>
+                                <div className="account-link">
+                                    <Dropdown>
+                                        <MenuButton style={{ backgroundColor: "#FF9494", border: "none" }}>
+                                            <AdminPanelSettingsIcon style={{ backgroundColor: "#FF9494" }} sx={{ color: 'white', marginLeft: 2 }} />
+                                            </MenuButton>
+                                        <Menu slots={{ listbox: Listbox }}>
+                                            <MenuItem onClick={handleAllCategoriesClick}>
+                                                List of Users
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClothingJewelryClick}>
+                                                Edit/Delete Products
+                                            </MenuItem>
+                                            <MenuItem onClick={handleToyClick}>
+                                                Add New Product
+                                            </MenuItem>
+                                        </Menu>
+                                    </Dropdown>
+
+                                </div>
                             ) : (
                                 <div className="account-link" onClick={handleAccountClick}>
                                     <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
