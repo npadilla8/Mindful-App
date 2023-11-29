@@ -16,16 +16,16 @@ const GuestCartItem = (props) => {
         return <div>Error in showing cart items.</div>
     };
 
-    console.log("guest cart product: ", data)
-
     const handleEditItemQuantity = async (event) => {
         event.preventDefault();
 
         dispatch(updateCart({
-            productId: itemObj.productId,
+            productId: data.id,
             quantity: Number(quantity)
         }));
     };
+
+ 
 
     return (
         <div>
@@ -37,6 +37,7 @@ const GuestCartItem = (props) => {
                 <input value={quantity} onChange={(event) => setQuantity(event.target.value)} />
             </label>
             <button onClick={handleEditItemQuantity} >Edit</button>
+            <button onClick={handleRemoveItem} >Remove</button>
             <br />
             <br />
             {/* <button onClick={}>Remove</button> */}

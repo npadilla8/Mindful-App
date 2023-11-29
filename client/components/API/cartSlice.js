@@ -19,7 +19,12 @@ const cartSlice = createSlice({
         updateCart: (state, { payload }) => {
             for (let i = 0; i < state.length; i++) {
                 if(state[i].productId === payload.productId) {
-                    return payload;
+                    if (payload.quantity === 0) {
+                        state =  state.splice(i, 1);
+                        return;
+                    }
+                    state[i].quantity = payload.quantity;
+                    return;
                 }
             }
         }
