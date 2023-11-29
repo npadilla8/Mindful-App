@@ -170,10 +170,10 @@ const NavBar = () => {
                                             <AdminPanelSettingsIcon style={{ backgroundColor: "#FF9494" }} sx={{ color: 'white', marginLeft: 2 }} />
                                             </MenuButton>
                                         <Menu slots={{ listbox: Listbox }}>
-                                            <MenuItem onClick={handleAllCategoriesClick}>
+                                            <MenuItem onClick={() => navigate("/admin/users")}>
                                                 List of Users
                                             </MenuItem>
-                                            <MenuItem onClick={handleClothingJewelryClick}>
+                                            <MenuItem onClick={() => navigate("/")}>
                                                 Edit/Delete Products
                                             </MenuItem>
                                             <MenuItem onClick={handleToyClick}>

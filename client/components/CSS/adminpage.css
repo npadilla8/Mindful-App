@@ -97,13 +97,20 @@
 /* Container styling for Users component */
 .UsersContainer {
     margin: 20px;
-    padding: 20px;
+    padding: 18px;
     display: flex; 
     flex-wrap: wrap; 
 }
 
 /* Heading styling */
 .UsersHeading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    width: 100%; 
+}
+
+.AdminHeading {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 16px;
@@ -118,7 +125,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     width: 200px;
-    height: 100px;
+    height: 135px;
 }
 
 .UserId {
@@ -134,6 +141,12 @@
 }
 
 .UserEmail {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.UserStatus {
     font-size: 14px;
     color: #555;
     margin-bottom: 12px;

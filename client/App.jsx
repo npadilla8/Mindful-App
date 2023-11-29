@@ -9,7 +9,8 @@ import NavBar from './components/Navigation';
 import SingleProduct from './components/SingleProduct';
 import EditProduct from './components/AdminAccount/EditProduct';
 import CreateProduct from './components/AdminAccount/CreateProduct';
-import ConfirmationPage from './components/Cart/ConfirmationPage'
+import ConfirmationPage from './components/Cart/ConfirmationPage';
+import Users from './components/AdminAccount/Users';
 
 const App = () => {
 
@@ -19,7 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin" element={<AdminAccountPage />} />
+        <Route path="/admin/users" element={<Users />} />
         <Route path="/account" element={<AccountPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
