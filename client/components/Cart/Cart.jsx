@@ -2,7 +2,8 @@ import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { useDeleteCartItemFromCartMutation } from '../API/mindfulHarvestApi';
 import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { emptyCart } from '../API/cartSlice';
 
