@@ -11,6 +11,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setCart } from './API/cartSlice';
 import { Box, Grid, Card, CardContent, Button, Typography } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -22,6 +24,7 @@ const SingleProduct = () => {
     const [updateCart] = useUpdateQuantityOfCartItemMutation();
     const token = useSelector(state => state.token);
     const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
 
     const setDecrease = () => {
         setAmount(amount - 1);
@@ -60,6 +63,22 @@ const SingleProduct = () => {
             console.error(error);
         }
     };
+
+    const handleOpenAlert = async (event) => {
+        setOpen(true);
+    };
+
+    const handleCloseAlert = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+
+        setOpen(false);
+    };
+
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
     if (singleProductIsLoading) {
         return <div>Loading ...</div>;
@@ -117,10 +136,23 @@ const SingleProduct = () => {
                                 className='add-to-cart-button'
                                 variant="contained"
                                 style={{ backgroundColor: '#FFAEAE', '&:hover': { backgroundColor: '#FF8A8A' } }}
-                                onClick={handleAddToCart}
+                                onClick={(e) => {
+                                    handleAddToCart(e);
+                                    handleOpenAlert({ vertical: 'top', horizontal: 'center' })
+                                }}
                             >
                                 Add to Cart
                             </Button>
+                            <Snackbar open={open}
+                            onClose={handleCloseAlert}
+                            >
+                                <Alert
+                                onClose={handleCloseAlert}
+                                severity="success"
+                                sx={{ width: '100%' }}>
+                                Item is in your cart!
+                                </Alert>
+                            </Snackbar>
                         </CardContent>
                     </Card>
                 </Grid>
