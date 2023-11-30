@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
-import { setCategoryId } from './API/categoryIdSlice'
+import { setCategoryId } from './API/categoryIdSlice';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -18,7 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
-import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu'
+import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { pink } from '@mui/material/colors';
@@ -60,19 +60,19 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
-    const categoryId = useSelector((state) => state.categoryId)
+    const categoryId = useSelector((state) => state.categoryId);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSignOut = () => {
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
-        dispatch(setCategoryId({ categoryId: null}));
+        dispatch(setCategoryId({ categoryId: null }));
         navigate('/');
     };
 
     const handleMindfulAppClick = () => {
-        dispatch(setCategoryId({ categoryId: null }))
+        dispatch(setCategoryId({ categoryId: null }));
         navigate('/');
     };
 
@@ -88,32 +88,31 @@ const NavBar = () => {
     // drop down will display items only within that category
     const handleClothingJewelryClick = () => {
         dispatch(setCategoryId({ categoryId: Number(1) }));
-        navigate("/");
+        navigate('/');
     };
     const handleToyClick = () => {
         dispatch(setCategoryId({ categoryId: Number(2) }));
-        navigate("/");
+        navigate('/');
     };
     const handleCollectibleArtClick = () => {
         dispatch(setCategoryId({ categoryId: Number(3) }));
-        navigate("/");
+        navigate('/');
     };
     const handleHomeLivingClick = () => {
         dispatch(setCategoryId({ categoryId: Number(4) }));
-        navigate("/");
-    }
+        navigate('/');
+    };
     const handleAllCategoriesClick = () => {
         dispatch(setCategoryId({ categoryId: null }));
-        navigate("/");
-    }
+        navigate('/');
+    };
 
-    console.log("categoryId in redux", categoryId);
-
+    console.log('categoryId in redux', categoryId);
 
     return (
         <div className="nav-container">
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar sx={{ bgcolor: "#FF9494" }} position="static">
+                <AppBar sx={{ bgcolor: '#FF9494' }} position="static">
                     <Toolbar>
                         <Typography
                             variant="h6"
@@ -128,24 +127,13 @@ const NavBar = () => {
                             <Dropdown>
                                 <MenuButton>Categories</MenuButton>
                                 <Menu slots={{ listbox: Listbox }}>
-                                    <MenuItem onClick={handleAllCategoriesClick}>
-                                        All
-                                    </MenuItem>
-                                    <MenuItem onClick={handleClothingJewelryClick}>
-                                        Clothing & Jewelry
-                                    </MenuItem>
-                                    <MenuItem onClick={handleToyClick}>
-                                        Toys
-                                    </MenuItem>
-                                    <MenuItem onClick={handleCollectibleArtClick}>
-                                        Collectibles & Art
-                                    </MenuItem>
-                                    <MenuItem onClick={handleHomeLivingClick}>
-                                        Home & Living
-                                    </MenuItem>
+                                    <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
+                                    <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
+                                    <MenuItem onClick={handleToyClick}>Toys</MenuItem>
+                                    <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
+                                    <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
                                 </Menu>
                             </Dropdown>
-
                         </div>
 
                         <div className="right-section">
@@ -157,8 +145,7 @@ const NavBar = () => {
                                 <SearchInput placeholder="Search" />
                             </Search>
                             {!token ? (
-                                <div className="register-link" onClick={() => navigate('/register')}>
-                                </div>
+                                <div className="register-link" onClick={() => navigate('/register')}></div>
                             ) : (
                                 <div className="logout-link" onClick={handleSignOut}>
                                     <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
@@ -167,33 +154,24 @@ const NavBar = () => {
                             {adminBoolean ? (
                                 <div className="account-link">
                                     <Dropdown>
-                                        <MenuButton style={{ backgroundColor: "#FF9494", border: "none" }}>
-                                            <AdminPanelSettingsIcon style={{ backgroundColor: "#FF9494" }} sx={{ color: 'white', marginLeft: 2 }} />
-                                            </MenuButton>
+                                        <MenuButton style={{ backgroundColor: '#FF9494', border: 'none' }}>
+                                            <AdminPanelSettingsIcon style={{ backgroundColor: '#FF9494' }} sx={{ color: 'white', marginLeft: 2 }} />
+                                        </MenuButton>
                                         <Menu slots={{ listbox: Listbox }}>
-                                            <MenuItem onClick={() => navigate("/admin/users")}>
-                                                List of Users
-                                            </MenuItem>
-                                            <MenuItem onClick={() => navigate("/admin/allproducts")}>
-                                                Edit/Delete Products
-                                            </MenuItem>
-                                            <MenuItem onClick={() => navigate("/adminCreate")}>
-                                                Add New Product
-                                            </MenuItem>
+                                            <MenuItem onClick={() => navigate('/admin/users')}>List of Users</MenuItem>
+                                            <MenuItem onClick={() => navigate('/admin/allproducts')}>Edit/Delete Products</MenuItem>
+                                            <MenuItem onClick={() => navigate('/adminCreate')}>Add New Product</MenuItem>
                                         </Menu>
                                     </Dropdown>
-
                                 </div>
                             ) : (
                                 <div className="account-link" onClick={handleAccountClick}>
                                     <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
                                 </div>
                             )}
-                            <Link to="/cart" className="cart-link">
-                                <IconButton color="inherit" component={Link} to="/cart">
-                                    <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
-                                </IconButton>
-                            </Link>
+                            <IconButton color="inherit" component={Link} to="/cart" sx={{ textDecoration: 'none' }}>
+                                <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
+                            </IconButton>
                         </div>
                     </Toolbar>
                 </AppBar>
