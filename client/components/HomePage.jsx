@@ -18,12 +18,17 @@ const HomePage = () => {
   if (error || !data) {
     return <Typography>Unable to view products.</Typography>;
   }
-  
-  const cardMediaHeight = '400px'; 
+
+  const cardMediaHeight = '400px';
 
   if (searchField && data) {
     const searchBoxProducts = data.filter((product) =>
-        product.title.toLowerCase().includes(searchField.toLowerCase()))
+      product.title.toLowerCase().includes(searchField.toLowerCase()));
+
+    if (searchBoxProducts.length === 0) {
+      return <h3><Typography variant="h6">No products found. Please search for other items.</Typography> </h3>
+    };
+
     return (
       <Box p={3}>
         <Grid container spacing={1} justifyContent="center">
@@ -60,7 +65,6 @@ const HomePage = () => {
 
   if (categoryId && data) {
     const filteredProductsArray = data.filter((product) => product.categoryId === categoryId);
-    console.log(filteredProductsArray);
     return (
       <Box p={3}>
         <Grid container spacing={1} justifyContent="center">
@@ -93,8 +97,8 @@ const HomePage = () => {
         </Grid>
       </Box>
     );
-  } 
-  
+  }
+
   if (data) {
     return (
       <Box p={3}>
