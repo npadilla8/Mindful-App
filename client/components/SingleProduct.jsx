@@ -1,5 +1,10 @@
 import React from 'react';
-import { useAddCartItemtoCartMutation, useGetSingleProductQuery, useUpdateQuantityOfCartItemMutation, useGetUserWithCartQuery } from './API/mindfulHarvestApi';
+import {
+    useAddCartItemtoCartMutation,
+    useGetSingleProductQuery,
+    useUpdateQuantityOfCartItemMutation,
+    useGetUserWithCartQuery
+} from './API/mindfulHarvestApi';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -13,6 +18,7 @@ import { setCart } from './API/cartSlice';
 import { Box, Grid, Card, CardContent, Button, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import { pink } from '@mui/material/colors';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -143,13 +149,16 @@ const SingleProduct = () => {
                             >
                                 Add to Cart
                             </Button>
-                            <Snackbar open={open}
-                            onClose={handleCloseAlert}
+                            <Snackbar
+                                open={open}
+                                onClose={handleCloseAlert}
                             >
                                 <Alert
                                 onClose={handleCloseAlert}
                                 severity="success"
-                                sx={{ width: '100%' }}>
+                                sx={{ width: '100%' }}
+                                style={{backgroundColor: '#FF8A8A'}}
+                                >
                                 Item is in your cart!
                                 </Alert>
                             </Snackbar>
