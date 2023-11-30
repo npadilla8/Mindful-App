@@ -76,6 +76,7 @@ const NavBar = () => {
 
     const handleMindfulAppClick = () => {
         dispatch(setCategoryId({ categoryId: null }));
+        dispatch(setSearchField({searchField: null}));
         navigate('/');
     };
 
@@ -107,6 +108,7 @@ const NavBar = () => {
     };
     const handleAllCategoriesClick = () => {
         dispatch(setCategoryId({ categoryId: null }));
+        dispatch(setSearchField({ searchField: null }))
         navigate('/');
     };
 
