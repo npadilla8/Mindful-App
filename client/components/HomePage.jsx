@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGetProductsQuery } from './API/mindfulHarvestApi';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
 
 const HomePage = () => {
-  const categoryId = useSelector((state) => state.categoryId)
+  const categoryId = useSelector((state) => state.categoryId);
   const { data, isLoading, error } = useGetProductsQuery();
   const navigate = useNavigate();
 
@@ -16,16 +16,18 @@ const HomePage = () => {
   }
   if (error || !data) {
     return <Typography>Unable to view products.</Typography>;
-  };
+  }
+  
+  const cardMediaHeight = '400px'; 
 
-  // if categoryId exist in redux, items with that cat Id will be shown
+  // if categoryId exists in redux, items with that cat Id will be shown
   // otherwise, all products will be shown
 
   if (categoryId && data) {
     const filteredProductsArray = data.filter((product) => product.categoryId === categoryId);
     console.log(filteredProductsArray);
     return (
-      <Box p={3}> {/* Added padding */}
+      <Box p={3}>
         <Grid container spacing={1} justifyContent="center">
           {filteredProductsArray.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4}>
@@ -33,7 +35,7 @@ const HomePage = () => {
                 <CardMedia
                   component="img"
                   alt={product.title}
-                  height="70%"
+                  height={cardMediaHeight}
                   image={product.image}
                   style={{ objectFit: 'cover' }}
                 />
@@ -56,20 +58,18 @@ const HomePage = () => {
         </Grid>
       </Box>
     );
-  }
-
-  else {
+  } else {
     return (
-      <Box p={3}> {/* Added padding */}
+      <Box p={3}>
         <Grid container spacing={1} justifyContent="center">
-          {data && (
+          {data &&
             data.map((product) => (
               <Grid item key={product.id} xs={12} sm={6} md={4}>
                 <Card>
                   <CardMedia
                     component="img"
                     alt={product.title}
-                    height="70%"
+                    height={cardMediaHeight}
                     image={product.image}
                     style={{ objectFit: 'cover' }}
                   />
@@ -88,8 +88,7 @@ const HomePage = () => {
                   </CardActions>
                 </Card>
               </Grid>
-            ))
-          )}
+            ))}
         </Grid>
       </Box>
     );

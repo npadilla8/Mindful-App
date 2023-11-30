@@ -79,7 +79,9 @@ const SingleProduct = () => {
                         <CardContent align="center">
                             <div className="single-product-details">
                                 <h2 className="product-title">{singleProductData.title}</h2>
-                                <p className="product-description">{singleProductData.description}</p>
+                                <Typography variant="body2" color="textSecondary" component="p" className="product-description">
+                                    {singleProductData.description}
+                                </Typography>
                             </div>
                             <div className="image-container">
                                 <img className="single-image" src={singleProductData.image} alt={singleProductData.title} />
