@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '../dist')))
+// app.use(express.static(path.join(__dirname, '../dist')))
 
 app.get("/test", (req, res, next) => {
   res.send("Test route");
@@ -40,16 +40,16 @@ app.use((error, req, res, next) => {
 
 // TODO: find another way to send all routes to serve index.html
 // because otherwise faulty routes won't go to 404 below
-app.get('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
+// app.get('*', (req, res, next) => {
+//   res.sendFile(path.join(__dirname, '../dist/index.html'));
+// });
 
 // 404 handler
-app.get('*', (req, res) => {
-    res.status(404).send({
-        error: '404 - Not Found',
-        message: 'No route found for the requested URL',
-    });
-});
+// app.get('*', (req, res) => {
+//     res.status(404).send({
+//         error: '404 - Not Found',
+//         message: 'No route found for the requested URL',
+//     });
+// });
 
 module.exports = app;
