@@ -157,7 +157,7 @@ const SingleProduct = () => {
                                 onClose={handleCloseAlert}
                                 severity="success"
                                 sx={{ width: '100%' }}
-                                style={{backgroundColor: '#FF8A8A'}}
+                                style={{ backgroundColor: '#FF8A8A' }}
                                 >
                                 Item is in your cart!
                                 </Alert>
