@@ -3,6 +3,7 @@ import { useGetProductsQuery } from "../API/mindfulHarvestApi";
 import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Paper, Typography, Button, Grid } from "@mui/material";
 import '../CSS/adminpage.css';
 
 export default function AllProducts() {
@@ -11,9 +12,13 @@ export default function AllProducts() {
   const [deleteProduct] = useDeleteProductMutation();
   const navigate = useNavigate();
 
-   if (adminBoolean === false) {
+  if (adminBoolean === false) {
     return (
-      <p className="permissionMessage"> Need Special Permissions to Access Page. </p>
+      <Paper className="permissionMessageCard">
+        <Typography variant="body1">
+          Need Special Permissions to Access Page.
+        </Typography>
+      </Paper>
     );
   };
 
@@ -36,29 +41,36 @@ export default function AllProducts() {
   }
 
   return (
-    <>
-      <h3 className="ProductsHeading">Products for Sale</h3>
+    <Grid container spacing={10} justifyContent="center" style={{ marginTop: '5px' }}>
       {data ? (
-        data.map((product) => {
-          return (
-            <div key={product.id} className="ProductItem">
-              <p className="ProductTitle"> {product.title}</p>
-              <p className="ProductDescription"> {product.description}</p>
+        data.map((product) => (
+          <Grid item key={product.id} xs={12} sm={6} md={3}>
+            <Paper className="ProductItem" elevation={3}>
+              <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
+              <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
               <img className="ProductImage" src={product.image} alt={product.title} />
-              <div className="ProductButtons">
-                <button className="EditButton" onClick={() => navigate(`/adminEdit/${product.id}`)}>
-                  Edit
-                </button>
-                <button className="DeleteButton" onClick={() => adminDeleteProduct(product.id)}>
-                  Delete
-                </button>
-              </div>
+              <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+              <Button
+                className="EditButton"
+                onClick={() => navigate(`/adminEdit/${product.id}`)}
+                style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem' }}
+              >
+                Edit
+              </Button>
+              <Button
+                className="DeleteButton"
+                onClick={() => adminDeleteProduct(product.id)}
+                style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+              >
+                Delete
+              </Button>
             </div>
-          );
-        })
+            </Paper>
+          </Grid>
+        ))
       ) : (
-        <p>Unable to View Products.</p>
+        <Typography variant="body1">Unable to View Products.</Typography>
       )}
-    </>
+    </Grid>
   );
 }
