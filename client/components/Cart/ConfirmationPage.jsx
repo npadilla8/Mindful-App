@@ -23,9 +23,6 @@ const ConfirmationPage = () => {
         if (data.cart === null) {
             return <h3>No cart present to purchase items from.</h3>
         };
-        if ((data.cart.items).length < 1) {
-            return <h4>Please add items to your cart to complete a purchase.</h4>
-        };
 
         return (
             <div>

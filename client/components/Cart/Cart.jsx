@@ -38,7 +38,14 @@ const Cart = () => {
             } catch (error) {
                 console.error(error);
             }
-        }
+        };
+
+        async function handleEmptyCart() {
+            for (let i = 0; i < cartWithItems.length; i++) {
+                deleteCartItem(cartWithItems[i].id);
+            };
+            navigate('/confirmation');
+        };
 
         return (
             <div>
@@ -50,7 +57,7 @@ const Cart = () => {
                         ))}
                         <br />
                         <br />
-                        <button onClick={() => navigate("/confirmation")} style={{ backgroundColor: 'lightgreen' }}>
+                        <button onClick={handleEmptyCart} style={{ backgroundColor: 'lightgreen' }}>
                             Place Order
                         </button>
                     </div>
