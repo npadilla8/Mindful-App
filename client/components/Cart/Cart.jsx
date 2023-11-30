@@ -2,13 +2,15 @@ import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { useDeleteCartItemFromCartMutation } from '../API/mindfulHarvestApi';
 import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { emptyCart } from '../API/cartSlice';
 
 const Cart = () => {
     const token = useSelector((state) => state.token);
     const guestCart = useSelector((state) => state.cart);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     if (token) {
         const [deleteCartItem] = useDeleteCartItemFromCartMutation();
@@ -58,6 +60,14 @@ const Cart = () => {
             </div>
         );
     } else {
+        const handleEmptyCart = async (event) => {
+            console.log("handle empty cart is called");
+            event.preventDefault();
+
+            dispatch(emptyCart());
+            navigate('/confirmation');
+        };
+
         return (
             <div>
                 <h2>Guest Shopping Cart</h2>
@@ -68,10 +78,11 @@ const Cart = () => {
                     <div>
                         {guestCart.map((itemObj) => (
                             <GuestCartItem itemObj={itemObj} />
-                        ))}
+                        ))};
                         <br />
                         <br />
-                        <button onClick={() => navigate("/confirmation")} style={{ backgroundColor: 'lightgreen' }}>
+                        <button onClick={handleEmptyCart}
+                            style={{ backgroundColor: 'lightgreen' }}>
                             Place Order
                         </button>
                     </div>

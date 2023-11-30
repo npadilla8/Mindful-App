@@ -38,19 +38,15 @@ const ConfirmationPage = () => {
         )
 
     } else {
-        if (guestCart.length < 1) {
-            return <h4>Please add items to your cart to complete a purchase.</h4>
-        } else {
-            return (
-                <div>
-                    <h3>Thank you for your order!</h3>
-                    <p><b>Order Number:</b> AUK89076896</p>
-                    <p><b>Order Date:</b> {formattedDate}</p>
-                    <p><b>Order Time:</b> {formattedTime}</p>
-                    <p>Your order should arrive between 3-5 days.</p>
-                </div>
-            )
-        }
+        return (
+            <div>
+                <h3>Thank you for your order!</h3>
+                <p><b>Order Number:</b> AUK89076896</p>
+                <p><b>Order Date:</b> {formattedDate}</p>
+                <p><b>Order Time:</b> {formattedTime}</p>
+                <p>Your order should arrive between 3-5 days.</p>
+            </div>
+        )
     }
 }
 
