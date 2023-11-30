@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -118,11 +118,14 @@ const NavBar = () => {
     const handleSearchBar = (event) => {
         event.preventDefault();
         dispatch(setCategoryId({categoryId: null}));
-        navigate("/")
+        navigate("/");
         setSearchTerm(event.target.value);
-        dispatch(setSearchField({searchField: searchTerm}));
-        
     };
+    //action will be dispatched every time searchTerm state changes
+    useEffect(() => {
+        dispatch(setSearchField({searchField: searchTerm}));
+    }, [searchTerm]);    
+
     console.log("search text in redux", searchField);
 
     return (
