@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from './API/tokenSlice';
 import { setAdminBoolean } from './API/adminBoolean';
 import { setCategoryId } from './API/categoryIdSlice';
+import { setSearchField } from './API/searchFieldSlice';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -61,6 +62,8 @@ const NavBar = () => {
     const token = useSelector((state) => state.token);
     const adminBoolean = useSelector((state) => state.adminBoolean);
     const categoryId = useSelector((state) => state.categoryId);
+    const searchField = useSelector((state) => state.searchField)
+    const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -73,6 +76,7 @@ const NavBar = () => {
 
     const handleMindfulAppClick = () => {
         dispatch(setCategoryId({ categoryId: null }));
+        dispatch(setSearchField({searchField: null}));
         navigate('/');
     };
 
@@ -104,10 +108,22 @@ const NavBar = () => {
     };
     const handleAllCategoriesClick = () => {
         dispatch(setCategoryId({ categoryId: null }));
+        dispatch(setSearchField({ searchField: null }))
         navigate('/');
     };
 
     console.log('categoryId in redux', categoryId);
+
+    //function for setting local state and dispatching search term to redux
+    const handleSearchBar = (event) => {
+        event.preventDefault();
+        dispatch(setCategoryId({categoryId: null}));
+        navigate("/")
+        setSearchTerm(event.target.value);
+        dispatch(setSearchField({searchField: searchTerm}));
+        
+    };
+    console.log("search text in redux", searchField);
 
     return (
         <div className="nav-container">
@@ -142,7 +158,7 @@ const NavBar = () => {
                                 <SearchIconWrapper>
                                     <SearchIcon />
                                 </SearchIconWrapper>
-                                <SearchInput placeholder="Search" />
+                                <SearchInput placeholder="Search" value={searchTerm} onChange={handleSearchBar} />
                             </Search>
                             {!token ? (
                                 <div className="register-link" onClick={() => navigate('/register')}></div>
