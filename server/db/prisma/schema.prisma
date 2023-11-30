@@ -51,6 +51,8 @@ model CartItem {
   quantity  Int
   cart      Cart    @relation(fields: [cartId], references: [id])
   cartId    Int
+  order     Order?  @relation(fields: [orderId], references: [id])
+  orderId   Int?
 }
 
 model Order {
@@ -59,6 +61,7 @@ model Order {
   user        User     @relation(fields: [userId], references: [id])
   status      String
   totalAmount Int
+  items       CartItem[]
   userId      Int
 }
 
