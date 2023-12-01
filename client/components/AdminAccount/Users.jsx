@@ -2,7 +2,6 @@ import React from "react";
 import { useGetUsersQuery } from "../API/mindfulHarvestApi";
 import { useSelector } from "react-redux";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
-import './CSS/adminpage.css';
 
 const Users = () => {
     const adminBoolean = useSelector(state => state.adminBoolean);

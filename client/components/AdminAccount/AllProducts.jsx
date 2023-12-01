@@ -4,7 +4,6 @@ import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Paper, Typography, Button, Grid } from "@mui/material";
-import './CSS/adminpage.css';
 
 export default function AllProducts() {
   const adminBoolean = useSelector(state => state.adminBoolean)
