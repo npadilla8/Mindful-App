@@ -80,6 +80,7 @@ body {
     border-radius: 5px;
 }
 
+
 .ProductItem {
     width: 110%;
     height: 110%;
@@ -88,7 +89,6 @@ body {
     justify-content: space-between;
     padding: 10px;
     box-sizing: border-box;
-}
 
 .ProductImage {
 width: 100%;

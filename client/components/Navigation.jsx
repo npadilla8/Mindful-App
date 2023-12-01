@@ -143,16 +143,20 @@ const NavBar = () => {
                             Mindful Harvest
                         </Typography>
                         <div className="categories">
-                            <Dropdown>
-                                <MenuButton>Categories</MenuButton>
-                                <Menu slots={{ listbox: Listbox }}>
-                                    <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
-                                    <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
-                                    <MenuItem onClick={handleToyClick}>Toys</MenuItem>
-                                    <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
-                                    <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
-                                </Menu>
-                            </Dropdown>
+                        <Dropdown>
+                        <MenuButton sx={{ backgroundColor: '#FF9494', color: 'white', outline: 'none', '&:hover': { backgroundColor: '#FF9494' } }}>
+                            Categories
+                        </MenuButton>
+                        <Menu slots={{ listbox: Listbox }}>
+                            <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
+                            <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
+                            <MenuItem onClick={handleToyClick}>Toys</MenuItem>
+                            <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
+                            <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
+                        </Menu>
+                        </Dropdown>
+
+
                         </div>
 
                         <div className="right-section">
