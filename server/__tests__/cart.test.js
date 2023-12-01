@@ -5,7 +5,7 @@ jest.mock('jsonwebtoken');
 const jwt = require('jsonwebtoken');
 
 
-describe.skip('Cart API Tests', () => {
+describe('Cart API Tests', () => {
   const testUserId = 1;
 
   beforeEach(async () => {
