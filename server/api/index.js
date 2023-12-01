@@ -61,6 +61,7 @@ apiRouter.use('/products', productsRouter)
 const cartItemRouter = require('./cartItem')
 apiRouter.use('/cartItem', cartItemRouter)
 
-
+const orderRouter = require('./order')
+orderRouter.use('/order', orderRouter)
 
 module.exports = apiRouter

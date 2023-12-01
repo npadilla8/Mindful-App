@@ -4,7 +4,6 @@ const prisma = require("../db/client");
 
 const {requireUser} = require('./utils')
 
-
 //POST /api/cartItem/ - add cart items (products) to cart
 cartItemRouter.post("/", requireUser, async (req, res, next) => {
     try {
