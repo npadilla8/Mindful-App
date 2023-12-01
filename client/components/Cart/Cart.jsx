@@ -1,6 +1,12 @@
+import React from 'react';
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { useDeleteCartItemFromCartMutation } from '../API/mindfulHarvestApi';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import CartItem from './CartItem';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import GuestCartItem from './GuestCartItem';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -30,7 +36,6 @@ const Cart = () => {
         }
 
         const cartWithItems = data.cart.items;
-        console.log("logged in user with cart",cartWithItems)
 
         async function handleCartItemRemoval(cartItemId) {
             try {
@@ -49,23 +54,34 @@ const Cart = () => {
         };
 
         return (
-            <div>
-                <h2>{data.username}'s Shopping Cart</h2>
-                {cartWithItems.length > 0 ? (
-                    <div>
-                        {cartWithItems.map((item) => (
-                            <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
-                        ))}
-                        <br />
-                        <br />
-                        <button onClick={handleEmptyCart} style={{ backgroundColor: 'lightgreen' }}>
-                            Place Order
-                        </button>
-                    </div>
-                ) : (
-                    <p>Unable to view cart. Cart is empty.</p>
-                )}
-            </div>
+            <Card>
+                <CardContent>
+                    <h2>{data.username}'s Shopping Cart</h2>
+                    {cartWithItems.length > 0 ? (
+                        <div>
+                            {cartWithItems.map((item) => (
+                                <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
+                            ))}
+                            <button
+                                onClick={handleEmptyCart}
+                                style={{
+                                    backgroundColor: '#FF9494',
+                                    padding: '5px 8px', 
+                                    fontSize: '0.9em', 
+                                    border: 'none', 
+                                    outline: 'none', 
+                                    borderRadius: '5px', 
+                                    color: 'white',
+                                }}
+                            >
+                                Place Order
+                            </button>
+                        </div>
+                    ) : (
+                        <p>Unable to view cart. Cart is empty.</p>
+                    )}
+                </CardContent>
+            </Card>
         );
     } else {
         const handleEmptyCart = async (event) => {
@@ -77,30 +93,41 @@ const Cart = () => {
         };
 
         return (
-            <div>
-                <h2>Guest Shopping Cart</h2>
-                {console.log("guest cart: ", guestCart)}
-                {console.log("guest cart length: ", guestCart.length)}
+            <Card>
+                <CardContent>
+                    <h2>Guest Shopping Cart</h2>
+                    {console.log("guest cart: ", guestCart)}
+                    {console.log("guest cart length: ", guestCart.length)}
 
-                {guestCart.length > 0 ? (
-                    <div>
-                        {guestCart.map((itemObj) => (
-                            <GuestCartItem itemObj={itemObj} />
-                        ))};
-                        <br />
-                        <br />
-                        <button onClick={handleEmptyCart}
-                            style={{ backgroundColor: 'lightgreen' }}>
-                            Place Order
-                        </button>
-                    </div>
-                ) : (
-                    <p>Cart is empty. Please add items or sign in to your account.</p>
-                )}
-            </div>
-        )
+                    {guestCart.length > 0 ? (
+                        <div>
+                            {guestCart.map((itemObj) => (
+                                <GuestCartItem key={itemObj.id} itemObj={itemObj} />
+                            ))}
+                            <br />
+                            <br />
+                            <button
+                                onClick={handleEmptyCart}
+                                style={{
+                                    backgroundColor: '#FF9494',
+                                    padding: '5px 8px', 
+                                    fontSize: '0.9em', 
+                                    border: 'none', 
+                                    outline: 'none', 
+                                    borderRadius: '5px', 
+                                    color: 'white',
+                                }}
+                            >
+                                Place Order
+                            </button>
+                        </div>
+                    ) : (
+                        <p>Cart is empty. Please add items or sign in to your account.</p>
+                    )}
+                </CardContent>
+            </Card>
+        );
     }
 }
+
 export default Cart;
-
-
