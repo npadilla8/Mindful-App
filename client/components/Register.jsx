@@ -12,7 +12,6 @@ import CardContent from '@mui/material/CardContent';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
-import './CSS/loginpage.css';
 
 const defaultTheme = createTheme();
 

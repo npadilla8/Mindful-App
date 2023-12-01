@@ -13,7 +13,6 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import './CSS/loginpage.css';
 
 const defaultTheme = createTheme();
 
@@ -43,7 +42,7 @@ function Login() {
     }
     if (response.data.user.isAdmin === true) {
       dispatch(setAdminBoolean({adminBoolean: true}));
-      navigate('/admin/users');  
+      navigate('/admin/users');
     }
   };
 
