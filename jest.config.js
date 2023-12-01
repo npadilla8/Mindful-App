@@ -13,10 +13,14 @@ module.exports = {
     //     '\\.css$',
     //   ],
 
+    // moduleNameMapper: {
+    //     "\\.(jpg|jpeg|png|svg)$": "<rootDir>/mocks/prismaMock.js",
+    //     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    // },
+
     moduleNameMapper: {
-        "\\.(jpg|jpeg|png|svg)$": "<rootDir>/mocks/prismaMock.js",
-        "\\.(css|less|scss|sass)$": "identity-obj-proxy"
-    },
+        '\\.css$': 'identity-obj-proxy',
+      },
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
     setupFilesAfterEnv: ['<rootDir>/mocks/prismaMock.js']
