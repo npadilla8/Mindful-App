@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
+import { Card, CardContent, CardMedia, Typography, Grid, Box } from '@mui/material';
 
 const ConfirmationPage = () => {
     const token = useSelector((state) => state.token);
@@ -25,24 +26,53 @@ const ConfirmationPage = () => {
         };
 
         return (
-            <div>
-                <h3>Thank you for your order, {data.username}!</h3>
-                <p><b>Order Number:</b> AUK89076896</p>
-                <p><b>Order Date:</b> {formattedDate}</p>
-                <p><b>Order Time:</b> {formattedTime}</p>
-                <p>A summary of your order has been sent to {data.email}.</p>
-            </div>
+            <Box p={3}>
+                <Grid container justifyContent="center">
+                    <Grid item>
+                <Card> 
+                    <CardMedia
+                        component="img"
+                        height={cardMediaHeight}
+                        image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
+                        style={{ objectFit: 'cover' }}
+                        />
+                    <CardContent style={{ textAlign: 'center'}}> 
+
+                <Typography variant="h5">Thank you for your order, {data.username}!</Typography>
+                <Typography variant="body1"><b>Order Number:</b> AUK89076896</Typography>
+                <Typography variant="body1"><b>Order Date:</b> {formattedDate}</Typography>
+                <Typography variant="body1"><b>Order Time:</b> {formattedTime}</Typography>
+                <Typography variant="body1">A summary of your order has been sent to {data.email}.</Typography>
+                     </CardContent>
+                </Card>
+                </Grid>
+                </Grid>
+                </Box>
+            
         )
 
     } else {
         return (
-            <div>
-                <h3>Thank you for your order!</h3>
-                <p><b>Order Number:</b> AUK89076896</p>
-                <p><b>Order Date:</b> {formattedDate}</p>
-                <p><b>Order Time:</b> {formattedTime}</p>
-                <p>Your order should arrive between 3-5 days.</p>
-            </div>
+            <Box p={3}>
+                <Grid container justifyContent="center">
+                    <Grid item>
+                <Card> 
+                    <CardMedia
+                        component="img"
+                        image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
+                        style={{ objectFit: 'cover' }}
+                        />
+                    <CardContent style={{ textAlign: 'center'}}> 
+                    <Typography variant="h5">Thank you for your order!</Typography>
+                    <Typography variant="body1"><b>Order Number:</b> AUK89076896</Typography>
+                    <Typography variant="body1"><b>Order Date:</b> {formattedDate}</Typography>
+                    <Typography variant="body1"><b>Order Time:</b> {formattedTime}</Typography>
+                    <Typography variant="body1">Your order should arrive between 3-5 days.</Typography>
+                </CardContent>
+                </Card>
+                </Grid>
+                </Grid>
+                </Box>
         )
     }
 }
