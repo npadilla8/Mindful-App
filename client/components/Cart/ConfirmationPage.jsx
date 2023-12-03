@@ -32,7 +32,6 @@ const ConfirmationPage = () => {
                 <Card> 
                     <CardMedia
                         component="img"
-                        height={cardMediaHeight}
                         image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
                         style={{ objectFit: 'cover' }}
                         />
