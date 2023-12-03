@@ -50,7 +50,8 @@ usersRouter.get('/cart', requireUser, async (req, res, next) => {
 
         res.send(shopperWithCart)
     } catch {
-        res.send("unable to get individual user")
+        console.error (error)
+        next({message: "unable to get individual user", error})
     }
 });
 
