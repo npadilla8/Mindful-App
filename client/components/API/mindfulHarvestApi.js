@@ -37,7 +37,7 @@ const mindfulHarvestApi = createApi({
                 method: "POST",
                 body: user,
             }),
-            invalidatesTags: ["users", "userwithcart"]
+            invalidatesTags: ["users", "userwithcart", "orderHistory"]
         }),
         //POST /api/users/login - login existing user
         loginUser: builder.mutation({
