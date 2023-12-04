@@ -132,6 +132,23 @@ const mindfulHarvestApi = createApi({
             }),
             invalidatesTags: ["cart", "userwithcart"]
         }),
+
+        //----------------------ORDER ENDPOINTS---------------------//
+
+        // GET /api/order/user/history - get user's order history
+        getUserOrderHistory: builder.query({
+            query:() => "/api/order/user/history",
+            providesTags: ["orderHistory"]
+        }),
+
+        // POST /api/order - post new order with orderitems within
+        CreateNewOrder: builder.mutation({
+            query: () => ({
+                url: '/api/order',
+                method: "POST"
+            }),
+            invalidatesTags: ["orderHistory"]
+        }),
     })
 });
 
@@ -154,5 +171,8 @@ export const {
 
     useGetUserCartQuery,
     useDeleteUserCartMutation,
+
+    useGetUserOrderHistoryQuery,
+    useCreateNewOrderMutation,
 
 } = mindfulHarvestApi;
