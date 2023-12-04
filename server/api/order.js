@@ -4,16 +4,6 @@ const prisma = require("../db/client");
 
 const { requireAdmin, requireUser } = require("./utils");
 
-//GET api/order testing functionality of router
-orderRouter.get('/', async (req, res, next) => {
-    try {
-        res.send("This is the order api!!!")
-    } catch (error) {
-        console.error(error)
-        next({ message: "unable to get test router!!" })
-    }
-})
-
 // GET api/order
 orderRouter.get("/:orderId", async (req, res, next) => {
     try {
@@ -26,6 +16,26 @@ orderRouter.get("/:orderId", async (req, res, next) => {
     } catch (error) {
         console.error(error)
         next({ message: "Unable to get order", error });
+    }
+});
+
+// GET api/order/user/history - get list orders with items by userId
+orderRouter.get("/user/history", requireUser, async (req, res, next) => {
+    try {
+        const listOfOrders = await prisma.order.findMany({
+            where: {
+                userId: req.user.id
+            },
+            include: {
+                items: true
+            }
+
+        });
+        
+        res.send({message: "List of previous orders", listOfOrders})
+    } catch (error) {
+        console.error(error)
+        next({message: "unable to get previous orders with items", error})
     }
 });
 
