@@ -89,7 +89,7 @@ const Cart = () => {
                             </button>
                         </div>
                     ) : (
-                        <p>Unable to view cart. Cart is empty.</p>
+                        <p>Cart is empty. Please add items.</p>
                     )}
                 </CardContent>
             </Card>
