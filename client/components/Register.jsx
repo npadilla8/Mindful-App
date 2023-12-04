@@ -30,9 +30,12 @@ const RegistrationForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    register(formData);
+
+    const response = await register(formData);
+    console.log(response);
+    
     navigate('/account');
   };
 
