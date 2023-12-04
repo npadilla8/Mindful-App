@@ -46,7 +46,7 @@ const mindfulHarvestApi = createApi({
                 method: "POST",
                 body: user,
             }),
-            invalidatesTags: ["userwithcart"]
+            invalidatesTags: ["userwithcart", "orderHistory"]
         }),
 
         //-----------------PRODUCT ENDPOINTS----------------------//
@@ -147,7 +147,7 @@ const mindfulHarvestApi = createApi({
                 url: '/api/order',
                 method: "POST"
             }),
-            invalidatesTags: ["orderHistory"]
+            invalidatesTags: ["orderHistory", "userwithcart", "cart"]
         }),
     })
 });
