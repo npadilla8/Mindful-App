@@ -1,12 +1,10 @@
 import React from 'react';
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { useDeleteCartItemFromCartMutation } from '../API/mindfulHarvestApi';
+import { useCreateNewOrderMutation } from '../API/mindfulHarvestApi';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CartItem from './CartItem';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import GuestCartItem from './GuestCartItem';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -21,6 +19,7 @@ const Cart = () => {
 
     if (token) {
         const [deleteCartItem] = useDeleteCartItemFromCartMutation();
+        const [createOrder] = useCreateNewOrderMutation();
         const { data, error: userError, isLoading: userIsLoading } = useGetUserWithCartQuery();
 
         // Loading and error for getting user with cart
@@ -37,6 +36,7 @@ const Cart = () => {
 
         const cartWithItems = data.cart.items;
 
+        // inividual cart item removal from cart
         async function handleCartItemRemoval(cartItemId) {
             try {
                 const response = await deleteCartItem(cartItemId);
@@ -46,6 +46,17 @@ const Cart = () => {
             }
         };
 
+        // placing an order with cart items present
+        async function handleCreateOrder() {
+            try{
+                const response = await createOrder();
+                console.log(response);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        // removal of all cart items from the cart once order placed
         async function handleEmptyCart() {
             for (let i = 0; i < cartWithItems.length; i++) {
                 deleteCartItem(cartWithItems[i].id);
@@ -63,7 +74,7 @@ const Cart = () => {
                                 <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
                             ))}
                             <button
-                                onClick={handleEmptyCart}
+                                onClick={()=> {handleCreateOrder(); handleEmptyCart()}}
                                 style={{
                                     backgroundColor: '#FF9494',
                                     padding: '5px 8px', 
