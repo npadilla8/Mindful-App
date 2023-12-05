@@ -3,7 +3,11 @@ import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import ProductForm from "./ProductForm";
-import Typography from '@mui/material/Typography'; // Import Typography from Material-UI
+import Typography from '@mui/material/Typography'; // Import Typography from Material-UI;
+import { Paper } from "@mui/material";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Grid from '@mui/material/Grid'
 
 export default function EditProduct() {
     const adminBoolean = useSelector(state => state.adminBoolean)
@@ -32,28 +36,36 @@ export default function EditProduct() {
 
     return (
         <>
-            <Typography variant="h5" gutterBottom>Edit Product for Sale</Typography>
+            <Typography variant="h5" gutterBottom style={{textAlign:'center', margin:'2%'}}>Update Product Details</Typography>
+            <Paper elevation={3} style={{ padding: '20px', maxWidth: '800px', margin: 'auto', alignContent: 'left' ,marginBottom:'2%'}}>
             {data ? (
-                <div>
-                    <div>
-                        <Typography variant="subtitle1">Title: {data.title}</Typography>
-                        <Typography variant="body1">Description: {data.description}</Typography>
-                        <img style={{ width: '20%' }} src={data.image} alt={data.title} />
-                    </div>
-                    <div>
-                        <Typography variant="body1">Price: {data.price}</Typography>
-                        <Typography variant="body1">Available: {data.available ? "Available" : "Not Available"}</Typography>
-                        <Typography variant="body1">Return Policy: {data.returnPolicy ? "Returnable" : "Non-Returnable"}</Typography>
-                        <Typography variant="body1">Quantity: {data.quantity}</Typography>
-                        <Typography variant="body1">Category Id: {data.categoryId}</Typography>
-                    </div>
-                </div>
+                <Box sx={{ flexGrow: 1 }} style={{marginBottom:'2%'}}>
+                <Grid container spacing={1}>
+                    <Grid item xs={6}>
+                    <img style={{ width: '80%' }} src={data.image} alt={data.title} /> 
+
+                    </Grid>
+
+                    <Grid item xs={6}>
+                    
+                    <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1">Title: {data.title}</Typography>
+                        
+                        <Typography sx={{ fontWeight: '500' }} variant="body1"><b>Description:</b> {data.description}</Typography>
+                        <br/>
+                    
+                        <Typography sx={{ fontWeight: '500' }} variant="body1"><b>Price:</b> $ {data.price}</Typography>
+                        <Typography sx={{ fontWeight: '500' }} variant="body1"><b>Available:</b> {data.available ? "Available" : "Not Available"}</Typography>
+                        <Typography sx={{ fontWeight: '500' }} variant="body1"><b>Return Policy:</b> {data.returnPolicy ? "Returnable" : "Non-Returnable"}</Typography>
+                        <Typography sx={{ fontWeight: '500' }} variant="body1"><b>Quantity:</b> {data.quantity}</Typography>
+                        <Typography sx={{ fontWeight: '500' }} variant="body1"><b>Category Id:</b> {data.categoryId}</Typography>
+                        
+                    </Grid>
+                </Grid>
+                </Box>
             ) : (
                 <Typography variant="body1">Unable to View Product</Typography>
             )}
-
-            <Typography variant="h5" gutterBottom>Update Product Details</Typography>
-            <Typography variant="h7" gutterBottom>Instructions: Edit one or more fields as needed.</Typography>
+            </Paper>
 
             <ProductForm
                 productId={productId}

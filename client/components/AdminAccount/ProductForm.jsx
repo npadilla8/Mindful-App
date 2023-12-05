@@ -64,7 +64,7 @@ export default function ProductForm(props) {
   }
 
   return (
-    <Paper elevation={3} style={{ padding: '20px', maxWidth: '600px', margin: 'auto', alignContent: 'left' }}>
+    <Paper elevation={3} style={{ padding: '20px', maxWidth: '800px', margin: 'auto', alignContent: 'left' }}>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Title"
