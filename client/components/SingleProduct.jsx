@@ -33,7 +33,9 @@ const SingleProduct = () => {
     const [open, setOpen] = useState(false);
 
     const setDecrease = () => {
-        setAmount(amount - 1);
+        if(amount > 1) {
+            setAmount(amount - 1)
+        }
     };
 
     const setIncrease = () => {

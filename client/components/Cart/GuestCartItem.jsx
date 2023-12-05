@@ -22,12 +22,14 @@ const GuestCartItem = (props) => {
   const handleEditItemQuantity = async (event) => {
     event.preventDefault();
 
-    dispatch(
-      updateCart({
-        productId: data.id,
-        quantity: Number(quantity),
-      })
-    );
+    if(quantity >= 1) {
+      dispatch(
+        updateCart({
+          productId: data.id,
+          quantity: Number(quantity),
+        })
+      );
+    };
   };
 
   const handleRemoveItem = async (event) => {
