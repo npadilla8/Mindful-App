@@ -98,20 +98,28 @@ export default function ProductForm(props) {
           margin="normal"
           size="small"
         />
-        <FormControl fullWidth margin="normal">
-          <InputLabel>Available</InputLabel>
-          <Select value={available} onChange={(e) => setAvailable(e.target.value)}>
-            <MenuItem value={true}>True</MenuItem>
-            <MenuItem value={false}>False</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl fullWidth margin="normal">
-          <InputLabel>Return Policy</InputLabel>
-          <Select value={returnPolicy} onChange={(e) => setReturnPolicy(e.target.value)}>
-            <MenuItem value={true}>True</MenuItem>
-            <MenuItem value={false}>False</MenuItem>
-          </Select>
-        </FormControl>
+        <TextField
+          fullWidth
+          select
+          label="Available"
+          margin="normal"
+          size="small"
+          value={available} onChange={(e) => setAvailable(e.target.value)}>
+          <MenuItem value={true}>True</MenuItem>
+          <MenuItem value={false}>False</MenuItem>
+        </TextField>
+
+        <TextField
+          fullWidth
+          select
+          label="Return Policy"
+          margin="normal"
+          size="small"
+          value={returnPolicy} onChange={(e) => setReturnPolicy(e.target.value)}>
+          <MenuItem value={true}>True</MenuItem>
+          <MenuItem value={false}>False</MenuItem>
+        </TextField>
+
         <TextField
           label="Quantity"
           value={quantity}
@@ -120,25 +128,29 @@ export default function ProductForm(props) {
           margin="normal"
           size="small"
         />
-        <FormControl fullWidth margin="normal">
-          <InputLabel>Category</InputLabel>
-          <Select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
-            <MenuItem value={1}>Clothing & Jewelry</MenuItem>
-            <MenuItem value={2}>Toys</MenuItem>
-            <MenuItem value={3}>Collectibles & Art</MenuItem>
-            <MenuItem value={4}>Home & Living</MenuItem>
-          </Select>
-        </FormControl>
-  
+
+        <TextField
+          fullWidth
+          select
+          label="Category"
+          margin="normal"
+          size="small"
+          value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+          <MenuItem value={1}>Clothing & Jewelry</MenuItem>
+          <MenuItem value={2}>Toys</MenuItem>
+          <MenuItem value={3}>Collectibles & Art</MenuItem>
+          <MenuItem value={4}>Home & Living</MenuItem>
+        </TextField>
+
         <Button type="submit" variant="contained" style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>
           Submit
         </Button>
       </form>
-  
+
       <Button onClick={() => navigate('/admin/allproducts')} style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>
         Back
       </Button>
     </Paper>
   );
-  
+
 }

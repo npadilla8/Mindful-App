@@ -14,9 +14,11 @@ export default function CreateProduct() {
 
   return (
     <>
-      <Typography variant="h6" style={{ margin: "20px 0" }}>
-        Add a New Product for Sale
-      </Typography>
+      <div style={{ textAlign: 'center' }}>
+        <Typography variant="h6" style={{ margin: "20px 0" }}>
+          Add a New Product for Sale
+        </Typography>
+      </div>
 
       <Container component="main" maxWidth="xs">
         <div style={{ padding: "20px", marginTop: "20px" }}>
