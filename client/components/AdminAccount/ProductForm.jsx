@@ -68,61 +68,61 @@ export default function ProductForm(props) {
       <form onSubmit={handleSubmit}>
         <TextField
           label="Title"
-          value={props.title}
-          onChange={(e) => props.setTitle(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           fullWidth
           margin="normal"
           size="small"
         />
         <TextField
           label="Image Link"
-          value={props.image}
-          onChange={(e) => props.setImage(e.target.value)}
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
           fullWidth
           margin="normal"
           size="small"
         />
         <TextField
           label="Description"
-          value={props.description}
-          onChange={(e) => props.setDescription(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           fullWidth
           margin="normal"
           size="small"
         />
         <TextField
           label="Price"
-          value={props.price}
-          onChange={(e) => props.setPrice(e.target.value)}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           fullWidth
           margin="normal"
           size="small"
         />
         <FormControl fullWidth margin="normal">
           <InputLabel>Available</InputLabel>
-          <Select value={props.available} onChange={(e) => props.setAvailable(e.target.value)}>
+          <Select value={available} onChange={(e) => setAvailable(e.target.value)}>
             <MenuItem value={true}>True</MenuItem>
             <MenuItem value={false}>False</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth margin="normal">
           <InputLabel>Return Policy</InputLabel>
-          <Select value={props.returnPolicy} onChange={(e) => props.setReturnPolicy(e.target.value)}>
+          <Select value={returnPolicy} onChange={(e) => setReturnPolicy(e.target.value)}>
             <MenuItem value={true}>True</MenuItem>
             <MenuItem value={false}>False</MenuItem>
           </Select>
         </FormControl>
         <TextField
           label="Quantity"
-          value={props.quantity}
-          onChange={(e) => props.setQuantity(e.target.value)}
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
           fullWidth
           margin="normal"
           size="small"
         />
         <FormControl fullWidth margin="normal">
           <InputLabel>Category</InputLabel>
-          <Select value={props.categoryId} onChange={(e) => props.setCategoryId(e.target.value)}>
+          <Select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
             <MenuItem value={1}>Clothing & Jewelry</MenuItem>
             <MenuItem value={2}>Toys</MenuItem>
             <MenuItem value={3}>Collectibles & Art</MenuItem>
