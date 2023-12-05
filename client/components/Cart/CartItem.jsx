@@ -25,10 +25,13 @@ const CartItem = (props) => {
     async function handleEditItemQuantity(event) {
         event.preventDefault();
 
-        const response = await updateQuantityOfCartItem({
-            cartItemId: item.id,
-            quantity: Number(quantity),
-        });
+        if(quantity >= 1) {
+            const response = await updateQuantityOfCartItem({
+                cartItemId: item.id,
+                quantity: Number(quantity),
+            });
+        };
+
         console.log("cart item quantity change: ", response);
     }
 
@@ -38,6 +41,7 @@ const CartItem = (props) => {
             <img style={{ width: "40%" }} src={singleProductData.image} alt={singleProductData.title} />
             <p>Price: ${singleProductData.price}</p>
             <p>Quantity: {item.quantity}</p>
+
             <label>Quantity: {" "}
                 <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
             </label>
