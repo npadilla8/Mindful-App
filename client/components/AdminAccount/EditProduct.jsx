@@ -1,8 +1,9 @@
-import { React } from "react";
+import React from "react";
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import ProductForm from "./ProductForm";
+import Typography from '@mui/material/Typography'; // Import Typography from Material-UI
 
 export default function EditProduct() {
     const adminBoolean = useSelector(state => state.adminBoolean)
@@ -31,29 +32,28 @@ export default function EditProduct() {
 
     return (
         <>
-            <h3>Edit Product for Sale</h3>
+            <Typography variant="h5" gutterBottom>Edit Product for Sale</Typography>
             {data ? (
                 <div>
                     <div>
-                        <p>Title: {data.title}</p>
-                        <p>Description: {data.description}</p>
-                        <img style={{ width: '40%' }} src={data.image} alt={data.title} />
+                        <Typography variant="subtitle1">Title: {data.title}</Typography>
+                        <Typography variant="body1">Description: {data.description}</Typography>
+                        <img style={{ width: '20%' }} src={data.image} alt={data.title} />
                     </div>
                     <div>
-                        <p>Price: {data.price}</p>
-                        <p>Available: {data.available ? "Available" : "Not Available"}</p>
-                        <p>Return Policy: {data.returnPolicy ? "Returnable" : "Non-Returnable"}</p>
-                        <p>Quantity: {data.quantity}</p>
-                        <p>Category Id: {data.categoryId}</p>
+                        <Typography variant="body1">Price: {data.price}</Typography>
+                        <Typography variant="body1">Available: {data.available ? "Available" : "Not Available"}</Typography>
+                        <Typography variant="body1">Return Policy: {data.returnPolicy ? "Returnable" : "Non-Returnable"}</Typography>
+                        <Typography variant="body1">Quantity: {data.quantity}</Typography>
+                        <Typography variant="body1">Category Id: {data.categoryId}</Typography>
                     </div>
-
                 </div>
             ) : (
-                <p> Unable to View Product </p>
+                <Typography variant="body1">Unable to View Product</Typography>
             )}
 
-            <h3>Update Product Details</h3>
-            <h5>Instructions: Edit one or more fields as needed. </h5>
+            <Typography variant="h5" gutterBottom>Update Product Details</Typography>
+            <Typography variant="h7" gutterBottom>Instructions: Edit one or more fields as needed.</Typography>
 
             <ProductForm
                 productId={productId}
