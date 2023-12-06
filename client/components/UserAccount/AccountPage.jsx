@@ -63,7 +63,7 @@ const AccountPage = () => {
                         const date = new Date(order.createdAt).toLocaleDateString();
                         return (
                             <>
-                                <Paper elevation={3} style={{ /*padding: '20px'*/ maxWidth: '50%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
+                                <Paper elevation={3} style={{ /*padding: '20px'*/ maxWidth: '70%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
                                     <div key={order.id} className="individualOrder">
                                         <Box sx={{ flexGrow: 1 }} style={{ borderBottom: '1px solid #bcbcbc', backgroundColor: '#eeeeee', paddingLeft: '2%', paddingBottom: '1%' }}>
                                             <Grid container spacing={1}>
