@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useAddProductMutation, useUpdateProductMutation } from '../API/mindfulHarvestApi';
+import {
+  useAddProductMutation,
+  useUpdateProductMutation,
+} from '../API/mindfulHarvestApi';
 import { useNavigate } from 'react-router-dom';
 import {
+  Paper,
+  TextField,
   Button,
   FormControl,
-  Grid,
   InputLabel,
-  MenuItem,
-  Paper,
   Select,
-  TextField,
-  Typography
+  MenuItem,
 } from '@mui/material';
 
 export default function ProductForm(props) {
@@ -38,13 +39,13 @@ export default function ProductForm(props) {
       available: JSON.parse(available),
       returnPolicy: JSON.parse(returnPolicy),
       quantity: Number(quantity),
-      categoryId: Number(categoryId)
+      categoryId: Number(categoryId),
     };
 
     if (productId) {
       const updateResponse = await updateProduct({
         productId: productId,
-        product: updatedProduct
+        product: updatedProduct,
       });
       console.log('PUT product: ', updateResponse);
     } else {
@@ -64,81 +65,100 @@ export default function ProductForm(props) {
   }
 
   return (
-    <Paper elevation={3} style={{ padding: '20px', maxWidth: '600px', margin: 'auto', alignContent: 'left' }}>
-      <form onSubmit={handleSubmit}>
+    <Paper elevation={3} style={{ padding: 20, maxWidth: 400, margin: 'auto' }}>
+      <form method="POST" onSubmit={handleSubmit}>
         <TextField
           label="Title"
-          value={props.title}
-          onChange={(e) => props.setTitle(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           fullWidth
           margin="normal"
-          size="small"
         />
         <TextField
           label="Image Link"
-          value={props.image}
-          onChange={(e) => props.setImage(e.target.value)}
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
           fullWidth
           margin="normal"
-          size="small"
         />
         <TextField
           label="Description"
-          value={props.description}
-          onChange={(e) => props.setDescription(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           fullWidth
           margin="normal"
-          size="small"
         />
         <TextField
           label="Price"
-          value={props.price}
-          onChange={(e) => props.setPrice(e.target.value)}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           fullWidth
           margin="normal"
-          size="small"
         />
         <FormControl fullWidth margin="normal">
           <InputLabel>Available</InputLabel>
-          <Select value={props.available} onChange={(e) => props.setAvailable(e.target.value)}>
+          <Select
+            value={available}
+            onChange={(e) => setAvailable(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>--Select--</em>
+            </MenuItem>
             <MenuItem value={true}>True</MenuItem>
             <MenuItem value={false}>False</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth margin="normal">
           <InputLabel>Return Policy</InputLabel>
-          <Select value={props.returnPolicy} onChange={(e) => props.setReturnPolicy(e.target.value)}>
+          <Select
+            value={returnPolicy}
+            onChange={(e) => setReturnPolicy(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>--Select--</em>
+            </MenuItem>
             <MenuItem value={true}>True</MenuItem>
             <MenuItem value={false}>False</MenuItem>
           </Select>
         </FormControl>
         <TextField
           label="Quantity"
-          value={props.quantity}
-          onChange={(e) => props.setQuantity(e.target.value)}
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
           fullWidth
           margin="normal"
-          size="small"
         />
         <FormControl fullWidth margin="normal">
           <InputLabel>Category</InputLabel>
-          <Select value={props.categoryId} onChange={(e) => props.setCategoryId(e.target.value)}>
+          <Select
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>--Select--</em>
+            </MenuItem>
             <MenuItem value={1}>Clothing & Jewelry</MenuItem>
             <MenuItem value={2}>Toys</MenuItem>
             <MenuItem value={3}>Collectibles & Art</MenuItem>
             <MenuItem value={4}>Home & Living</MenuItem>
           </Select>
         </FormControl>
-  
-        <Button type="submit" variant="contained" style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>
-          Submit
+
+        <Button
+                variant="contained"
+                type="submit"
+                style={{ backgroundColor: '#FF9494', color: 'white' }}
+                >
+                Submit
         </Button>
       </form>
-  
-      <Button onClick={() => navigate('/admin/allproducts')} style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>
+      <br />
+            <Button
+        onClick={() => navigate('/admin/allproducts')}
+        style={{ backgroundColor: '#FF9494', color:'white' }}
+        >
         Back
-      </Button>
+        </Button>
     </Paper>
   );
-  
 }
