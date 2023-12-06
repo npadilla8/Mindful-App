@@ -21,11 +21,11 @@ export default function OrderItem(props) {
                     <img style={{ width: '50%', height: '100%' }} src={data.image} alt={data.title} />
                 </Grid>
                 <Grid item xs={6}>
-                    <Typography><b>{data.title}</b></Typography>
-                    <Typography>{data.description}</Typography>
+                    <Typography variant="body1"><b>{data.title}</b></Typography>
+                    <Typography variant="body1">{data.description}</Typography>
                     <br />
-                    <Typography><b>Price</b> ${data.price}</Typography>
-                    <Typography><b>Qty</b> {orderItem.quantity}</Typography>
+                    <Typography variant="body1"><b>Price</b> ${data.price}</Typography>
+                    <Typography variant="body1"><b>Qty</b> {orderItem.quantity}</Typography>
                 </Grid>
             </Grid>
         </Box>
