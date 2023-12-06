@@ -32,10 +32,10 @@ const Users = () => {
     return (
         <Card className="UsersContainer">
             <CardContent>
-                <Typography variant="h5" className="AdminHeading">
+                <Typography variant="h5" className="AdminHeading" style={{paddingBottom:'2%'}}>
                     Welcome Back, Administrator!
                 </Typography>
-                <Typography variant="h6" className="UsersHeading">
+                <Typography variant="h6" className="UsersHeading" style={{paddingBottom: '2%'}}>
                     List of Registered Users
                 </Typography>
                 <Grid container spacing={3}>

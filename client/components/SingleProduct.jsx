@@ -29,11 +29,14 @@ const SingleProduct = () => {
     const [addToCart] = useAddCartItemtoCartMutation();
     const [updateCart] = useUpdateQuantityOfCartItemMutation();
     const token = useSelector(state => state.token);
+    const adminBoolean = useSelector(state => state.adminBoolean)
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
     const setDecrease = () => {
-        setAmount(amount - 1);
+        if (amount > 1) {
+            setAmount(amount - 1)
+        }
     };
 
     const setIncrease = () => {
@@ -76,7 +79,7 @@ const SingleProduct = () => {
 
     const handleCloseAlert = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
 
         setOpen(false);
@@ -117,6 +120,7 @@ const SingleProduct = () => {
                                 <Typography variant="body1">$ {singleProductData.price}</Typography>
                             </div>
                         </CardContent>
+                        {!adminBoolean && (
                         <CardContent align="center">
                             <Stack direction="row" spacing={1}>
                                 <IconButton
@@ -137,32 +141,33 @@ const SingleProduct = () => {
                                     <AddCircleTwoToneIcon />
                                 </IconButton>
                             </Stack>
-
-                            <Button
-                                className='add-to-cart-button'
-                                variant="contained"
-                                style={{ backgroundColor: '#FFAEAE', '&:hover': { backgroundColor: '#FF8A8A' } }}
-                                onClick={(e) => {
-                                    handleAddToCart(e);
-                                    handleOpenAlert({ vertical: 'top', horizontal: 'center' })
-                                }}
-                            >
-                                Add to Cart
-                            </Button>
+                        
+                                <Button
+                                    className='add-to-cart-button'
+                                    variant="contained"
+                                    style={{ backgroundColor: '#FFAEAE', '&:hover': { backgroundColor: '#FF8A8A' } }}
+                                    onClick={(e) => {
+                                        handleAddToCart(e);
+                                        handleOpenAlert({ vertical: 'top', horizontal: 'center' })
+                                    }}
+                                >
+                                    Add to Cart
+                                </Button>  
                             <Snackbar
                                 open={open}
                                 onClose={handleCloseAlert}
                             >
                                 <Alert
-                                onClose={handleCloseAlert}
-                                severity="success"
-                                sx={{ width: '100%' }}
-                                style={{ backgroundColor: '#FF8A8A' }}
+                                    onClose={handleCloseAlert}
+                                    severity="success"
+                                    sx={{ width: '100%' }}
+                                    style={{ backgroundColor: '#FF8A8A' }}
                                 >
-                                Item is in your cart!
+                                    Item is in your cart!
                                 </Alert>
                             </Snackbar>
                         </CardContent>
+                        )}
                     </Card>
                 </Grid>
             </Grid>

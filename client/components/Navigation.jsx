@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -68,6 +68,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
 
     const handleSignOut = () => {
+        localStorage.removeItem("token");
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
         dispatch(setCategoryId({ categoryId: null }));
@@ -76,7 +77,7 @@ const NavBar = () => {
 
     const handleMindfulAppClick = () => {
         dispatch(setCategoryId({ categoryId: null }));
-        dispatch(setSearchField({searchField: null}));
+        dispatch(setSearchField({ searchField: null }));
         navigate('/');
     };
 
@@ -117,14 +118,14 @@ const NavBar = () => {
     //function for setting local state and dispatching search term to redux
     const handleSearchBar = (event) => {
         event.preventDefault();
-        dispatch(setCategoryId({categoryId: null}));
+        dispatch(setCategoryId({ categoryId: null }));
         navigate("/");
         setSearchTerm(event.target.value);
     };
     //action will be dispatched every time searchTerm state changes
     useEffect(() => {
-        dispatch(setSearchField({searchField: searchTerm}));
-    }, [searchTerm]);    
+        dispatch(setSearchField({ searchField: searchTerm }));
+    }, [searchTerm]);
 
     console.log("search text in redux", searchField);
 
@@ -143,18 +144,18 @@ const NavBar = () => {
                             Mindful Harvest
                         </Typography>
                         <div className="categories">
-                        <Dropdown>
-                        <MenuButton sx={{ backgroundColor: '#FF9494', color: 'white', outline: 'none', '&:hover': { backgroundColor: '#FF9494' } }}>
-                            Categories
-                        </MenuButton>
-                        <Menu slots={{ listbox: Listbox }}>
-                            <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
-                            <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
-                            <MenuItem onClick={handleToyClick}>Toys</MenuItem>
-                            <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
-                            <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
-                        </Menu>
-                        </Dropdown>
+                            <Dropdown>
+                                <MenuButton sx={{ backgroundColor: '#FF9494', color: 'white', outline: 'none', '&:hover': { backgroundColor: '#FF9494' } }}>
+                                    Categories
+                                </MenuButton>
+                                <Menu slots={{ listbox: Listbox }}>
+                                    <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
+                                    <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
+                                    <MenuItem onClick={handleToyClick}>Toys</MenuItem>
+                                    <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
+                                    <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
+                                </Menu>
+                            </Dropdown>
 
 
                         </div>
@@ -192,9 +193,11 @@ const NavBar = () => {
                                     <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
                                 </div>
                             )}
-                            <IconButton color="inherit" component={Link} to="/cart" sx={{ textDecoration: 'none' }}>
-                                <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
-                            </IconButton>
+                            {!adminBoolean && (
+                                <IconButton color="inherit" component={Link} to="/cart" sx={{ textDecoration: 'none' }}>
+                                    <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
+                                </IconButton>)
+                            }
                         </div>
                     </Toolbar>
                 </AppBar>

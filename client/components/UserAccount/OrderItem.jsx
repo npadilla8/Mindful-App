@@ -1,21 +1,33 @@
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { Typography } from "@mui/material";
 
 export default function OrderItem(props) {
     const orderItem = props.item;
     const { data, error, isLoading } = useGetSingleProductQuery(orderItem.productId);
 
     if (isLoading) {
-        return <div>Product is loading...</div>
+        return <Typography variant="body1">Product is loading...</Typography>
     };
     if (error || !data) {
-        return <div>Single product information is not being fetched.</div>
-    }
+        return <Typography variant="body1">Single product information is not being fetched.</Typography>
+    };
+
     return (
-        <div key={orderItem.id}>
-            <img style={{ width: "10%", height: "10%" }} src={data.image} alt={data.title} />
-            <p><b>{data.title}</b></p>
-            <p><b>Price:</b> ${data.price}</p>
-            <p><b>Qty:</b> {orderItem.quantity}</p>
-        </div>
+        <Box key={orderItem.id} sx={{ flexGrow: 1 }} style={{ padding: '2%' }}>
+            <Grid container spacing={0}>
+                <Grid item xs={6}>
+                    <img style={{ width: '50%', height: '100%' }} src={data.image} alt={data.title} />
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body1"><b>{data.title}</b></Typography>
+                    <Typography variant="body1">{data.description}</Typography>
+                    <br />
+                    <Typography variant="body1"><b>Price</b> ${data.price}</Typography>
+                    <Typography variant="body1"><b>Qty</b> {orderItem.quantity}</Typography>
+                </Grid>
+            </Grid>
+        </Box>
     )
 }
