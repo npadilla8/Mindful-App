@@ -68,6 +68,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
 
     const handleSignOut = () => {
+        localStorage.clear();
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
         dispatch(setCategoryId({ categoryId: null }));
@@ -124,7 +125,7 @@ const NavBar = () => {
     //action will be dispatched every time searchTerm state changes
     useEffect(() => {
         dispatch(setSearchField({searchField: searchTerm}));
-    }, [searchTerm]);    
+    }, [searchTerm]);
 
     console.log("search text in redux", searchField);
 
