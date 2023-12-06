@@ -68,7 +68,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
 
     const handleSignOut = () => {
-        localStorage.clear();
+        localStorage.removeItem("token");
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
         dispatch(setCategoryId({ categoryId: null }));
