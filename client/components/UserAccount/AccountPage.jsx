@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { useGetUserOrderHistoryQuery } from '../API/mindfulHarvestApi';
 import { useSelector } from "react-redux";
+import Typography from '@mui/material/Typography';
+import { Paper } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from '@mui/material/Grid';
 
 const AccountPage = () => {
     const token = useSelector(state => state.token);
@@ -15,18 +19,18 @@ const AccountPage = () => {
 
     // conditional rendering based on what is happening to userwithcart query
     if (isLoading) {
-        return <div>Loading user information...</div>
+        return <Typography variant="body1">Loading user information...</Typography>
     };
     if (error || !data) {
-        return <div>Unable to get user information. </div>
+        return <Typography variant="body1">Unable to get user information. </Typography>
     };
 
     // conditional rendering based on what is happening to orderhistory query
     if (orderLoading) {
-        return <div>Loading user's order history...</div>
+        return <Typography variant="body1">Loading user's order history...</Typography>
     };
     if (orderError || !orderHistory) {
-        return <div>Error in getting order history.</div>
+        return <Typography>Error in getting order history.</Typography>
     };
 
     console.log(orderHistory)
@@ -42,36 +46,49 @@ const AccountPage = () => {
             <div className="accountDetails">
                 {data ? (
                     <div>
-                        <h3>Welcome Back, {data.username}!</h3>
-                        <h4>Account Details</h4>
-                        <p><b>Username:</b> {data.username}</p>
-                        <p><b>Email: </b>{data.email}</p>
+                        <Typography variant="h5">Welcome Back, {data.username}!</Typography>
+                        <Typography variant="h6">Account Details</Typography>
+                        <Typography variant="body1"><b>Username:</b> {data.username}</Typography>
+                        <Typography variant="body1"><b>Email: </b>{data.email}</Typography>
                     </div>
                 ) : (
-                    <p>User information not available.</p>
+                    <Typography variant="body1">User information not available.</Typography>
                 )}
             </div>
             <br />
             <div className="orderHistory">
-                <h4>Order History</h4>
+                <Typography variant="h6">Order History</Typography>
                 {orderHistory.listOfOrders && orderHistory.listOfOrders.length > 0 ? (
                     orderHistory.listOfOrders.map((order) => {
                         const date = new Date(order.createdAt).toLocaleDateString();
                         return (
-                            <div key={order.id} className="individualOrder">
-                                <p><b>Order Date:</b> {date}</p>
-                                <p><b>Status:</b> {order.status}</p>
-                                <p><b>Total Price:</b> ${order.totalAmount}</p>
-                                {order.items.map((item) => (
-                                    <OrderItem key={item.id} item={item} />))
-                                }
-                                <br />
-                            </div>
+                            <>
+                                <Paper elevation={3} style={{ /*padding: '20px'*/ maxWidth: '70%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
+                                    <div key={order.id} className="individualOrder">
+                                        <Box sx={{ flexGrow: 1 }} style={{ borderBottom: '1px solid #bcbcbc', backgroundColor: '#eeeeee', paddingLeft: '2%', paddingBottom: '1%' }}>
+                                            <Grid container spacing={1}>
+                                                <Grid item xs={6}>
+                                                    <Typography variant="body2">ORDER DATE: {date}</Typography>
+                                                    <Typography variant="body2">TOTAL PRICE: ${order.totalAmount}</Typography>
+                                                </Grid>
+                                                <Grid item xs={6} >
+                                                    <Typography variant="body2" style={{ textAlign: 'right', paddingRight: '10%' }}>STATUS: {order.status}</Typography>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                        {order.items.map((item) => (
+                                            <OrderItem key={item.id} item={item} />))
+                                        }
+                                        <br />
+                                    </div>
+                                </Paper>
+                            </>
                         )
                     })
                 ) : (
-                    <p> You have no order history at this time.</p>
+                    <Typography variant="body1"> You have no order history at this time.</Typography>
                 )}
+
             </div>
         </>
     );
