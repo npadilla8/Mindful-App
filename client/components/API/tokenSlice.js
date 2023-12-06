@@ -3,7 +3,7 @@ import mindfulHarvestApi from "./mindfulHarvestApi";
 
 const tokenSlice = createSlice({
     name: "token",
-    initialState: null,
+    initialState: localStorage.getItem("token"),
     reducers: {
         setToken: (state, { payload }) => {
             return payload.token
@@ -13,12 +13,18 @@ const tokenSlice = createSlice({
     extraReducers: (builder) => {
         builder.addMatcher(
             mindfulHarvestApi.endpoints.registerUser.matchFulfilled,
-            (state, { payload }) => payload.token
+            (state, { payload }) => {
+                localStorage.setItem("token", payload.token)
+                return payload.token
+            }
         );
 
         builder.addMatcher(
             mindfulHarvestApi.endpoints.loginUser.matchFulfilled,
-            (state, {payload}) => payload.token
+            (state, {payload}) => {
+                localStorage.setItem("token", payload.token)
+                return payload.token
+            }
         )
     }
 });
