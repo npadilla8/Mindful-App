@@ -69,6 +69,7 @@ const NavBar = () => {
 
     const handleSignOut = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("isAdmin");
         dispatch(setToken({ token: null }));
         dispatch(setAdminBoolean({ adminBoolean: false }));
         dispatch(setCategoryId({ categoryId: null }));
@@ -113,8 +114,6 @@ const NavBar = () => {
         navigate('/');
     };
 
-    console.log('categoryId in redux', categoryId);
-
     //function for setting local state and dispatching search term to redux
     const handleSearchBar = (event) => {
         event.preventDefault();
@@ -126,8 +125,6 @@ const NavBar = () => {
     useEffect(() => {
         dispatch(setSearchField({ searchField: searchTerm }));
     }, [searchTerm]);
-
-    console.log("search text in redux", searchField);
 
     return (
         <div className="nav-container">

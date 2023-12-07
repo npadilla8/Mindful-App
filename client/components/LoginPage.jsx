@@ -32,8 +32,6 @@ function Login() {
       password: password,
     });
 
-    console.log(response);
-
     setEmail('');
     setPassword('');
 

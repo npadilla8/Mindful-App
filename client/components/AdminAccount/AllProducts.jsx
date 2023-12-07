@@ -33,7 +33,6 @@ export default function AllProducts() {
   async function adminDeleteProduct(productId) {
     try {
       const response = await deleteProduct(productId);
-      console.log(response);
     } catch (error) {
       console.error(error);
     }

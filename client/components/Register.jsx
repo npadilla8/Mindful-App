@@ -34,8 +34,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     const response = await register(formData);
-    console.log(response);
-    
+
     navigate('/account');
   };
 
