@@ -22,9 +22,7 @@ export default function CreateProduct() {
       </div>
 
       <Container component="main" maxWidth="xs">
-        <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
-          <ProductForm />
-        </Paper>
+        <ProductForm />
       </Container>
     </>
   );
