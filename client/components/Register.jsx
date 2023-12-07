@@ -10,13 +10,14 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import Box from "@mui/material/Box";
 
 const defaultTheme = createTheme();
 
 const RegistrationForm = () => {
   const [register] = useRegisterUserMutation();
+  const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -35,7 +36,16 @@ const RegistrationForm = () => {
 
     const response = await register(formData);
 
-    navigate('/account');
+    console.log(response)
+
+    if (response && response.error) {
+      setErrorMsg(response.error.data.message)
+    };
+
+    if (response && response.data.newUser.isAdmin === false) {
+      navigate('/account');
+    };
+    
   };
 
   return (
@@ -112,6 +122,15 @@ const RegistrationForm = () => {
               >
                 Sign Up
               </Button>
+              {errorMsg && (
+                <Box sx={{
+                  border: '1px solid red', padding: '2%', borderRadius: '4px', marginBottom: "3%", marginTop: "2%", width: "60%", justifyContent: "center",
+                  alignItems: "center", display: "flex", flexDirection: 'row', marginLeft: "18%", flexWrap: "nowrap",
+                }}>
+                  <WarningAmberIcon sx={{ color: 'red', marginRight: "3%" }} />
+                  <Typography variant='body1'>{errorMsg}</Typography>
+                </Box>
+              )}
               <Grid container>
                 <Grid item xs>
                   <Typography variant="body2" sx={{ textAlign: 'center' }}>

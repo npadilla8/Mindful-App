@@ -60,14 +60,21 @@ usersRouter.post("/register", async (req, res, next) => {
     const password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
     try {
-        const user = await prisma.user.findUnique({
+        const userWithSameUsername = await prisma.user.findUnique({
             where: {
                 username: req.body.username,
             }
         });
+        const userWithSameEmail = await prisma.user.findUnique({
+            where: {
+                email: req.body.email
+            }
+        });
 
-        if (user) {
-            res.send("A user by that username already exist")
+        if (userWithSameUsername || userWithSameEmail) {
+            res.status(401)
+            next({ message: "User or email already exists."
+            })
         } else {
             const newUser = await prisma.user.create({
                 data: {
@@ -105,7 +112,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
         if (!user) {
             res.status(401)
-            next({ message: "Unable to log in. User does not exist."
+            next({ message: "Username does not exist."
             })
         } else{
 
