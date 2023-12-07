@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
 import ProductForm from "./ProductForm";
 
 export default function CreateProduct() {
@@ -21,9 +22,9 @@ export default function CreateProduct() {
       </div>
 
       <Container component="main" maxWidth="xs">
-        <div style={{ padding: "20px", marginTop: "20px" }}>
+        <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
           <ProductForm />
-        </div>
+        </Paper>
       </Container>
     </>
   );
