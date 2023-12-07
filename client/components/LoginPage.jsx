@@ -113,7 +113,6 @@ function Login() {
               >
                 Sign In
               </Button>
-
               {errorMsg && (
                 <Box sx={{
                   border: '1px solid red', padding: '2%', borderRadius: '4px', marginBottom: "3%", marginTop: "2%", width: "60%", justifyContent: "center",
@@ -123,7 +122,6 @@ function Login() {
                   <Typography variant='body1'>{errorMsg}</Typography>
                 </Box>
               )}
-
               <Typography variant="body2" onClick={handleSignUpClick} sx={{ textAlign: 'center' }} style={{ cursor: 'pointer' }}>
                 {"Don't have an account? "}
                 <span style={{ color: '#89B9AD' }}>Sign Up</span>
