@@ -39,14 +39,14 @@ function Login() {
 
     if (response && response.error) {
       setErrorMsg(response.error.data.message)
-    };
-
-    if (response.data.user.isAdmin === false) {
-      navigate('/account');
-    }
-    if (response.data.user.isAdmin === true) {
-      dispatch(setAdminBoolean({ adminBoolean: true }));
-      navigate('/admin/users');
+    } else {
+      if (response.data.user.isAdmin === false) {
+        navigate('/account');
+      };
+      if (response.data.user.isAdmin === true) {
+        dispatch(setAdminBoolean({ adminBoolean: true }));
+        navigate('/admin/users');
+      };
     }
   };
 
