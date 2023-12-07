@@ -58,7 +58,6 @@ const AccountPage = () => {
                 )}
             </div>
             <br />
-            <div className="orderHistory">
                 <Typography variant="h5" style={{ marginLeft: "15%", marginBottom: '2%' }}>Your Orders</Typography>
                 {orderHistory.listOfOrders && orderHistory.listOfOrders.length > 0 ? (
                     orderHistory.listOfOrders.map((order) => {
@@ -92,8 +91,6 @@ const AccountPage = () => {
                         <Typography variant="h6" style={{padding: '1%'}}> You have no order history at this time.</Typography>
                     </Paper>
                 )}
-
-            </div>
         </>
     );
 }
