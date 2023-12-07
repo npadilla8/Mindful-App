@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 const mindfulHarvestApi = createApi({
     reducerPath: "mindfulHarvestApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:8080",
+        baseUrl: "/",
 
         prepareHeaders: (headers, {getState}) => {
             headers.set("Content-Type", "application/json");
