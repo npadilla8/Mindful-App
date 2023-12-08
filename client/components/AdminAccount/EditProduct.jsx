@@ -6,11 +6,12 @@ import ProductForm from "./ProductForm";
 import Typography from '@mui/material/Typography'; // Import Typography from Material-UI;
 import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid';
 
 export default function EditProduct() {
-    const adminBoolean = useSelector(state => state.adminBoolean)
-    console.log("admin boolean", adminBoolean)
+    const adminBoolean = useSelector(state => state.adminBoolean);
+    const { productId } = useParams();
+    const { data, error, isLoading } = useGetSingleProductQuery(productId);
 
     if (adminBoolean === false) {
         return (
@@ -18,17 +19,11 @@ export default function EditProduct() {
         )
     };
 
-    //getting id from params to render single product
-    const { productId } = useParams();
-    // const singleProductId = params.productId;
-
-    //rendering single product 
-    const { data, error, isLoading } = useGetSingleProductQuery(productId);
-
     //handling error and loading for useGetSingleProductQuery
     if (isLoading) {
         return <div>Loading...</div>
     };
+
     if (error) {
         return <div>Unable to Get Single Product.</div>
     };
