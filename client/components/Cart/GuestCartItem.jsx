@@ -49,7 +49,7 @@ const GuestCartItem = (props) => {
         <b>{data.title}</b>
       </p>
       <img style={{ width: '40%' }} src={data.image} alt={data.title} />
-      <p>Price: {' $'}{data.price}</p>
+      <p>Price: {' $ '} {data.price * itemObj.quantity} {'($ '} {data.price} {'per item)'}</p>
       <p>Quantity: {itemObj.quantity}</p>
       <label>
         Quantity: {' '}
