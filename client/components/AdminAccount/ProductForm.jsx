@@ -13,6 +13,8 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 export default function ProductForm(props) {
   const [productId, setProductId] = useState(props.productId ?? '');
@@ -28,6 +30,7 @@ export default function ProductForm(props) {
   const [updateProduct] = useUpdateProductMutation();
   const [addProduct] = useAddProductMutation();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -47,7 +50,6 @@ export default function ProductForm(props) {
         productId: productId,
         product: updatedProduct
       });
-      console.log('PUT product: ', updateResponse);
     } else {
       const addResponse = await addProduct({
         title: title,
@@ -59,10 +61,25 @@ export default function ProductForm(props) {
         quantity: Number(quantity),
         categoryId: Number(categoryId),
       });
-      console.log('POST Product: ', addResponse);
       navigate('/admin/allproducts');
     }
   }
+
+  const handleOpenAlert = async (event) => {
+    setOpen(true);
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+        return;
+    }
+
+    setOpen(false);
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   return (
     <Paper elevation={3} style={{ padding: '20px', maxWidth: '800px', margin: 'auto', alignContent: 'left' }}>
@@ -143,9 +160,22 @@ export default function ProductForm(props) {
           <MenuItem value={4}>Home & Living</MenuItem>
         </TextField>
 
-        <Button type="submit" variant="contained" style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>
+        <Button type="submit" variant="contained" style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }} onClick={(e) => {handleOpenAlert({ vertical: 'top', horizontal: 'center' })}}>
           Submit
         </Button>
+        <Snackbar
+            open={open}
+            onClose={handleCloseAlert}
+        >
+          <Alert
+            onClose={handleCloseAlert}
+            severity="success"
+            sx={{ width: '100%' }}
+            style={{ backgroundColor: '#FF8A8A' }}
+          >
+            Product edited!
+          </Alert>
+        </Snackbar>
       </form>
 
       <Button onClick={() => navigate('/admin/allproducts')} style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>

@@ -18,12 +18,10 @@ import { setCart } from './API/cartSlice';
 import { Box, Grid, Card, CardContent, Button, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import { pink } from '@mui/material/colors';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
     const { productId } = useParams();
-    const navigate = useNavigate();
     const { data: singleProductData, error: singleProductError, isLoading: singleProductIsLoading } = useGetSingleProductQuery(productId);
     const { data: userWithCartData, error: userWithCartError, isLoading: userWithCartIsLoading } = useGetUserWithCartQuery();
     const [addToCart] = useAddCartItemtoCartMutation();
@@ -141,7 +139,7 @@ const SingleProduct = () => {
                                     <AddCircleTwoToneIcon />
                                 </IconButton>
                             </Stack>
-                        
+
                                 <Button
                                     className='add-to-cart-button'
                                     variant="contained"
@@ -152,7 +150,7 @@ const SingleProduct = () => {
                                     }}
                                 >
                                     Add to Cart
-                                </Button>  
+                                </Button>
                             <Snackbar
                                 open={open}
                                 onClose={handleCloseAlert}
