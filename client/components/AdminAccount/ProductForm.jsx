@@ -66,7 +66,9 @@ export default function ProductForm(props) {
   }
 
   const handleOpenAlert = async (event) => {
-    setOpen(true);
+    if (productId) {
+      setOpen(true)
+    }
   };
 
   const handleCloseAlert = (event, reason) => {
