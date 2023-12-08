@@ -15,8 +15,6 @@ const AccountPage = () => {
     const { data: orderHistory, error: orderError, isLoading: orderLoading } = useGetUserOrderHistoryQuery();
     const navigate = useNavigate();
 
-    console.log("userwithcart:", data);
-
     // conditional rendering based on what is happening to userwithcart query
     if (isLoading) {
         return <Typography variant="body1">Loading user information...</Typography>
@@ -32,8 +30,6 @@ const AccountPage = () => {
     if (orderError || !orderHistory) {
         return <Typography>Error in getting order history.</Typography>
     };
-
-    console.log(orderHistory)
 
     if (!token) {
         // Redirect to login page if not signed in

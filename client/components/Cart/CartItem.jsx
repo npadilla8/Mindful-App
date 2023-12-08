@@ -31,15 +31,13 @@ const CartItem = (props) => {
                 quantity: Number(quantity),
             });
         };
-
-        console.log("cart item quantity change: ", response);
     }
 
     return (
         <div key={item.id}>
             <p><b>{singleProductData.title}</b></p>
             <img style={{ width: "40%" }} src={singleProductData.image} alt={singleProductData.title} />
-            <p>Price: ${singleProductData.price}</p>
+            <p>Price: $ {singleProductData.price * item.quantity} {' ($ '} {singleProductData.price} {'per item)'}</p>
             <p>Quantity: {item.quantity}</p>
 
             <label>Quantity: {" "}
