@@ -13,7 +13,7 @@ const HomePage = () => {
   const { data, isLoading, error } = useGetProductsQuery();
   const navigate = useNavigate();
 
-  // Define cardContentStyle
+
   const cardContentStyle = {
     padding: '16px',
     textAlign: 'center',
@@ -93,8 +93,11 @@ const HomePage = () => {
                   style={{ objectFit: 'cover' }}
                 />
                 <CardContent style={{ ...cardContentStyle, textAlign: 'center' }}>
-                  <Typography variant="h6" style={{ margin: '10px 0' }}>
+                  <Typography variant="h6" style={{ margin: '10px 0', fontSize: '18px' }}>
                     {product.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {product.price}
                   </Typography>
                 </CardContent>
 
