@@ -18,10 +18,12 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -33,172 +35,192 @@ const Search = styled('div')(({ theme }) => ({
         marginLeft: theme.spacing(3),
         width: 'auto',
     },
+
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-        width: '20ch',
-    },
+  color: 'inherit',
+  padding: theme.spacing(1, 1, 1, 0),
+  paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+  transition: theme.transitions.create('width'),
+  width: '100%',
+  [theme.breakpoints.up('md')]: {
+    width: '20ch',
+  },
 }));
 
 const NavBar = () => {
-    const token = useSelector((state) => state.token);
-    const adminBoolean = useSelector((state) => state.adminBoolean);
-    const categoryId = useSelector((state) => state.categoryId);
-    const searchField = useSelector((state) => state.searchField)
-    const [searchTerm, setSearchTerm] = useState("");
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const handleSignOut = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("isAdmin");
-        dispatch(setToken({ token: null }));
-        dispatch(setAdminBoolean({ adminBoolean: false }));
-        dispatch(setCategoryId({ categoryId: null }));
-        navigate('/login');
-    };
+  const token = useSelector((state) => state.token);
+  const adminBoolean = useSelector((state) => state.adminBoolean);
+  const categoryId = useSelector((state) => state.categoryId);
+  const searchField = useSelector((state) => state.searchField);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const handleMindfulAppClick = () => {
-        dispatch(setCategoryId({ categoryId: null }));
-        dispatch(setSearchField({ searchField: null }));
-        navigate('/');
-    };
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    dispatch(setToken({ token: null }));
+    dispatch(setAdminBoolean({ adminBoolean: false }));
+    dispatch(setCategoryId({ categoryId: null }));
+    navigate('/');
+  };
 
-    const handleAccountClick = () => {
-        if (token) {
-            navigate('/account');
-        } else {
-            navigate('/login');
-        }
-    };
+  const handleMindfulAppClick = () => {
+    dispatch(setCategoryId({ categoryId: null }));
+    dispatch(setSearchField({ searchField: null }));
+    navigate('/');
+  };
 
-    // functions to set categoryId in redux based on dropdown selected
-    // drop down will display items only within that category
-    const handleClothingJewelryClick = () => {
-        dispatch(setCategoryId({ categoryId: Number(1) }));
-        navigate('/');
-    };
-    const handleToyClick = () => {
-        dispatch(setCategoryId({ categoryId: Number(2) }));
-        navigate('/');
-    };
-    const handleCollectibleArtClick = () => {
-        dispatch(setCategoryId({ categoryId: Number(3) }));
-        navigate('/');
-    };
-    const handleHomeLivingClick = () => {
-        dispatch(setCategoryId({ categoryId: Number(4) }));
-        navigate('/');
-    };
-    const handleAllCategoriesClick = () => {
-        dispatch(setCategoryId({ categoryId: null }));
-        dispatch(setSearchField({ searchField: null }))
-        navigate('/');
-    };
+  const handleAccountClick = () => {
+    if (token) {
+      navigate('/account');
+    } else {
+      navigate('/login');
+    }
+  };
 
-    //function for setting local state and dispatching search term to redux
-    const handleSearchBar = (event) => {
-        event.preventDefault();
-        dispatch(setCategoryId({ categoryId: null }));
-        navigate("/");
-        setSearchTerm(event.target.value);
-    };
-    //action will be dispatched every time searchTerm state changes
-    useEffect(() => {
-        dispatch(setSearchField({ searchField: searchTerm }));
-    }, [searchTerm]);
+  const handleClothingJewelryClick = () => {
+    dispatch(setCategoryId({ categoryId: Number(1) }));
+    navigate('/');
+  };
+  const handleToyClick = () => {
+    dispatch(setCategoryId({ categoryId: Number(2) }));
+    navigate('/');
+  };
+  const handleCollectibleArtClick = () => {
+    dispatch(setCategoryId({ categoryId: Number(3) }));
+    navigate('/');
+  };
+  const handleHomeLivingClick = () => {
+    dispatch(setCategoryId({ categoryId: Number(4) }));
+    navigate('/');
+  };
+  const handleAllCategoriesClick = () => {
+    dispatch(setCategoryId({ categoryId: null }));
+    dispatch(setSearchField({ searchField: null }))
+    navigate('/');
+  };
 
-    return (
-        <div className="nav-container">
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar sx={{ bgcolor: '#FF9494' }} position="static">
-                    <Toolbar>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ flexGrow: 1 }}
-                            onClick={handleMindfulAppClick}
-                        >
-                            Mindful Harvest
-                        </Typography>
-                        <div className="categories">
-                            <Dropdown>
-                                <MenuButton sx={{ backgroundColor: '#FF9494', color: 'white', outline: 'none', '&:hover': { backgroundColor: '#FF9494' } }}>
-                                    Categories
-                                </MenuButton>
-                                <Menu slots={{ listbox: Listbox }}>
-                                    <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
-                                    <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
-                                    <MenuItem onClick={handleToyClick}>Toys</MenuItem>
-                                    <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
-                                    <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
-                                </Menu>
-                            </Dropdown>
+  const handleSearchBar = (event) => {
+    event.preventDefault();
+    dispatch(setCategoryId({ categoryId: null }));
+    navigate("/");
+    setSearchTerm(event.target.value);
+  };
 
+  useEffect(() => {
+    dispatch(setSearchField({ searchField: searchTerm }));
+  }, [searchTerm]);
 
-                        </div>
+  return (
+    <div className="nav-container">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar sx={{ bgcolor: '#FF9494' }} position="static">
+          <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1 }}
+              onClick={handleMindfulAppClick}a
+              style={{ cursor: 'pointer' }}
+            >
+              Mindful Harvest
+            </Typography>
+            <div className="categories">
+              <Dropdown>
+              <IconButton
+                size="small"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              >
+              <MenuIcon />
+          </IconButton>
+                <MenuButton style={{ color: 'white' }}>
+                  Categories
+                </MenuButton>
+                <Menu slots={{ listbox: Listbox }}>
+                  <MenuItem onClick={handleAllCategoriesClick}>All</MenuItem>
+                  <MenuItem onClick={handleClothingJewelryClick}>Clothing & Jewelry</MenuItem>
+                  <MenuItem onClick={handleToyClick}>Toys</MenuItem>
+                  <MenuItem onClick={handleCollectibleArtClick}>Collectibles & Art</MenuItem>
+                  <MenuItem onClick={handleHomeLivingClick}>Home & Living</MenuItem>
+                </Menu>
+              </Dropdown>
+            </div>
 
-                        <div className="right-section">
-                            {/* Search Bar */}
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon />
-                                </SearchIconWrapper>
-                                <SearchInput placeholder="Search" value={searchTerm} onChange={handleSearchBar} />
-                            </Search>
-                            {!token ? (
-                                <div className="register-link" onClick={() => navigate('/register')}></div>
-                            ) : (
-                                <div className="logout-link" onClick={handleSignOut}>
-                                    <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
-                                </div>
-                            )}
-                            {adminBoolean ? (
-                                <div className="account-link">
-                                    <Dropdown>
-                                        <MenuButton style={{ backgroundColor: '#FF9494', border: 'none' }}>
-                                            <AdminPanelSettingsIcon style={{ backgroundColor: '#FF9494' }} sx={{ color: 'white', marginLeft: 2 }} />
-                                        </MenuButton>
-                                        <Menu slots={{ listbox: Listbox }}>
-                                            <MenuItem onClick={() => navigate('/admin/users')}>List of Users</MenuItem>
-                                            <MenuItem onClick={() => navigate('/admin/allproducts')}>Edit/Delete Products</MenuItem>
-                                            <MenuItem onClick={() => navigate('/adminCreate')}>Add New Product</MenuItem>
-                                        </Menu>
-                                    </Dropdown>
-                                </div>
-                            ) : (
-                                <div className="account-link" onClick={handleAccountClick}>
-                                    <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
-                                </div>
-                            )}
-                            {!adminBoolean && (
-                                <IconButton color="inherit" component={Link} to="/cart" sx={{ textDecoration: 'none' }}>
-                                    <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
-                                </IconButton>)
-                            }
-                        </div>
-                    </Toolbar>
-                </AppBar>
-            </Box>
-        </div>
-    );
+            <div className="right-section">
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon style={{ cursor: 'pointer' }} />
+                </SearchIconWrapper>
+                <SearchInput placeholder="Search" value={searchTerm} onChange={handleSearchBar} />
+              </Search>
+              {!token ? (
+                <div className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}></div>
+              ) : (
+                <div className="logout-link" onClick={handleSignOut} style={{ cursor: 'pointer' }}>
+                  <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
+                </div>
+              )}
+              {adminBoolean ? (
+                <div className="account-link">
+                  <Dropdown>
+                    <MenuButton
+                      style={{ backgroundColor: '#FF9494', border: 'none', cursor: 'pointer' }}
+                    >
+                      <AdminPanelSettingsIcon
+                        style={{ backgroundColor: '#FF9494', cursor: 'pointer' }}
+                        sx={{ color: 'white', marginLeft: 2 }}
+                      />
+                    </MenuButton>
+                    <Menu slots={{ listbox: Listbox }}>
+                      <MenuItem onClick={() => navigate('/admin/users')}>List of Users</MenuItem>
+                      <MenuItem onClick={() => navigate('/admin/allproducts')}>Edit/Delete Products</MenuItem>
+                      <MenuItem onClick={() => navigate('/adminCreate')}>Add New Product</MenuItem>
+                    </Menu>
+                  </Dropdown>
+                </div>
+              ) : (
+                <div className="account-link" onClick={handleAccountClick} style={{ cursor: 'pointer' }}>
+                  <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
+                </div>
+              )}
+              {!adminBoolean && (
+                <IconButton
+                  color="inherit"
+                  component={Link}
+                  to="/cart"
+                  sx={{
+                    textDecoration: 'none',
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
+                </IconButton>
+              )}
+            </div>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </div>
+  );
 };
 
 export default NavBar;

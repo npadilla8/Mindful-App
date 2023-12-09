@@ -1,13 +1,11 @@
-/* Put your CSS in here! */
 /* Nav Bar */
-
 
 body {
     font-family: Georgia, serif;
     background-color: #f8f8f8;
     margin: 0;
     padding: 0;
-  }
+}
 
 .navbar-container {
     background-color: #fff;
@@ -21,7 +19,6 @@ body {
     padding: 10px 20px;
 }
 
-
 .center-section {
     flex-grow: 1;
     text-align: center;
@@ -29,7 +26,7 @@ body {
 
 .typography {
     display: flex;
-    align-items: left;
+    align-items: center; 
     margin: 15px;
 }
 
@@ -61,9 +58,6 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 .right-section {
     display: flex;
@@ -80,7 +74,6 @@ body {
     border-radius: 5px;
 }
 
-
 .ProductItem {
     width: 110%;
     height: 110%;
@@ -89,13 +82,14 @@ body {
     justify-content: space-between;
     padding: 10px;
     box-sizing: border-box;
+}
 
 .ProductImage {
-width: 100%;
-height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .ProductButtons {
-display: flex;
-justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
