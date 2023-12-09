@@ -26,7 +26,7 @@ body {
 
 .typography {
     display: flex;
-    align-items: center; /* Corrected from align-items: left; */
+    align-items: center; 
     margin: 15px;
 }
 

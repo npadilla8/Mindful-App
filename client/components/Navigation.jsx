@@ -22,6 +22,8 @@ import { styled } from '@mui/material/styles';
 import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -137,6 +139,14 @@ const NavBar = () => {
             </Typography>
             <div className="categories">
               <Dropdown>
+              <IconButton
+                size="small"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              >
+              <MenuIcon />
+          </IconButton>
                 <MenuButton style={{ color: 'white' }}>
                   Categories
                 </MenuButton>
