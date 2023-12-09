@@ -64,7 +64,27 @@ async function main() {
             quantity: 9,
             categoryId: 3
         }
+        
     });
+
+    // Coaster 
+    await prisma.product.upsert({
+        where: { title: 'Flower Coaster' },
+        update: {image: "https://hayhaycrochet.com/wp-content/uploads/2021/09/IMG_5270_jpg.jpg"},
+        create: {
+            title: 'Flower Coaster',
+            image: './product_images/collectibles & art/Flower Coaster.jpg',
+            description: 'Crotchet made daisy flower coaster | Handmade Flower Coaster set of 6',
+            price: 12,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+
+        
+    });
+
     await prisma.product.upsert({
         where: { title: 'Watercolor Painting' },
         update: {image: "https://i.etsystatic.com/30927076/r/il/2f461c/4217697582/il_600x600.4217697582_6yn0.jpg"},
