@@ -118,6 +118,7 @@ const NavBar = () => {
     dispatch(setCategoryId({ categoryId: null }));
     navigate("/");
     setSearchTerm(event.target.value);
+    event.stopPropagation();
   };
 
   useEffect(() => {
@@ -134,7 +135,7 @@ const NavBar = () => {
               noWrap
               component="div"
               sx={{ flexGrow: 1 }}
-              onClick={handleMindfulAppClick}a
+              onClick={handleMindfulAppClick}
               style={{ cursor: 'pointer' }}
             >
               Mindful Harvest

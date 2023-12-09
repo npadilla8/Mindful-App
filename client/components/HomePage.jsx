@@ -13,9 +13,16 @@ const HomePage = () => {
   const { data, isLoading, error } = useGetProductsQuery();
   const navigate = useNavigate();
 
+  // Define cardContentStyle
+  const cardContentStyle = {
+    padding: '16px',
+    textAlign: 'center',
+  };
+
   if (isLoading) {
-    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+    return <CircularProgress sx={{ color: 'black', marginTop: '40%', marginLeft: '40%' }} size={75} />;
   }
+
   if (error || !data) {
     return <Typography>Unable to view products.</Typography>;
   }
@@ -24,11 +31,16 @@ const HomePage = () => {
 
   if (searchField && data) {
     const searchBoxProducts = data.filter((product) =>
-      product.title.toLowerCase().includes(searchField.toLowerCase()));
+      product.title.toLowerCase().includes(searchField.toLowerCase())
+    );
 
     if (searchBoxProducts.length === 0) {
-      return <h3><Typography variant="h6">No products found. Please search for other items.</Typography> </h3>
-    };
+      return (
+        <h3>
+          <Typography variant="h6">No products found. Please search for other items.</Typography>{' '}
+        </h3>
+      );
+    }
 
     return (
       <Box p={3}>
@@ -44,10 +56,10 @@ const HomePage = () => {
                   style={{ objectFit: 'cover' }}
                 />
                 <CardContent style={{ ...cardContentStyle, textAlign: 'center' }}>
-  <Typography variant="h6" style={{ margin: '10px 0' }}>
-    {product.title}
-  </Typography>
-</CardContent>
+                  <Typography variant="h6" style={{ margin: '10px 0' }}>
+                    {product.title}
+                  </Typography>
+                </CardContent>
 
                 <CardActions style={{ justifyContent: 'center' }}>
                   <Button
@@ -62,7 +74,7 @@ const HomePage = () => {
           ))}
         </Grid>
       </Box>
-    )
+    );
   }
 
   if (categoryId && data) {
@@ -81,10 +93,10 @@ const HomePage = () => {
                   style={{ objectFit: 'cover' }}
                 />
                 <CardContent style={{ ...cardContentStyle, textAlign: 'center' }}>
-  <Typography variant="h6" style={{ margin: '10px 0' }}>
-    {product.title}
-  </Typography>
-</CardContent>
+                  <Typography variant="h6" style={{ margin: '10px 0' }}>
+                    {product.title}
+                  </Typography>
+                </CardContent>
 
                 <CardActions style={{ justifyContent: 'center' }}>
                   <Button
@@ -117,7 +129,7 @@ const HomePage = () => {
                     image={product.image}
                     style={{ objectFit: 'cover' }}
                   />
-                  <CardContent style={{ textAlign: 'center' }}>
+                  <CardContent style={{ ...cardContentStyle, textAlign: 'center' }}>
                     <Typography variant="h6" style={{ margin: '10px 0' }}>
                       {product.title}
                     </Typography>
