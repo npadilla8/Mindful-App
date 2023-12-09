@@ -75,7 +75,7 @@ const Cart = () => {
                             <button
                                 onClick={()=> {handleCreateOrder(); handleEmptyCart()}}
                                 style={{
-                                    backgroundColor: '#FF9494',
+                                    backgroundColor: '#F94892',
                                     padding: '5px 8px',
                                     fontSize: '0.9em',
                                     border: 'none',
@@ -116,7 +116,7 @@ const Cart = () => {
                             <button
                                 onClick={handleEmptyCart}
                                 style={{
-                                    backgroundColor: '#FF9494',
+                                    backgroundColor: '#F94892',
                                     padding: '5px 8px',
                                     fontSize: '0.9em',
                                     border: 'none',

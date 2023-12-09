@@ -162,7 +162,7 @@ export default function ProductForm(props) {
           <MenuItem value={4}>Home & Living</MenuItem>
         </TextField>
 
-        <Button type="submit" variant="contained" style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }} onClick={(e) => {handleOpenAlert({ vertical: 'top', horizontal: 'center' })}}>
+        <Button type="submit" variant="contained" style={{ backgroundColor: '#F94892', color: '#fff', marginTop: '10px' }} onClick={(e) => {handleOpenAlert({ vertical: 'top', horizontal: 'center' })}}>
           Submit
         </Button>
         <Snackbar
@@ -173,14 +173,14 @@ export default function ProductForm(props) {
             onClose={handleCloseAlert}
             severity="success"
             sx={{ width: '100%' }}
-            style={{ backgroundColor: '#FF8A8A' }}
+            style={{ backgroundColor: '#F94892' }}
           >
             Product edited!
           </Alert>
         </Snackbar>
       </form>
 
-      <Button onClick={() => navigate('/admin/allproducts')} style={{ backgroundColor: '#FF9494', color: '#fff', marginTop: '10px' }}>
+      <Button onClick={() => navigate('/admin/allproducts')} style={{ backgroundColor: '#F94892', color: '#fff', marginTop: '10px' }}>
         Back
       </Button>
     </Paper>
