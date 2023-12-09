@@ -24,18 +24,16 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: 'auto',
+  },
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -60,7 +58,6 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = () => {
-
   const token = useSelector((state) => state.token);
   const adminBoolean = useSelector((state) => state.adminBoolean);
   const categoryId = useSelector((state) => state.categoryId);
@@ -95,21 +92,25 @@ const NavBar = () => {
     dispatch(setCategoryId({ categoryId: Number(1) }));
     navigate('/');
   };
+
   const handleToyClick = () => {
     dispatch(setCategoryId({ categoryId: Number(2) }));
     navigate('/');
   };
+
   const handleCollectibleArtClick = () => {
     dispatch(setCategoryId({ categoryId: Number(3) }));
     navigate('/');
   };
+
   const handleHomeLivingClick = () => {
     dispatch(setCategoryId({ categoryId: Number(4) }));
     navigate('/');
   };
+
   const handleAllCategoriesClick = () => {
     dispatch(setCategoryId({ categoryId: null }));
-    dispatch(setSearchField({ searchField: null }))
+    dispatch(setSearchField({ searchField: null }));
     navigate('/');
   };
 
@@ -128,27 +129,34 @@ const NavBar = () => {
     <div className="nav-container">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: '#F94892' }} position="static">
-          <Toolbar>
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
             <Typography
-              variant="h6"
+              variant="h7"
               noWrap
               component="div"
-              sx={{ flexGrow: 1 }}
-              onClick={handleMindfulAppClick}a
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                textAlign: 'left',
+              }}
+              onClick={handleMindfulAppClick}
               style={{ cursor: 'pointer' }}
             >
-              Mindful Harvest
+              <span style={{ fontSize: '1.2rem', fontFamily: 'EB Garamond, sans-serif' }}>Mindful</span>
+              <span style={{ fontSize: '1rem', fontFamily: 'Poppins, sans-serif', textTransform: 'uppercase' }}>Harvest</span>
             </Typography>
-            <div className="categories">
+
+            <div className="categories" style={{ marginLeft: '48rem' }}>
               <Dropdown>
-              <IconButton
-                size="small"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              >
-              <MenuIcon />
-          </IconButton>
+                <IconButton
+                  size="small"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                >
+                  <MenuIcon />
+                </IconButton>
                 <MenuButton style={{ color: 'white' }}>
                   Categories
                 </MenuButton>
@@ -169,6 +177,7 @@ const NavBar = () => {
                 </SearchIconWrapper>
                 <SearchInput placeholder="Search" value={searchTerm} onChange={handleSearchBar} />
               </Search>
+
               {!token ? (
                 <div className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}></div>
               ) : (
@@ -176,6 +185,7 @@ const NavBar = () => {
                   <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
                 </div>
               )}
+
               {adminBoolean ? (
                 <div className="account-link">
                   <Dropdown>
@@ -199,6 +209,7 @@ const NavBar = () => {
                   <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
                 </div>
               )}
+
               {!adminBoolean && (
                 <IconButton
                   color="inherit"
