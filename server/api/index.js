@@ -38,7 +38,7 @@ apiRouter.use(async (req, res, next) => {
             }
             console.log(req.user)
         } catch (error) {
-            res.send({error: error.message})
+            next({error})
         }
     } else {
         next({

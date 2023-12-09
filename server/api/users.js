@@ -26,7 +26,7 @@ usersRouter.get('/', requireAdmin, async (req, res, next) => {
 
         res.send(usersWithoutPassword)
     } catch (error) {
-        res.send("unable to get users")
+        next({message: "unable to get users"})
     }
 });
 

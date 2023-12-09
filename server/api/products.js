@@ -10,7 +10,7 @@ productsRouter.get("/", async (req, res, next) => {
         const products = await prisma.product.findMany();
         res.send(products)
     } catch (error) {
-        res.send("Unable to get all products.")
+        next({message: "Unable to get all products."})
     }
 })
 
@@ -24,7 +24,7 @@ productsRouter.get('/:productId', async (req, res, next) => {
         });
         res.send(product);
     } catch {
-        res.send("Unable to get individual product.");
+        next({message: "Unable to get individual product."});
     }
 });
 
@@ -46,7 +46,7 @@ productsRouter.post("/", requireAdmin, async(req, res, next) => {
         });
         res.send(newProduct);
     } catch (error) {
-        res.send("Unable to create product.");
+        next({message: "Unable to create product."});
     }
 });
 
@@ -88,7 +88,7 @@ productsRouter.delete('/:productId/', requireAdmin, async (req, res, next) => {
             deletedProduct
         });
     } catch (error) {
-        res.send({message:"Unable to delete product"});
+        next({message:"Unable to delete product"});
     }
 });
 
