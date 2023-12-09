@@ -71,7 +71,7 @@ const RegistrationForm = () => {
                 InputProps={{
                   sx: {
                     '&:focus': {
-                      borderColor: '#FFC5C5',
+                      borderColor: '#186F65',
                     },
                   },
                 }}
@@ -89,7 +89,7 @@ const RegistrationForm = () => {
                 InputProps={{
                   sx: {
                     '&:focus': {
-                      borderColor: '#FFC5C5',
+                      borderColor: '#186F65',
                     },
                   },
                 }}
@@ -113,10 +113,10 @@ const RegistrationForm = () => {
                 sx={{
                   mt: 3,
                   mb: 2,
-                  backgroundColor: '#89B9AD',
+                  backgroundColor: '#186F65',
                   color: 'white',
                   '&:hover': {
-                    backgroundColor: '#C7DCA7',
+                    backgroundColor: '#186F65',
                   },
                 }}
               >
@@ -135,7 +135,7 @@ const RegistrationForm = () => {
                 <Grid item xs>
                   <Typography variant="body2" sx={{ textAlign: 'center' }}>
                     Already have an account?{' '}
-                    <Link style={{ textDecoration: 'none', color: '#89B9AD' }} to="/login">
+                    <Link style={{ textDecoration: 'none', color: '#186F65' }} to="/login">
                       Login here!
                     </Link>
                   </Typography>
