@@ -74,7 +74,7 @@ export const blue = {
       }
   
       &.${menuItemClasses.disabled} {
-        color: #888888; /* Adjust disabled text color as needed */
+        color: #888888; 
       }
     `,
   );
