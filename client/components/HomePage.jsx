@@ -51,7 +51,7 @@ const HomePage = () => {
                 <CardActions style={{ justifyContent: 'center' }}>
                   <Button
                     onClick={() => navigate(`/products/${product.id}`)}
-                    style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem' }}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
                   >
                     View Details
                   </Button>
@@ -87,7 +87,7 @@ const HomePage = () => {
                 <CardActions style={{ justifyContent: 'center' }}>
                   <Button
                     onClick={() => navigate(`/products/${product.id}`)}
-                    style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem' }}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
                   >
                     View Details
                   </Button>
@@ -123,7 +123,7 @@ const HomePage = () => {
                   <CardActions style={{ justifyContent: 'center' }}>
                     <Button
                       onClick={() => navigate(`/products/${product.id}`)}
-                      style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem' }}
+                      style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.9rem' }}
                     >
                       View Details
                     </Button>

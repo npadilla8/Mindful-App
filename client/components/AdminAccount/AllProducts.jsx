@@ -52,14 +52,14 @@ export default function AllProducts() {
               <Button
                 className="EditButton"
                 onClick={() => navigate(`/adminEdit/${product.id}`)}
-                style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem' }}
+                style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
               >
                 Edit
               </Button>
               <Button
                 className="DeleteButton"
                 onClick={() => adminDeleteProduct(product.id)}
-                style={{ backgroundColor: '#FF9494', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+                style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
               >
                 Delete
               </Button>

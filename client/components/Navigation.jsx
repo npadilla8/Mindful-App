@@ -127,7 +127,7 @@ const NavBar = () => {
   return (
     <div className="nav-container">
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar sx={{ bgcolor: '#FF9494' }} position="static">
+        <AppBar sx={{ bgcolor: '#F94892' }} position="static">
           <Toolbar>
             <Typography
               variant="h6"
@@ -180,10 +180,10 @@ const NavBar = () => {
                 <div className="account-link">
                   <Dropdown>
                     <MenuButton
-                      style={{ backgroundColor: '#FF9494', border: 'none', cursor: 'pointer' }}
+                      style={{ backgroundColor: '#F94892', border: 'none', cursor: 'pointer' }}
                     >
                       <AdminPanelSettingsIcon
-                        style={{ backgroundColor: '#FF9494', cursor: 'pointer' }}
+                        style={{ backgroundColor: '#F94892', cursor: 'pointer' }}
                         sx={{ color: 'white', marginLeft: 2 }}
                       />
                     </MenuButton>

@@ -51,33 +51,34 @@ export const blue = {
   );
   
   export const MenuItem = styled(BaseMenuItem)(
-    ({ theme }) => `
-    list-style: none;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: default;
-    user-select: none;
+    () => `
+      list-style: none;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: default;
+      user-select: none;
   
-    &:last-of-type {
-      border-bottom: none;
-    }
+      &:last-of-type {
+        border-bottom: none;
+      }
   
-    &.${menuItemClasses.focusVisible} {
-      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
-      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-      color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    }
+      &:focus-visible {
+        outline: 3px solid #F94892;
+        background-color: #F94892;
+        color: #FFFFFF;
+      }
   
-    &.${menuItemClasses.disabled} {
-      color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
-    }
+      &:hover:not(.${menuItemClasses.disabled}) {
+        background-color: #F94892;
+        color: #FFFFFF;
+      }
   
-    &:hover:not(.${menuItemClasses.disabled}) {
-      background-color: ${theme.palette.mode === 'dark' ? blue[900] : "#FF9494"};
-      color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-    }
+      &.${menuItemClasses.disabled} {
+        color: #888888; /* Adjust disabled text color as needed */
+      }
     `,
   );
+  
   
   export const MenuButton = styled(BaseMenuButton)(
     ({ theme }) => `
