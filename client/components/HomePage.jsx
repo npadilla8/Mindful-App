@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const HomePage = () => {
   const categoryId = useSelector((state) => state.categoryId);
@@ -13,7 +14,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
   }
   if (error || !data) {
     return <Typography>Unable to view products.</Typography>;

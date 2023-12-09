@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { emptyCart } from '../API/cartSlice';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Cart = () => {
     const token = useSelector((state) => state.token);
@@ -24,7 +25,7 @@ const Cart = () => {
 
         // Loading and error for getting user with cart
         if (userIsLoading) {
-            return <div>Loading...</div>;
+            return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
         }
         if (userError || !data) {
             return <div>Unable to Get User with Cart</div>;
@@ -40,7 +41,6 @@ const Cart = () => {
         async function handleCartItemRemoval(cartItemId) {
             try {
                 const response = await deleteCartItem(cartItemId);
-                console.log("deleted cartitem: ", response);
             } catch (error) {
                 console.error(error);
             }
@@ -50,7 +50,6 @@ const Cart = () => {
         async function handleCreateOrder() {
             try{
                 const response = await createOrder();
-                console.log(response);
             } catch (error) {
                 console.error(error);
             }
@@ -77,11 +76,11 @@ const Cart = () => {
                                 onClick={()=> {handleCreateOrder(); handleEmptyCart()}}
                                 style={{
                                     backgroundColor: '#FF9494',
-                                    padding: '5px 8px', 
-                                    fontSize: '0.9em', 
-                                    border: 'none', 
-                                    outline: 'none', 
-                                    borderRadius: '5px', 
+                                    padding: '5px 8px',
+                                    fontSize: '0.9em',
+                                    border: 'none',
+                                    outline: 'none',
+                                    borderRadius: '5px',
                                     color: 'white',
                                 }}
                             >
@@ -96,7 +95,6 @@ const Cart = () => {
         );
     } else {
         const handleEmptyCart = async (event) => {
-            console.log("handle empty cart is called");
             event.preventDefault();
 
             dispatch(emptyCart());
@@ -107,8 +105,6 @@ const Cart = () => {
             <Card>
                 <CardContent>
                     <h2>Guest Shopping Cart</h2>
-                    {console.log("guest cart: ", guestCart)}
-                    {console.log("guest cart length: ", guestCart.length)}
 
                     {guestCart.length > 0 ? (
                         <div>
@@ -121,11 +117,11 @@ const Cart = () => {
                                 onClick={handleEmptyCart}
                                 style={{
                                     backgroundColor: '#FF9494',
-                                    padding: '5px 8px', 
-                                    fontSize: '0.9em', 
-                                    border: 'none', 
-                                    outline: 'none', 
-                                    borderRadius: '5px', 
+                                    padding: '5px 8px',
+                                    fontSize: '0.9em',
+                                    border: 'none',
+                                    outline: 'none',
+                                    borderRadius: '5px',
                                     color: 'white',
                                 }}
                             >

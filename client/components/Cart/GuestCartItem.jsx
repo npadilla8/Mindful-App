@@ -5,6 +5,7 @@ import { updateCart } from '../API/cartSlice';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const GuestCartItem = (props) => {
   const itemObj = props.itemObj;
@@ -13,11 +14,11 @@ const GuestCartItem = (props) => {
 
   const { data, error, isLoading } = useGetSingleProductQuery(itemObj.productId);
   if (isLoading) {
-    return <div>Loading Product...</div>;
-  }
+    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+  };
   if (error || !data) {
     return <div>Error in showing cart items.</div>;
-  }
+  };
 
   const handleEditItemQuantity = async (event) => {
     event.preventDefault();
@@ -49,7 +50,7 @@ const GuestCartItem = (props) => {
         <b>{data.title}</b>
       </p>
       <img style={{ width: '40%' }} src={data.image} alt={data.title} />
-      <p>Price: {' $'}{data.price}</p>
+      <p>Price: {' $ '} {data.price * itemObj.quantity} {'($ '} {data.price} {'per item)'}</p>
       <p>Quantity: {itemObj.quantity}</p>
       <label>
         Quantity: {' '}

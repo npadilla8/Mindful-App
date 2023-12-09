@@ -31,7 +31,7 @@ cartItemRouter.post("/", requireUser, async (req, res, next) => {
         res.send(cartItemInCart)
 
     } catch (error) {
-        res.send("unable to place product in cart.")
+        next({message: "unable to place product in cart."})
     }
 });
 
@@ -50,12 +50,11 @@ cartItemRouter.put("/:cartItemId", requireUser, async (req, res, next) => {
             })
         };
 
-        // const cartId = cart.id;
+        
 
         const updatedCartItem = await prisma.cartItem.update({
             where: {
                 id: Number(req.params.cartItemId)
-                // cartId: cartId
             },
             data: {
                 quantity: req.body.quantity
@@ -94,7 +93,7 @@ cartItemRouter.delete("/:cartItemId", requireUser, async(req, res, next) => {
         res.send(deletedCartItem)
     } catch (error) {
         console.error(error);
-        res.send("Unable to delete product from cart.")
+        next({message: "Unable to delete product from cart."})
     }
 });
 

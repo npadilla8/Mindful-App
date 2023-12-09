@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { Card, CardContent, CardMedia, Typography, Grid, Box } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ConfirmationPage = () => {
     const token = useSelector((state) => state.token);
@@ -16,7 +17,7 @@ const ConfirmationPage = () => {
         const { data, error, isLoading } = useGetUserWithCartQuery();
 
         if (isLoading) {
-            return <div>Loading...</div>
+            return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
         };
         if (error || !data) {
             return <div>Unable to get user with cart.</div>

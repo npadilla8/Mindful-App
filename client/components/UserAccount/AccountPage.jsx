@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AccountPage = () => {
     const token = useSelector(state => state.token);
@@ -15,11 +16,9 @@ const AccountPage = () => {
     const { data: orderHistory, error: orderError, isLoading: orderLoading } = useGetUserOrderHistoryQuery();
     const navigate = useNavigate();
 
-    console.log("userwithcart:", data);
-
     // conditional rendering based on what is happening to userwithcart query
     if (isLoading) {
-        return <Typography variant="body1">Loading user information...</Typography>
+        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
     };
     if (error || !data) {
         return <Typography variant="body1">Unable to get user information. </Typography>
@@ -27,13 +26,11 @@ const AccountPage = () => {
 
     // conditional rendering based on what is happening to orderhistory query
     if (orderLoading) {
-        return <Typography variant="body1">Loading user's order history...</Typography>
+        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
     };
     if (orderError || !orderHistory) {
         return <Typography>Error in getting order history.</Typography>
     };
-
-    console.log(orderHistory)
 
     if (!token) {
         // Redirect to login page if not signed in
@@ -46,7 +43,7 @@ const AccountPage = () => {
             <div className="accountDetails">
                 {data ? (
                     <div>
-                        <Typography variant="h5" style={{ marginLeft: "15%", marginTop: '2%', marginBottom: '1%' }}>Welcome Back, {data.username}!</Typography>
+                        <Typography variant="h5" style={{ marginLeft: "15%", marginTop: '2%', marginBottom: '1%' }}>Welcome, {data.username}!</Typography>
                         <Paper elevation={3} style={{ maxWidth: '68%', margin: 'auto', alignContent: 'left', marginBottom: '5%', padding: '1%' }}>
                             <Typography variant="h6">Account Details</Typography>
                             <Typography variant="body1"><b>Username:</b> {data.username}</Typography>
@@ -58,7 +55,6 @@ const AccountPage = () => {
                 )}
             </div>
             <br />
-            <div className="orderHistory">
                 <Typography variant="h5" style={{ marginLeft: "15%", marginBottom: '2%' }}>Your Orders</Typography>
                 {orderHistory.listOfOrders && orderHistory.listOfOrders.length > 0 ? (
                     orderHistory.listOfOrders.map((order) => {
@@ -92,8 +88,6 @@ const AccountPage = () => {
                         <Typography variant="h6" style={{padding: '1%'}}> You have no order history at this time.</Typography>
                     </Paper>
                 )}
-
-            </div>
         </>
     );
 }

@@ -23,15 +23,18 @@ const cartSlice = createSlice({
                 if(state[i].productId === payload.productId) {
                     if (payload.quantity === 0) {
                         state.splice(i, 1);
+                        localStorage.setItem("cart", JSON.stringify(state));
                         return;
                     }
                     state[i].quantity = payload.quantity;
+                    localStorage.setItem("cart", JSON.stringify(state));
                     return;
                 }
             }
         },
         emptyCart: (state) => {
             state.splice(0, state.length);
+            localStorage.setItem("cart", JSON.stringify(state));
         }
     },
 });

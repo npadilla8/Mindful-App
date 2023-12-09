@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { setAdminBoolean } from './API/adminBoolean';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -13,12 +12,15 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import Box from "@mui/material/Box";
 
 const defaultTheme = createTheme();
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,17 +34,19 @@ function Login() {
       password: password,
     });
 
-    console.log(response);
-
     setEmail('');
     setPassword('');
 
-    if (response.data.user.isAdmin === false) {
-      navigate('/account');
-    }
-    if (response.data.user.isAdmin === true) {
-      dispatch(setAdminBoolean({adminBoolean: true}));
-      navigate('/admin/users');
+    if (response && response.error) {
+      setErrorMsg(response.error.data.message)
+    } else {
+      if (response.data.user.isAdmin === false) {
+        navigate('/account');
+      };
+      if (response.data.user.isAdmin === true) {
+        dispatch(setAdminBoolean({ adminBoolean: true }));
+        navigate('/admin/users');
+      };
     }
   };
 
@@ -109,19 +113,19 @@ function Login() {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Typography variant="body2">
-                    Forgot password?
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2" onClick={handleSignUpClick} style={{ cursor: 'pointer' }}>
-                    {"Don't have an account? "}
-                    <span style={{ color: '#89B9AD' }}>Sign Up</span>
-                  </Typography>
-                </Grid>
-              </Grid>
+              {errorMsg && (
+                <Box sx={{
+                  border: '1px solid red', padding: '2%', borderRadius: '4px', marginBottom: "3%", marginTop: "2%", width: "60%", justifyContent: "center",
+                  alignItems: "center", display: "flex", flexDirection: 'row', marginLeft: "18%", flexWrap: "nowrap",
+                }}>
+                  <WarningAmberIcon sx={{ color: 'red', marginRight: "3%" }} />
+                  <Typography variant='body1'>{errorMsg}</Typography>
+                </Box>
+              )}
+              <Typography variant="body2" onClick={handleSignUpClick} sx={{ textAlign: 'center' }} style={{ cursor: 'pointer' }}>
+                {"Don't have an account? "}
+                <span style={{ color: '#89B9AD' }}>Sign Up</span>
+              </Typography>
             </form>
           </CardContent>
         </Card>

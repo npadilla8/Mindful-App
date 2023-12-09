@@ -26,15 +26,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -59,6 +60,7 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = () => {
+
   const token = useSelector((state) => state.token);
   const adminBoolean = useSelector((state) => state.adminBoolean);
   const categoryId = useSelector((state) => state.categoryId);
