@@ -124,7 +124,7 @@ const SingleProduct = () => {
                             <Stack direction="row" spacing={1}>
                                 <IconButton
                                     aria-label="remove-button"
-                                    style={{ color: '#FFAEAE' }}
+                                    style={{ color: '#F94892' }}
                                     align="center"
                                     onClick={setDecrease}
                                 >
@@ -133,7 +133,7 @@ const SingleProduct = () => {
                                 <p>{amount}</p>
                                 <IconButton
                                     aria-label="add-button"
-                                    style={{ color: '#FFAEAE' }}
+                                    style={{ color: '#F94892' }}
                                     align="center"
                                     onClick={setIncrease}
                                 >
@@ -144,7 +144,7 @@ const SingleProduct = () => {
                                 <Button
                                     className='add-to-cart-button'
                                     variant="contained"
-                                    style={{ backgroundColor: '#FFAEAE', '&:hover': { backgroundColor: '#FF8A8A' } }}
+                                    style={{ backgroundColor: '#F94892', '&:hover': { backgroundColor: '#F94892' } }}
                                     onClick={(e) => {
                                         handleAddToCart(e);
                                         handleOpenAlert({ vertical: 'top', horizontal: 'center' })
@@ -160,7 +160,7 @@ const SingleProduct = () => {
                                     onClose={handleCloseAlert}
                                     severity="success"
                                     sx={{ width: '100%' }}
-                                    style={{ backgroundColor: '#FF8A8A' }}
+                                    style={{ backgroundColor: '#F94892' }}
                                 >
                                     Item is in your cart!
                                 </Alert>
