@@ -43,11 +43,12 @@ const HomePage = () => {
                   image={product.image}
                   style={{ objectFit: 'cover' }}
                 />
-                <CardContent style={{ textAlign: 'center' }}>
-                  <Typography variant="h6" style={{ margin: '10px 0' }}>
-                    {product.title}
-                  </Typography>
-                </CardContent>
+                <CardContent style={{ ...cardContentStyle, textAlign: 'center' }}>
+  <Typography variant="h6" style={{ margin: '10px 0' }}>
+    {product.title}
+  </Typography>
+</CardContent>
+
                 <CardActions style={{ justifyContent: 'center' }}>
                   <Button
                     onClick={() => navigate(`/products/${product.id}`)}
@@ -79,11 +80,12 @@ const HomePage = () => {
                   image={product.image}
                   style={{ objectFit: 'cover' }}
                 />
-                <CardContent style={{ textAlign: 'center' }}>
-                  <Typography variant="h6" style={{ margin: '10px 0' }}>
-                    {product.title}
-                  </Typography>
-                </CardContent>
+                <CardContent style={{ ...cardContentStyle, textAlign: 'center' }}>
+  <Typography variant="h6" style={{ margin: '10px 0' }}>
+    {product.title}
+  </Typography>
+</CardContent>
+
                 <CardActions style={{ justifyContent: 'center' }}>
                   <Button
                     onClick={() => navigate(`/products/${product.id}`)}

@@ -124,7 +124,7 @@ const SingleProduct = () => {
                             <Stack direction="row" spacing={1}>
                                 <IconButton
                                     aria-label="remove-button"
-                                    style={{ color: '#F94892' }}
+                                    style={{ color: '#FFAEAE' }}
                                     align="center"
                                     onClick={setDecrease}
                                 >
@@ -133,7 +133,7 @@ const SingleProduct = () => {
                                 <p>{amount}</p>
                                 <IconButton
                                     aria-label="add-button"
-                                    style={{ color: '#F94892' }}
+                                    style={{ color: '#FFAEAE' }}
                                     align="center"
                                     onClick={setIncrease}
                                 >
@@ -141,17 +141,17 @@ const SingleProduct = () => {
                                 </IconButton>
                             </Stack>
 
-                            <Button
-                                className='add-to-cart-button'
-                                variant="contained"
-                                style={{ backgroundColor: '#F94892', '&:hover': { backgroundColor: '#F94892' }, fontSize: '0.9rem' }}
-                                onClick={(e) => {
-                                    handleAddToCart(e);
-                                    handleOpenAlert({ vertical: 'top', horizontal: 'center' });
-                                }}
+                                <Button
+                                    className='add-to-cart-button'
+                                    variant="contained"
+                                    style={{ backgroundColor: '#FFAEAE', '&:hover': { backgroundColor: '#FF8A8A' } }}
+                                    onClick={(e) => {
+                                        handleAddToCart(e);
+                                        handleOpenAlert({ vertical: 'top', horizontal: 'center' })
+                                    }}
                                 >
-                                Add to Cart
-                            </Button>
+                                    Add to Cart
+                                </Button>
                             <Snackbar
                                 open={open}
                                 onClose={handleCloseAlert}
@@ -160,7 +160,7 @@ const SingleProduct = () => {
                                     onClose={handleCloseAlert}
                                     severity="success"
                                     sx={{ width: '100%' }}
-                                    style={{ backgroundColor: '#F94892' }}
+                                    style={{ backgroundColor: '#FF8A8A' }}
                                 >
                                     Item is in your cart!
                                 </Alert>
