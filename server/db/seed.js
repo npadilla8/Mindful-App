@@ -158,6 +158,34 @@ async function main() {
         }
     });
 
+    await prisma.product.upsert({
+        where: { title: 'Book Sweatshirt' },
+        update: {image: "https://i.etsystatic.com/38782048/r/il/02dab9/4788954934/il_1588xN.4788954934_4tng.jpg"},
+        create: {
+            title: 'Book Sweatshirt',
+            description: 'Bookish Sweatshirt | Book Lover Sweatshirt | Cat Book Sweatshirt | Floral Cat Sweatshirt',
+            price: 20,
+            available: true,
+            returnPolicy: false,
+            quantity: 15,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Tote Bag' },
+        update: {image: "https://i.etsystatic.com/42334588/r/il/4e9d7a/5615672937/il_1588xN.5615672937_g3gx.jpg"},
+        create: {
+            title: 'Tote Bag',
+            description: 'Books Tote Bag| Trendy Aesthetic For Book Lovers',
+            price: 12,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
     //toys
     await prisma.product.upsert({
         where: { title: 'Crochet Rattle' },
@@ -352,6 +380,21 @@ async function main() {
         }
     });
     
+
+    await prisma.product.upsert({
+        where: { title: 'Bookish Metal' },
+        update: {},
+        create: {
+            title: 'Bookish Metal',
+            image: 'https://i.etsystatic.com/31418112/r/il/5cd433/5172110458/il_1588xN.5172110458_rlbb.jpg',
+            description: 'Set of 3 Bookish Metal | One Line Art | Bookish Art | Library Decor',
+            price: 92,
+            available: true,
+            returnPolicy: true,
+            quantity: 54,
+            categoryId: 4
+        }
+    });
 
 
     //seeding users table with a cart and products inside

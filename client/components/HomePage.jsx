@@ -97,7 +97,7 @@ const HomePage = () => {
                     {product.title}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
-                    {product.price}
+                    ${product.price}
                   </Typography>
                 </CardContent>
 
