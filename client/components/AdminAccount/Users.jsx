@@ -2,6 +2,7 @@ import React from "react";
 import { useGetUsersQuery } from "../API/mindfulHarvestApi";
 import { useSelector } from "react-redux";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Users = () => {
     const adminBoolean = useSelector(state => state.adminBoolean);
@@ -20,12 +21,12 @@ const Users = () => {
     const { data, error, isLoading } = useGetUsersQuery();
 
     if (isLoading) {
-        return <div>Loading ...</div>;
-    }
+        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+    };
 
     if (error || !data) {
         return <div>Unable to load users.</div>;
-    }
+    };
 
     console.log(data);
 

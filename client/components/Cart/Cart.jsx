@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { emptyCart } from '../API/cartSlice';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Cart = () => {
     const token = useSelector((state) => state.token);
@@ -24,7 +25,7 @@ const Cart = () => {
 
         // Loading and error for getting user with cart
         if (userIsLoading) {
-            return <div>Loading...</div>;
+            return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
         }
         if (userError || !data) {
             return <div>Unable to Get User with Cart</div>;

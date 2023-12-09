@@ -4,6 +4,7 @@ import { useUpdateQuantityOfCartItemMutation } from "../API/mindfulHarvestApi";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const CartItem = (props) => {
     const item = props.item;
@@ -15,7 +16,7 @@ const CartItem = (props) => {
     const { data: singleProductData, error: productError, isLoading: productIsLoading } = useGetSingleProductQuery(item.productId);
 
     if (productIsLoading) {
-        return <div>Loading product...</div>;
+        return <CircularProgress sx={{ color: 'black', marginTop: "40%", marginLeft: "40%" }} size={75} />
     }
 
     if (productError || !singleProductData) {
@@ -25,11 +26,12 @@ const CartItem = (props) => {
     async function handleEditItemQuantity(event) {
         event.preventDefault();
 
-        if(quantity >= 1) {
+        if (quantity >= 1) {
             const response = await updateQuantityOfCartItem({
                 cartItemId: item.id,
                 quantity: Number(quantity),
             });
+            console.log("cart item quantity change: ", response);
         };
     }
 
