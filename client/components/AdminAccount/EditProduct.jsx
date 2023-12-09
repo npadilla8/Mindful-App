@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'; // Import Typography from Mat
 import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function EditProduct() {
     const adminBoolean = useSelector(state => state.adminBoolean);
@@ -21,8 +22,8 @@ export default function EditProduct() {
 
     //handling error and loading for useGetSingleProductQuery
     if (isLoading) {
-        return <div>Loading...</div>
-    };
+        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>;
+    }
 
     if (error) {
         return <div>Unable to Get Single Product.</div>

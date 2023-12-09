@@ -4,6 +4,7 @@ import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Paper, Typography, Button, Grid } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function AllProducts() {
   const adminBoolean = useSelector(state => state.adminBoolean)
@@ -23,7 +24,7 @@ export default function AllProducts() {
 
   // Handling error and loading states for getProductsQuery
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
   }
   if (error) {
     return <div>Unable to Get Products</div>;

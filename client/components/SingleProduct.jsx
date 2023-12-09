@@ -18,6 +18,7 @@ import { setCart } from './API/cartSlice';
 import { Box, Grid, Card, CardContent, Button, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const SingleProduct = () => {
     const [amount, setAmount] = useState(1);
@@ -88,7 +89,7 @@ const SingleProduct = () => {
     });
 
     if (singleProductIsLoading) {
-        return <div>Loading ...</div>;
+        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
     }
 
     if (singleProductError) {

@@ -2,13 +2,14 @@ import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function OrderItem(props) {
     const orderItem = props.item;
     const { data, error, isLoading } = useGetSingleProductQuery(orderItem.productId);
 
     if (isLoading) {
-        return <Typography variant="body1">Product is loading...</Typography>
+        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
     };
     if (error || !data) {
         return <Typography variant="body1">Single product information is not being fetched.</Typography>
