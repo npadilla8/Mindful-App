@@ -23,9 +23,7 @@ const GuestCartItem = (props) => {
     return <div>Error in showing cart items.</div>;
   };
 
-  const handleEditItemQuantity = async (event) => {
-    event.preventDefault();
-
+  const handleEditItemQuantity = async () => {
     if (quantity >= 1) {
       dispatch(
         updateCart({
@@ -47,6 +45,14 @@ const GuestCartItem = (props) => {
     );
   };
 
+  function handleEnterKeyPress(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        handleEditItemQuantity();
+    }
+};
+
+
   return (
     <Box key={itemObj.id} sx={{ flexGrow: 1 }} style={{ padding: '2%' }}>
       <Grid container spacing={0}>
@@ -61,8 +67,8 @@ const GuestCartItem = (props) => {
           <Typography variant="body1">Quantity: {itemObj.quantity}</Typography>
           <br />
           <Typography variant="body1">
-            Quantity: {' '}
-            <input value={quantity} onChange={(event) => setQuantity(event.target.value)} />
+            <input value={quantity} onChange={(event) => setQuantity(event.target.value)} 
+            style={{padding: '1%', fontSize: '90%'}} onKeyDown={handleEnterKeyPress} />
           </Typography>
           <br />
 
