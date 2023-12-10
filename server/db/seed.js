@@ -558,7 +558,7 @@ async function main() {
         update: {},
         create: {
             title: 'Affirmations Glass Cup',
-            image: 'https://i.etsystatic.com/26536444/r/il/08440e/4556860242/il_1588xN.4556860242_79z3.jpg',
+            image: 'https://i.etsystatic.com/26536444/r/il/a010fc/5332769231/il_1588xN.5332769231_3get.jpg',
             description: 'Daily Reminders Glass | Uplifting Word of Affirmation',
             price: 23.24,
             available: true,
