@@ -117,6 +117,37 @@ async function main() {
         }
     });
 
+    await prisma.product.upsert({
+        where: { title: 'Copper Rose' },
+        update: {},
+        create: {
+            title: 'Copper Rose',
+            image: 'https://i.etsystatic.com/9126195/r/il/6e253c/1615309961/il_794xN.1615309961_4fh9.jpg',
+            description: 'Hand Forged Metal | Handmade Flower | Engagement and Anniversary Gifts ',
+            price: 45,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Safari Nursery Decor' },
+        update: {},
+        create: {
+            title: 'Safari Nursery Decor',
+            image: 'https://i.etsystatic.com/5910444/r/il/ae2299/4618382672/il_794xN.4618382672_d5gm.jpg',
+            description: ' Jungle Nursery Prints | Safari Nursery Art Print | Zebra, Elephant, Giraffe ',
+            price: 45,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
+
     //clothing & jewelry
     await prisma.product.upsert({
         where: { title: 'Stethoscope Necklace' },
@@ -367,6 +398,51 @@ async function main() {
             available: true,
             returnPolicy: true,
             quantity: 31,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Montessori Object Permanance Box' },
+        update: {},
+        create: {
+            title: 'Montessori Object Permanance Box',
+            image: 'https://i.etsystatic.com/23419874/r/il/efa580/3702861162/il_794xN.3702861162_6bdw.jpg',
+            description: 'Wooden Toy Tray and Ball | Montessori | First Learning Toys',
+            price: 18,
+            available: true,
+            returnPolicy: true,
+            quantity: 50,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Large Teepee Tent' },
+        update: {},
+        create: {
+            title: 'Large Teepee Tent',
+            image: 'https://i.etsystatic.com/32228318/r/il/fcf8e7/3607795998/il_794xN.3607795998_4lrh.jpg',
+            description: 'White and Orange Playhouse for Kids | Fox Themed Gift | Play Tent with Mat',
+            price: 75,
+            available: true,
+            returnPolicy: true,
+            quantity: 5,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Cloth Doll' },
+        update: {},
+        create: {
+            title: 'Cloth Doll',
+            image: 'https://i.etsystatic.com/11234485/r/il/2d565a/3401034980/il_794xN.3401034980_hz7v.jpg',
+            description: 'Rag Doll | Handmade Soft Doll with Clothes | Multicultural',
+            price: 48,
+            available: true,
+            returnPolicy: true,
+            quantity: 7,
             categoryId: 2
         }
     });
