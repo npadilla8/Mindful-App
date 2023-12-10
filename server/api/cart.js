@@ -48,7 +48,7 @@ cartRouter.delete("/:cartId", async (req, res, next) => {
             }
         });
         res.send(cart);
-    } catch (next) {
+    } catch (error) {
         next({message: "Could not clear cart"})
     }
 });

@@ -33,26 +33,32 @@ export default function EditProduct() {
 
     return (
         <div style={{ display: "flex" }}>
-            <Card elevation={3} style={{ width: "30%", padding: "20px", marginBottom: "20px", marginRight: "20px" }}>
+            <Card elevation={3} style={{ width: "30%", padding: "20px", 
+            marginBottom: "20px", marginRight: "20px", marginLeft: '2%',
+            marginTop: '2%' }}>
                 <CardContent>
-                    <Typography variant="h5">Edit Product for Sale</Typography>
                     {data ? (
                         <div>
                             <div>
-                                <Typography variant="body1">Title: {data.title}</Typography>
-                                <Typography variant="body1">Description: {data.description}</Typography>
+                                <Typography variant="h5">Update Product Details</Typography>
+                                <br/>
+                                <Typography variant="body1"><b>Title: {data.title}</b></Typography>
+                                <Typography variant="body1"><b>Description: </b> {data.description}</Typography>
+                                <br/>
                                 <img style={{ width: "100%" }} src={data.image} alt={data.title} />
+                                <br/>
+                                <br/>
                             </div>
                             <div>
-                                <Typography variant="body1">Price: {data.price}</Typography>
+                                <Typography variant="body1"><b>Price:</b> ${data.price}</Typography>
                                 <Typography variant="body1">
-                                    Available: {data.available ? "Available" : "Not Available"}
+                                    <b>Available:</b> {data.available ? "Available" : "Not Available"}
                                 </Typography>
                                 <Typography variant="body1">
-                                    Return Policy: {data.returnPolicy ? "Returnable" : "Non-Returnable"}
+                                   <b> Return Policy:</b> {data.returnPolicy ? "Returnable" : "Non-Returnable"}
                                 </Typography>
-                                <Typography variant="body1">Quantity: {data.quantity}</Typography>
-                                <Typography variant="body1">Category ID: {data.categoryId}</Typography>
+                                <Typography variant="body1"><b>Quantity:</b> {data.quantity}</Typography>
+                                <Typography variant="body1"><b>Category ID:</b> {data.categoryId}</Typography>
                             </div>
                         </div>
                     ) : (
@@ -61,11 +67,8 @@ export default function EditProduct() {
                 </CardContent>
             </Card>
 
-            <Card elevation={3} style={{ width: "70%", padding: "20px", marginBottom: "20px" }}>
+            <Card elevation={3} style={{ width: "70%", padding: "20px", marginBottom: "20px", marginTop: '2%', marginRight: '2%' }}>
                 <CardContent>
-                    <Typography variant="h5">Update Product Details</Typography>
-                    <Typography variant="h6">Instructions: Edit one or more fields as needed.</Typography>
-
                     <ProductForm
                         productId={productId}
                         title={data.title}

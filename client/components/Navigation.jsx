@@ -75,7 +75,7 @@ const NavBar = () => {
     dispatch(setToken({ token: null }));
     dispatch(setAdminBoolean({ adminBoolean: false }));
     dispatch(setCategoryId({ categoryId: null }));
-    navigate('/');
+    navigate('/login');
   };
 
   const handleMindfulAppClick = () => {
