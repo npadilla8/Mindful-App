@@ -5,6 +5,9 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CircularProgress from '@mui/material/CircularProgress';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { Typography } from "@mui/material";
 
 const CartItem = (props) => {
     const item = props.item;
@@ -36,27 +39,38 @@ const CartItem = (props) => {
     }
 
     return (
-        <div key={item.id}>
-            <p><b>{singleProductData.title}</b></p>
-            <img style={{ width: "40%" }} src={singleProductData.image} alt={singleProductData.title} />
-            <p>Price: $ {singleProductData.price * item.quantity} {' ($ '} {singleProductData.price} {'per item)'}</p>
-            <p>Quantity: {item.quantity}</p>
+        <Box key={item.id} x={{ flexGrow: 1 }} style={{ padding: '2%' }}>
+        <Grid container spacing={0}>
+            <Grid item xs={3}>
+                <img style={{ width: "80%", marginRight: '1%' }} src={singleProductData.image} alt={singleProductData.title} />
+            </Grid>
+            <Grid item xs={6}>
+                <Typography variant="body1"><b>{singleProductData.title}</b></Typography>
+                <Typography variant="body1">{singleProductData.description}</Typography>
+                <br/>
+                <Typography variant="body1">Quantity: {item.quantity}</Typography>
+                <br/>
 
-            <label>Quantity: {" "}
-                <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-            </label>
+                <Typography variant="body1">Quantity: {" "}
+                    <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+                </Typography>
+                <br/>
 
-            {/* Edit Icon */}
-            <IconButton onClick={handleEditItemQuantity}>
-                <EditIcon color="black" />
-            </IconButton>
+                <IconButton onClick={handleEditItemQuantity}>
+                    <EditIcon color="black" />
+                </IconButton>
 
-            {/* Remove Icon */}
-            <IconButton onClick={() => handleCartItemRemoval(item.id)}>
-                <DeleteIcon color="black" />
-            </IconButton>
-        </div>
-    );
+                <IconButton onClick={() => handleCartItemRemoval(item.id)}>
+                    <DeleteIcon color="black" />
+                </IconButton>
+            </Grid>
+            <Grid item xs={2} style={{marginLeft: '8%'}}>
+                <Typography variant="body1">Price: $ {singleProductData.price * item.quantity}</Typography> 
+                <Typography variant="body1">{' ($ '} {singleProductData.price} {'per item)'}</Typography>
+            </Grid>
+        </Grid>
+    </Box>
+);
 };
 
 export default CartItem;
