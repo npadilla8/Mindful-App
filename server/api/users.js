@@ -118,7 +118,7 @@ usersRouter.post("/login", async (req, res, next) => {
         if (!user) {
             res.status(401)
             next({
-                message: "Username does not exist."
+                message: "User does not exist."
             })
         } else {
 
