@@ -26,7 +26,7 @@ const CartItem = (props) => {
         return <div>Error in showing cart item.</div>;
     }
 
-    async function handleEditItemQuantity(event) {
+    async function handleEditItemQuantity() {
         if (quantity >= 1) {
             const response = await updateQuantityOfCartItem({
                 cartItemId: item.id,
