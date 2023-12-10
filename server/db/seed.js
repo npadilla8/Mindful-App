@@ -74,7 +74,7 @@ async function main() {
         create: {
             title: 'Flower Coaster',
             image: './product_images/collectibles & art/Flower Coaster.jpg',
-            description: 'Crotchet made daisy flower coaster | Handmade Flower Coaster set of 6',
+            description: 'Crochet made daisy flower coaster | Handmade Flower Coaster set of 6',
             price: 12,
             available: true,
             returnPolicy: true,

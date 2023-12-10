@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-    useAddCartItemtoCartMutation,
-    useGetSingleProductQuery,
-    useUpdateQuantityOfCartItemMutation,
-    useGetUserWithCartQuery
+  useAddCartItemtoCartMutation,
+  useGetSingleProductQuery,
+  useUpdateQuantityOfCartItemMutation,
+  useGetUserWithCartQuery,
 } from './API/mindfulHarvestApi';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -21,157 +21,177 @@ import Snackbar from '@mui/material/Snackbar';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const SingleProduct = () => {
-    const [amount, setAmount] = useState(1);
-    const { productId } = useParams();
-    const { data: singleProductData, error: singleProductError, isLoading: singleProductIsLoading } = useGetSingleProductQuery(productId);
-    const { data: userWithCartData, error: userWithCartError, isLoading: userWithCartIsLoading } = useGetUserWithCartQuery();
-    const [addToCart] = useAddCartItemtoCartMutation();
-    const [updateCart] = useUpdateQuantityOfCartItemMutation();
-    const token = useSelector(state => state.token);
-    const adminBoolean = useSelector(state => state.adminBoolean)
-    const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
+  const [amount, setAmount] = useState(1);
+  const { productId } = useParams();
+  const { data: singleProductData, error: singleProductError, isLoading: singleProductIsLoading } =
+    useGetSingleProductQuery(productId);
+  const { data: userWithCartData, error: userWithCartError, isLoading: userWithCartIsLoading } =
+    useGetUserWithCartQuery();
+  const [addToCart] = useAddCartItemtoCartMutation();
+  const [updateCart] = useUpdateQuantityOfCartItemMutation();
+  const token = useSelector((state) => state.token);
+  const adminBoolean = useSelector((state) => state.adminBoolean);
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
-    const setDecrease = () => {
-        if (amount > 1) {
-            setAmount(amount - 1)
+  const cardMediaHeight = '400px'; 
+
+  const setDecrease = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  };
+
+  const setIncrease = () => {
+    setAmount(amount + 1);
+  };
+
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (token) {
+        const existingCartItem = userWithCartData.cart.items.find(
+          (item) => item.productId === Number(productId)
+        );
+
+        if (existingCartItem) {
+          const newQuantity = amount + existingCartItem.quantity;
+          await updateCart({
+            cartItemId: existingCartItem.id,
+            quantity: newQuantity,
+          });
+        } else {
+          await addToCart({
+            productId: Number(productId),
+            quantity: amount,
+          });
         }
-    };
+      } else {
+        dispatch(
+          setCart({
+            productId: Number(productId),
+            quantity: amount,
+          })
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    const setIncrease = () => {
-        setAmount(amount + 1);
-    };
+  const handleOpenAlert = async (event) => {
+    setOpen(true);
+  };
 
-    const handleAddToCart = async (e) => {
-        e.preventDefault();
-
-        try {
-            if (token) {
-                const existingCartItem = userWithCartData.cart.items.find(item => item.productId === Number(productId));
-
-                if (existingCartItem) {
-                    const newQuantity = amount + existingCartItem.quantity;
-                    await updateCart({
-                        cartItemId: existingCartItem.id,
-                        quantity: newQuantity
-                    });
-                } else {
-                    await addToCart({
-                        productId: Number(productId),
-                        quantity: amount
-                    });
-                }
-            } else {
-                dispatch(setCart({
-                    productId: Number(productId),
-                    quantity: amount
-                }));
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const handleOpenAlert = async (event) => {
-        setOpen(true);
-    };
-
-    const handleCloseAlert = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
-
-    const Alert = React.forwardRef(function Alert(props, ref) {
-        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    });
-
-    if (singleProductIsLoading) {
-        return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
     }
 
-    if (singleProductError) {
-        return <div>Unable to Get Product</div>;
-    }
+    setOpen(false);
+  };
 
-    if (!singleProductData) {
-        return <p>Unable to view product</p>;
-    }
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
-    return (
-        <Box p={3}>
-            <Grid container justifyContent="center">
-                <Grid item>
-                    <Card>
-                        <CardContent align="center">
-                            <div className="single-product-details">
-                                <h2 className="product-title">{singleProductData.title}</h2>
-                                <Typography variant="body2" color="textSecondary" component="p" className="product-description">
-                                    {singleProductData.description}
-                                </Typography>
-                            </div>
-                            <div className="image-container">
-                                <img className="single-image" src={singleProductData.image} alt={singleProductData.title} />
-                            </div>
-                            <div className="product-price">
-                                <Typography variant="body1">$ {singleProductData.price}</Typography>
-                            </div>
-                        </CardContent>
-                        {!adminBoolean && (
-                        <CardContent align="center">
-                            <Stack direction="row" spacing={1}>
-                                <IconButton
-                                    aria-label="remove-button"
-                                    style={{ color: '#F94892' }}
-                                    align="center"
-                                    onClick={setDecrease}
-                                >
-                                    <RemoveCircleTwoToneIcon />
-                                </IconButton>
-                                <p>{amount}</p>
-                                <IconButton
-                                    aria-label="add-button"
-                                    style={{ color: '#F94892' }}
-                                    align="center"
-                                    onClick={setIncrease}
-                                >
-                                    <AddCircleTwoToneIcon />
-                                </IconButton>
-                            </Stack>
+  if (singleProductIsLoading) {
+    return <CircularProgress sx={{ color: 'black', marginTop: '40%', marginLeft: '40%' }} size={75} />;
+  }
 
-                                <Button
-                                    className='add-to-cart-button'
-                                    variant="contained"
-                                    style={{ backgroundColor: '#F94892', '&:hover': { backgroundColor: '#F94892' } }}
-                                    onClick={(e) => {
-                                        handleAddToCart(e);
-                                        handleOpenAlert({ vertical: 'top', horizontal: 'center' })
-                                    }}
-                                >
-                                    Add to Cart
-                                </Button>
-                            <Snackbar
-                                open={open}
-                                onClose={handleCloseAlert}
-                            >
-                                <Alert
-                                    onClose={handleCloseAlert}
-                                    severity="success"
-                                    sx={{ width: '100%' }}
-                                    style={{ backgroundColor: '#F94892' }}
-                                >
-                                    Item is in your cart!
-                                </Alert>
-                            </Snackbar>
-                        </CardContent>
-                        )}
-                    </Card>
-                </Grid>
-            </Grid>
-        </Box>
-    );
+  if (singleProductError) {
+    return <div>Error loading product</div>;
+  }
+
+  if (!singleProductData) {
+    return <p>Unable to view product</p>;
+  }
+
+  return (
+    <Box p={3}>
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Card>
+            <CardContent align="center">
+              <div className="single-product-details">
+                <h2 className="product-title">{singleProductData.title}</h2>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  className="product-description"
+                >
+                  {singleProductData.description}
+                </Typography>
+              </div>
+              <div className="image-container">
+                <img
+                  className="single-image"
+                  src={singleProductData.image}
+                  alt={singleProductData.title}
+                  style={{ maxWidth: '100%', height: cardMediaHeight }}
+                />
+              </div>
+              <div className="product-price">
+                <Typography variant="body1">$ {singleProductData.price}</Typography>
+              </div>
+            </CardContent>
+            {!adminBoolean && (
+              <CardContent align="center">
+                <Stack direction="row" spacing={1}>
+                  <IconButton
+                    aria-label="remove-button"
+                    style={{ color: '#F94892' }}
+                    align="center"
+                    onClick={setDecrease}
+                  >
+                    <RemoveCircleTwoToneIcon />
+                  </IconButton>
+                  <p>{amount}</p>
+                  <IconButton
+                    aria-label="add-button"
+                    style={{ color: '#F94892' }}
+                    align="center"
+                    onClick={setIncrease}
+                  >
+                    <AddCircleTwoToneIcon />
+                  </IconButton>
+                </Stack>
+
+                <Button
+                  className="add-to-cart-button"
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#F94892',
+                    '&:hover': { backgroundColor: '#F94892' },
+                    fontSize: '0.9rem',
+                  }}
+                  onClick={(e) => {
+                    handleAddToCart(e);
+                    handleOpenAlert({ vertical: 'top', horizontal: 'center' });
+                  }}
+                >
+                  Add to Cart
+                </Button>
+                <Snackbar open={open} onClose={handleCloseAlert}>
+                  <Alert
+                    onClose={handleCloseAlert}
+                    severity="success"
+                    sx={{ width: '100%' }}
+                    style={{ backgroundColor: '#F94892' }}
+                  >
+                    Item is in your cart!
+                  </Alert>
+                </Snackbar>
+              </CardContent>
+            )}
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+
 };
 
 export default SingleProduct;
