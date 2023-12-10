@@ -61,8 +61,7 @@ const GuestCartItem = (props) => {
           <Typography variant="body1">Quantity: {itemObj.quantity}</Typography>
           <br />
           <Typography variant="body1">
-            Quantity: {' '}
-            <input value={quantity} onChange={(event) => setQuantity(event.target.value)} />
+            <input value={quantity} onChange={(event) => setQuantity(event.target.value)} style={{padding: '1%', fontSize: '90%'}} />
           </Typography>
           <br />
 

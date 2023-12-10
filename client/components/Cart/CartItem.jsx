@@ -27,8 +27,6 @@ const CartItem = (props) => {
     }
 
     async function handleEditItemQuantity(event) {
-        event.preventDefault();
-
         if (quantity >= 1) {
             const response = await updateQuantityOfCartItem({
                 cartItemId: item.id,
@@ -38,39 +36,47 @@ const CartItem = (props) => {
         };
     }
 
+    function handleEnterKeyPress(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleEditItemQuantity();
+        }
+    };
+
     return (
         <Box key={item.id} sx={{ flexGrow: 1 }} style={{ padding: '2%' }}>
-        <Grid container spacing={0}>
-            <Grid item xs={3}>
-                <img style={{ width: "80%", marginRight: '1%' }} src={singleProductData.image} alt={singleProductData.title} />
-            </Grid>
-            <Grid item xs={6}>
-                <Typography variant="body1"><b>{singleProductData.title}</b></Typography>
-                <Typography variant="body1">{singleProductData.description}</Typography>
-                <br/>
-                <Typography variant="body1">Quantity: {item.quantity}</Typography>
-                <br/>
+            <Grid container spacing={0}>
+                <Grid item xs={3}>
+                    <img style={{ width: "80%", marginRight: '1%' }} src={singleProductData.image} alt={singleProductData.title} />
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body1"><b>{singleProductData.title}</b></Typography>
+                    <Typography variant="body1">{singleProductData.description}</Typography>
+                    <br />
+                    <Typography variant="body1">Quantity: {item.quantity}</Typography>
+                    <br />
 
-                <Typography variant="body1">Quantity: {" "}
-                    <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-                </Typography>
-                <br/>
+                    <Typography variant="body1">
+                        <input value={quantity} onChange={(e) => setQuantity(e.target.value)}
+                            style={{ padding: '1%', fontSize: '90%' }} onKeyDown={handleEnterKeyPress} />
+                    </Typography>
+                    <br />
 
-                <IconButton onClick={handleEditItemQuantity}>
-                    <EditIcon color="black" />
-                </IconButton>
+                    <IconButton onClick={handleEditItemQuantity}>
+                        <EditIcon color="black" />
+                    </IconButton>
 
-                <IconButton onClick={() => handleCartItemRemoval(item.id)}>
-                    <DeleteIcon color="black" />
-                </IconButton>
+                    <IconButton onClick={() => handleCartItemRemoval(item.id)}>
+                        <DeleteIcon color="black" />
+                    </IconButton>
+                </Grid>
+                <Grid item xs={2} style={{ marginLeft: '8%' }}>
+                    <Typography variant="body1">Price: $ {singleProductData.price * item.quantity}</Typography>
+                    <Typography variant="body1">{' ($ '} {singleProductData.price} {'per item)'}</Typography>
+                </Grid>
             </Grid>
-            <Grid item xs={2} style={{marginLeft: '8%'}}>
-                <Typography variant="body1">Price: $ {singleProductData.price * item.quantity}</Typography> 
-                <Typography variant="body1">{' ($ '} {singleProductData.price} {'per item)'}</Typography>
-            </Grid>
-        </Grid>
-    </Box>
-);
+        </Box>
+    );
 };
 
 export default CartItem;
