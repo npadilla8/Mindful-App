@@ -256,20 +256,7 @@ async function main() {
         }
     });
 
-    await prisma.product.upsert({
-        where: { title: 'Tote Bag' },
-        update: {image: "https://i.etsystatic.com/42334588/r/il/4e9d7a/5615672937/il_1588xN.5615672937_g3gx.jpg"},
-        create: {
-            title: 'Tote Bag',
-            description: 'Books Tote Bag| Trendy Aesthetic For Book Lovers',
-            price: 12,
-            available: true,
-            returnPolicy: false,
-            quantity: 100,
-            categoryId: 1
-        }
-    });
-
+    
     //toys
     await prisma.product.upsert({
         where: { title: 'Crochet Rattle' },
@@ -626,6 +613,20 @@ async function main() {
             available: true,
             returnPolicy: true,
             quantity: 54,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Tote Bag' },
+        update: {image: "https://i.etsystatic.com/42334588/r/il/4e9d7a/5615672937/il_1588xN.5615672937_g3gx.jpg"},
+        create: {
+            title: 'Tote Bag',
+            description: 'Books Tote Bag| Trendy Aesthetic For Book Lovers',
+            price: 12,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
             categoryId: 4
         }
     });
