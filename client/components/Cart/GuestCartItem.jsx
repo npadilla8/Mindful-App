@@ -6,6 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CircularProgress from '@mui/material/CircularProgress';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { Typography } from "@mui/material";
 
 const GuestCartItem = (props) => {
   const itemObj = props.itemObj;
@@ -14,7 +17,7 @@ const GuestCartItem = (props) => {
 
   const { data, error, isLoading } = useGetSingleProductQuery(itemObj.productId);
   if (isLoading) {
-    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+    return <CircularProgress sx={{ color: 'black', marginTop: "40%", marginLeft: "40%" }} size={75} />
   };
   if (error || !data) {
     return <div>Error in showing cart items.</div>;
@@ -23,7 +26,7 @@ const GuestCartItem = (props) => {
   const handleEditItemQuantity = async (event) => {
     event.preventDefault();
 
-    if(quantity >= 1) {
+    if (quantity >= 1) {
       dispatch(
         updateCart({
           productId: data.id,
@@ -45,28 +48,40 @@ const GuestCartItem = (props) => {
   };
 
   return (
-    <div key={itemObj.id}>
-      <p>
-        <b>{data.title}</b>
-      </p>
-      <img style={{ width: '40%' }} src={data.image} alt={data.title} />
-      <p>Price: {' $ '} {data.price * itemObj.quantity} {'($ '} {data.price} {'per item)'}</p>
-      <p>Quantity: {itemObj.quantity}</p>
-      <label>
-        Quantity: {' '}
-        <input value={quantity} onChange={(event) => setQuantity(event.target.value)} />
-      </label>
+    <Box key={itemObj.id} sx={{ flexGrow: 1 }} style={{ padding: '2%' }}>
+      <Grid container spacing={0}>
+        <Grid item xs={3}>
+          <img style={{ width: '80%', marginRight: "1%" }} src={data.image} alt={data.title} />
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body1"><b>{data.title}</b></Typography>
+          <Typography variant="body1">{data.description}</Typography>
+          <br />
 
-      {/* Edit Icon */}
-      <IconButton onClick={handleEditItemQuantity}>
-        <EditIcon style={{ color: 'black' }} />
-      </IconButton>
+          <Typography variant="body1">Quantity: {itemObj.quantity}</Typography>
+          <br />
+          <Typography variant="body1">
+            Quantity: {' '}
+            <input value={quantity} onChange={(event) => setQuantity(event.target.value)} />
+          </Typography>
+          <br />
 
-      {/* Remove Icon */}
-      <IconButton onClick={handleRemoveItem}>
-        <DeleteIcon style={{ color: 'black' }} />
-      </IconButton>
-    </div>
+          {/* Edit Icon */}
+          <IconButton onClick={handleEditItemQuantity}>
+            <EditIcon style={{ color: 'black' }} />
+          </IconButton>
+
+          {/* Remove Icon */}
+          <IconButton onClick={handleRemoveItem}>
+            <DeleteIcon style={{ color: 'black' }} />
+          </IconButton>
+        </Grid>
+        <Grid item xs={2} style={{ marginLeft: '8%' }}>
+          <Typography variant="body1">Price: $ {' $ '} {data.price * itemObj.quantity}</Typography>
+          <Typography variant="body1">{'($ '} {data.price} {'per item)'}</Typography>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

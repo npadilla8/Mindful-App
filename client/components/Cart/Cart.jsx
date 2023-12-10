@@ -112,11 +112,11 @@ const Cart = () => {
 
     return (
       <div style={{ textAlign: 'left', marginLeft: '1em' }}>
-        <Typography variant="h5" style={{ fontSize: '1.5em', marginBottom: '2%', marginTop: '2%' }}>Guest Shopping Cart</Typography>
+        <Typography variant="h5" style={{marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>Guest Shopping Cart</Typography>
         {guestCart.length > 0 ? (
           <div>
             {guestCart.map((itemObj) => (
-              <Paper elevation={3} style={{ maxWidth: '70%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
+              <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '1%' }}>
                 <GuestCartItem key={itemObj.id} itemObj={itemObj} />
               </Paper>
             ))}
@@ -124,19 +124,23 @@ const Cart = () => {
               onClick={handleEmptyCart}
               variant="contained"
               sx={{
+                width: '80%',
                 backgroundColor: '#F94892',
                 marginTop: '1em',
                 marginBottom: '2em',
-                marginLeft: '1em',
+                marginLeft: '10%',
                 color: 'white',
+                '&:hover': {
+                  backgroundColor: '#F94892',
+                },
               }}
             >
               Place Order
             </Button>
           </div>
         ) : (
-          <Paper elevation={3} style={{ maxWidth: '70%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
-            <Typography>Cart is empty. Please add items or sign in to your account.</Typography>
+          <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
+            <Typography variant="h6" style={{padding: '1%'}}>Cart is empty. Please add items or sign in to your account.</Typography>
           </Paper>
         )}
       </div>

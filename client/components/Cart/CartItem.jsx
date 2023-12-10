@@ -39,7 +39,7 @@ const CartItem = (props) => {
     }
 
     return (
-        <Box key={item.id} x={{ flexGrow: 1 }} style={{ padding: '2%' }}>
+        <Box key={item.id} sx={{ flexGrow: 1 }} style={{ padding: '2%' }}>
         <Grid container spacing={0}>
             <Grid item xs={3}>
                 <img style={{ width: "80%", marginRight: '1%' }} src={singleProductData.image} alt={singleProductData.title} />
