@@ -59,7 +59,7 @@ function Login() {
       <Container component="main" maxWidth="sm" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 8 }}>
         <Card elevation={3} sx={{ width: '100%', textAlign: 'center', padding: '20px' }}>
           <CardContent>
-            <Avatar sx={{ m: 'auto', mb: 1, bgcolor: '#89B9AD' }}>
+            <Avatar sx={{ m: 'auto', mb: 1, bgcolor: '#186F65' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
@@ -80,7 +80,7 @@ function Login() {
                 InputProps={{
                   sx: {
                     '&:focus': {
-                      borderColor: '#FFC5C5',
+                      borderColor: '#186F65',
                     },
                   },
                 }}
@@ -104,10 +104,10 @@ function Login() {
                 sx={{
                   mt: 3,
                   mb: 2,
-                  backgroundColor: '#89B9AD',
+                  backgroundColor: '#186F65',
                   color: 'white',
                   '&:hover': {
-                    backgroundColor: '#C7DCA7',
+                    backgroundColor: '#186F65',
                   },
                 }}
               >
@@ -124,7 +124,7 @@ function Login() {
               )}
               <Typography variant="body2" onClick={handleSignUpClick} sx={{ textAlign: 'center' }} style={{ cursor: 'pointer' }}>
                 {"Don't have an account? "}
-                <span style={{ color: '#89B9AD' }}>Sign Up</span>
+                <span style={{ color: '#186F65' }}>Sign Up</span>
               </Typography>
             </form>
           </CardContent>

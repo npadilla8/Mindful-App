@@ -144,6 +144,48 @@ async function main() {
         }
     });
 
+    await prisma.product.upsert({
+        where: { title: 'Zodiac Necklace' },
+        update: {image: "https://i.etsystatic.com/35356354/r/il/330016/4451141359/il_1588xN.4451141359_qx3d.jpg"},
+        create: {
+            title: 'Zodiac Necklace',
+            description: 'Minimalist Zodiac Necklace | Birthstone | Astrology Necklace | Personalized Jewelry',
+            price: 23,
+            available: true,
+            returnPolicy: false,
+            quantity: 4,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Book Sweatshirt' },
+        update: {image: "https://i.etsystatic.com/38782048/r/il/02dab9/4788954934/il_1588xN.4788954934_4tng.jpg"},
+        create: {
+            title: 'Book Sweatshirt',
+            description: 'Bookish Sweatshirt | Book Lover Sweatshirt | Cat Book Sweatshirt | Floral Cat Sweatshirt',
+            price: 20,
+            available: true,
+            returnPolicy: false,
+            quantity: 15,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Tote Bag' },
+        update: {image: "https://i.etsystatic.com/42334588/r/il/4e9d7a/5615672937/il_1588xN.5615672937_g3gx.jpg"},
+        create: {
+            title: 'Tote Bag',
+            description: 'Books Tote Bag| Trendy Aesthetic For Book Lovers',
+            price: 12,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
     //toys
     await prisma.product.upsert({
         where: { title: 'Crochet Rattle' },
@@ -173,6 +215,7 @@ async function main() {
             categoryId: 2
         }
     });
+
     await prisma.product.upsert({
         where: { title: 'Montessori Climber' },
         update: {image: "https://i.etsystatic.com/21222226/r/il/9a8978/4172706705/il_794xN.4172706705_7bc4.jpg"},
@@ -184,6 +227,21 @@ async function main() {
             available: true,
             returnPolicy: true,
             quantity: 55,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wooden Train Music Box' },
+        update: {image: "https://i.etsystatic.com/22774256/r/il/33d02d/5544945633/il_1588xN.5544945633_6i7h.jpg"},
+        create: {
+            title: 'Wooden Train Music Box',
+            image: 'https://i.etsystatic.com/22774256/r/il/33d02d/5544945633/il_1588xN.5544945633_6i7h.jpg',
+            description: 'Train Music Box | Birthday Gifts | Music Box for Kids',
+            price: 30,
+            available: true,
+            returnPolicy: true,
+            quantity: 31,
             categoryId: 2
         }
     });
@@ -245,6 +303,99 @@ async function main() {
             categoryId: 4
         }
     });
+
+    await prisma.product.upsert({
+        where: { title: 'Pressed Flowers Mug' },
+        update: {},
+        create: {
+            title: 'Pressed Flowers Mug',
+            image: 'https://i.etsystatic.com/43097361/r/il/96a4fe/5567219169/il_1588xN.5567219169_gr26.jpg',
+            description: 'Boho Wildflowers | Cottagecore Coffee Mug | Flower Garden Lover | Botanical TeaCup',
+            price: 18.50,
+            available: true,
+            returnPolicy: true,
+            quantity: 39,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Affirmations Glass Cup' },
+        update: {},
+        create: {
+            title: 'Affirmations Glass Cup',
+            image: 'https://i.etsystatic.com/26536444/r/il/08440e/4556860242/il_1588xN.4556860242_79z3.jpg',
+            description: 'Daily Reminders Glass | Uplifting Word of Affirmation',
+            price: 23.24,
+            available: true,
+            returnPolicy: true,
+            quantity: 19,
+            categoryId: 4
+        }
+    });
+
+
+    await prisma.product.upsert({
+        where: { title: 'Lavender Gift Set' },
+        update: {},
+        create: {
+            title: 'Lavender Gift Set',
+            image: 'https://i.etsystatic.com/16056986/r/il/3657d9/2015727857/il_1588xN.2015727857_o035.jpg',
+            description: 'Relaxation Spa Gift Basket | Gifts for Her, Soap Gift Set | Aromatherapy Gift Basket | Organic Spa Gift Set',
+            price: 36,
+            available: true,
+            returnPolicy: true,
+            quantity: 45,
+            categoryId: 4
+        }
+    });
+    
+    await prisma.product.upsert({
+        where: { title: 'Gift Box' },
+        update: {},
+        create: {
+            title: 'Gift Box',
+            image: 'https://i.etsystatic.com/34523747/r/il/219fb7/5573500878/il_1588xN.5573500878_j36g.jpg',
+            description: 'Personalized Gifts |Self Care Box',
+            price: 40,
+            available: true,
+            returnPolicy: true,
+            quantity: 21,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Handmade Soap' },
+        update: {},
+        create: {
+            title: 'Handmade Soap',
+            image: 'https://i.etsystatic.com/23683511/r/il/d91bf4/4420759375/il_1588xN.4420759375_5z86.jpg',
+            description: 'Artisan Handmade Soap Gift Box | Personalized Gift | Soap Gift Set|',
+            price: 38,
+            available: true,
+            returnPolicy: true,
+            quantity: 69,
+            categoryId: 4
+        }
+    });
+    
+
+    await prisma.product.upsert({
+        where: { title: 'Bookish Metal' },
+        update: {},
+        create: {
+            title: 'Bookish Metal',
+            image: 'https://i.etsystatic.com/31418112/r/il/5cd433/5172110458/il_1588xN.5172110458_rlbb.jpg',
+            description: 'Set of 3 Bookish Metal | One Line Art | Bookish Art | Library Decor',
+            price: 92,
+            available: true,
+            returnPolicy: true,
+            quantity: 54,
+            categoryId: 4
+        }
+    });
+
 
     //seeding users table with a cart and products inside
     //users with no admin permissions

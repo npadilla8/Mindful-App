@@ -129,16 +129,21 @@ const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: '#F94892' }} position="static">
           <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1 }}
-              onClick={handleMindfulAppClick}a
-              style={{ cursor: 'pointer' }}
-            >
-              Mindful Harvest
-            </Typography>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              flexGrow: 1,
+              textTransform: 'uppercase', 
+              fontWeight: 'semibold',
+              fontSize: '14px',
+            }}
+            onClick={handleMindfulAppClick}
+            style={{ cursor: 'pointer' }}
+          >
+            Mindful <br></br>Harvest
+          </Typography>
             <div className="categories">
               <Dropdown>
               <IconButton
@@ -149,7 +154,7 @@ const NavBar = () => {
               >
               <MenuIcon />
           </IconButton>
-                <MenuButton style={{ color: 'white' }}>
+                <MenuButton style={{ color: 'white', fontSize: '17px'}}>
                   Categories
                 </MenuButton>
                 <Menu slots={{ listbox: Listbox }}>

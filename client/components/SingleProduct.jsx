@@ -191,6 +191,7 @@ const SingleProduct = () => {
       </Grid>
     </Box>
   );
+
 };
 
 export default SingleProduct;
