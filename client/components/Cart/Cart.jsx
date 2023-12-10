@@ -1,6 +1,4 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
@@ -12,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import { emptyCart } from '../API/cartSlice';
 import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
+import Typography from '@mui/material/Typography';
+import { Paper } from "@mui/material";
 
 const Cart = () => {
   const token = useSelector((state) => state.token);
@@ -39,7 +39,7 @@ const Cart = () => {
 
     async function handleCartItemRemoval(cartItemId) {
       try {
-        const response = await deleteCartItem(cartItemId);
+        await deleteCartItem(cartItemId);
       } catch (error) {
         console.error(error);
       }
@@ -62,40 +62,44 @@ const Cart = () => {
 
     return (
       <div style={{ textAlign: 'left', marginLeft: '1em' }}>
-        <h2 style={{ fontSize: '1.5em', color: '#333', marginBottom: '1em' }}>{data.username}'s Shopping Cart</h2>
+        <Typography variant="h5" style={{marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>{data.username}'s Shopping Cart</Typography>
         {cartWithItems.length > 0 ? (
-          <div>
-            {cartWithItems.map((item) => (
-              <Card key={item.id} sx={{ width: '100%', marginBottom: 2, maxWidth: 400 }}>
-                <CardContent>
-                  <CartItem item={item} onDelete={handleCartItemRemoval} />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <>
+            <div>
+              {cartWithItems.map((item) => (
+                <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '1%' }}>
+                  <CartItem key={item.id} item={item} onDelete={handleCartItemRemoval} />
+                </Paper>
+              ))}
+
+            </div>
+            <Button
+              onClick={() => {
+                handleCreateOrder();
+                handleEmptyCart();
+              }}
+              variant="contained"
+              sx={{
+                width: '80%',
+                backgroundColor: '#F94892',
+                marginTop: '1em',
+                marginBottom: '2em',
+                marginLeft: '10%',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#F94892',
+                },
+              }}
+            >
+              Place Order
+            </Button>
+          </>
         ) : (
-          <p style={{ color: '#777', marginTop: '1em' }}>Cart is empty. Please add items.</p>
+          <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
+            <Typography variant="h6" style={{ padding: '1%' }}>Cart is empty. Please add items.</Typography>
+          </Paper>
         )}
-    
-        <Button
-          onClick={() => {
-            handleCreateOrder();
-            handleEmptyCart();
-          }}
-          variant="contained"
-          sx={{
-            backgroundColor: '#F94892',
-            marginTop: '1em',
-            marginBottom: '2em',
-            marginLeft: '1em',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: '#F94892',
-            },
-          }}
-        >
-          Place Order
-        </Button>
+
       </div>
     );
   } else {
@@ -108,37 +112,37 @@ const Cart = () => {
 
     return (
       <div style={{ textAlign: 'left', marginLeft: '1em' }}>
-        <h2 style={{ fontSize: '1.5em', color: '#333', marginBottom: '1em' }}>Guest Shopping Cart</h2>
-
+        <Typography variant="h5" style={{marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>Guest Shopping Cart</Typography>
         {guestCart.length > 0 ? (
           <div>
             {guestCart.map((itemObj) => (
-              <Card key={itemObj.id} sx={{ width: '100%', marginBottom: 2, maxWidth: 400 }}>
-                <CardContent>
-                  <GuestCartItem itemObj={itemObj} />
-                </CardContent>
-              </Card>
+              <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '1%' }}>
+                <GuestCartItem key={itemObj.id} itemObj={itemObj} />
+              </Paper>
             ))}
+            <Button
+              onClick={handleEmptyCart}
+              variant="contained"
+              sx={{
+                width: '80%',
+                backgroundColor: '#F94892',
+                marginTop: '1em',
+                marginBottom: '2em',
+                marginLeft: '10%',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#F94892',
+                },
+              }}
+            >
+              Place Order
+            </Button>
           </div>
         ) : (
-          <p style={{ color: '#777', marginTop: '1em' }}>
-            Cart is empty. Please add items or sign in to your account.
-          </p>
+          <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
+            <Typography variant="h6" style={{padding: '1%'}}>Cart is empty. Please add items or sign in to your account.</Typography>
+          </Paper>
         )}
-        
-        <Button
-          onClick={handleEmptyCart}
-          variant="contained"
-          sx={{
-            backgroundColor: '#F94892',
-            marginTop: '1em',
-            marginBottom: '2em',
-            marginLeft: '1em',
-            color: 'white',
-          }}
-        >
-          Place Order
-        </Button>
       </div>
     );
   }
