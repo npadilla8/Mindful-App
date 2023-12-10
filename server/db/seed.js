@@ -74,7 +74,7 @@ async function main() {
         create: {
             title: 'Flower Coaster',
             image: './product_images/collectibles & art/Flower Coaster.jpg',
-            description: 'Crochet made daisy flower coaster | Handmade Flower Coaster set of 6',
+            description: 'Crochet Made Daisy Flower Coasters | Handmade Flower Coaster Set of 6',
             price: 12,
             available: true,
             returnPolicy: true,
@@ -91,7 +91,7 @@ async function main() {
         create: {
             title: 'Phone Case',
             image: './product_images/collectibles & art/Phone Case.jpg',
-            description: 'Vintage style collage phone case | iPhone 12 Plus',
+            description: 'Vintage Style Collage Phone Case | iPhone 12 Plus',
             price: 15,
             available: true,
             returnPolicy: true,
@@ -156,7 +156,7 @@ async function main() {
         create: {
             title: 'Rainbow Earrings',
             image: './product_images/clothing & jewelry/Earrings.avif',
-            description: 'Handmade polymer clay drop earrings | Pastel rainbow arch',
+            description: 'Handmade Polymer Clay Drop Earrings | Pastel Rainbow Arch',
             price: 20,
             available: true,
             returnPolicy: true,
@@ -165,6 +165,22 @@ async function main() {
         }
 
     
+    });
+
+    
+    await prisma.product.upsert({
+        where: { title: 'Head Bands' },
+        update: {image: "https://static.wixstatic.com/media/e14a27_f122aad2be274f75bb6180a68c6bd708~mv2.jpg/v1/fill/w_520,h_520,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/e14a27_f122aad2be274f75bb6180a68c6bd708~mv2.jpg"},
+        create: {
+            title: 'Head Bands',
+            image: './product_images/clothing & jewelry/Head Band.webp',
+            description: 'Soft Handmade Head Bands Set Of 4 | Super Soft And Fluffy',
+            price: 10,
+            available: true,
+            returnPolicy: true,
+            quantity: 20,
+            categoryId: 1
+        }
     });
     await prisma.product.upsert({
         where: { title: 'Personalized Sweater' },
@@ -237,7 +253,79 @@ async function main() {
             quantity: 25,
             categoryId: 2
         }
+
+    
     });
+
+    await prisma.product.upsert({
+        where: { title: 'Tea Party Set' },
+        update: {image: "https://ae01.alicdn.com/kf/Sb4cb745a6226450d91d188aa9511e8834/Court-Style-Wooden-Pretend-Play-Sets-Simulation-Tea-Party-Food-Kitchen-Cake-Shop-Game-Toy-Early.jpg"},
+        create: {
+            title: 'Tea Party Set',
+            image: './product_images/toys/Tea Party.webp',
+            description: 'Court Style Wooden Pretend Play Set | Simulation Tea Party Kitchen Toy | Early Educational for Kids',
+            price: 13,
+            available: true,
+            returnPolicy: false,
+            quantity: 25,
+            categoryId: 2
+        }
+
+    
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Talking Flash Cards' },
+        update: {image: "https://m.media-amazon.com/images/I/71G40-4m+AL._AC_UF894,1000_QL80_.jpg"},
+        create: {
+            title: 'Talking Flash Cards',
+            image: './product_images/toys/Cards.jpg',
+            description: 'Talking Flash Cards For Toddlers | Learning Toy For Speech ',
+            price: 20,
+            available: true,
+            returnPolicy: false,
+            quantity: 7,
+            categoryId: 2
+        }
+
+    
+    });
+    
+    await prisma.product.upsert({
+        where: { title: 'Push Toy' },
+        update: {image: "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/eac2e81aa99c001422f173aa77825b54.jpg"},
+        create: {
+            title: 'Push Toy',
+            image: './product_images/toys/Push Toy.jpg',
+            description: 'Cute Bear Quick Push Game | Focus Training and Thinking Logic',
+            price: 10,
+            available: true,
+            returnPolicy: false,
+            quantity: 5,
+            categoryId: 2
+        }
+
+    
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Alphabet Puzzle' },
+        update: {image: "https://target.scene7.com/is/image/Target/GUEST_cea8f161-5804-4dab-bb1a-42c609593334?wid=1200&hei=1200&qlt=80&fmt=webp"},
+        create: {
+            title: 'Alphabet Puzzle',
+            image: './product_images/toys/Alphabet Puzzle.webp',
+            description: 'Toy Peg Puzzle for Memory And Motor Skills | 28pc With Colorful Letter | Made With Wood',
+            price: 25,
+            available: true,
+            returnPolicy: false,
+            quantity: 6,
+            categoryId: 2
+        }
+
+    
+    });
+
+
     await prisma.product.upsert({
         where: { title: 'Human Body Puzzle' },
         update: {image: "https://i.etsystatic.com/32753543/r/il/8c72f6/3842617767/il_794xN.3842617767_gft1.jpg"},
@@ -298,6 +386,23 @@ async function main() {
             categoryId: 4
         }
     });
+
+    await prisma.product.upsert({
+        where: { title: 'Storage Basket' },
+        update: {image: "https://i5.walmartimages.com/asr/a87c77b9-9d22-4c81-be47-e58d3c0dcff9.e0ee2eecfeea5d026597bb38c0d3f2a0.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"},
+        create: {
+            title: 'Storage Basket',
+            image: './product_images/home & living/Storage Basket.webp',
+            description: 'Pink Cotton Round Organizer | Stylish Design Storage Set of 3',
+            price: 45,
+            available: true,
+            returnPolicy: true,
+            quantity: 18,
+            categoryId: 4
+        }
+    });
+
+
     await prisma.product.upsert({
         where: { title: 'Goat Milk Soap' },
         update: {image: "https://i.etsystatic.com/5737923/r/il/64e13a/1754790624/il_300x300.1754790624_g6gs.jpg"},
@@ -312,6 +417,22 @@ async function main() {
             categoryId: 4
         }
     });
+
+    await prisma.product.upsert({
+        where: { title: 'Custom Rug' },
+        update: {image: "https://i.etsystatic.com/27057003/r/il/dd6187/2912901859/il_570xN.2912901859_srz7.jpg"},
+        create: {
+            title: 'Custom Rug',
+            image: 'capstone/Mindful-App/server/db/product_images/home & living/Rug.avif',
+            description: 'Round Handmade Carpet | Contemporary Art Pastel Colors | Gorgeous Design And Quality',
+            price: 150,
+            available: true,
+            returnPolicy: false,
+            quantity: 10,
+            categoryId: 4
+        }
+    });
+
     await prisma.product.upsert({
         where: { title: 'Aromatherapy Candle' },
         update: {image: "https://i.etsystatic.com/21554180/c/1299/1299/350/475/il/b6b6bf/5351630181/il_300x300.5351630181_37dn.jpg"},
