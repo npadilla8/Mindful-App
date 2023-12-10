@@ -23,6 +23,8 @@ import { Listbox, MenuItem, MenuButton } from './CSS/categoriesMenu';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import Tooltip from '@mui/material/Tooltip';
+
 
 
 
@@ -177,11 +179,15 @@ const NavBar = () => {
                 <SearchInput placeholder="Search" value={searchTerm} onChange={handleSearchBar} />
               </Search>
               {!token ? (
+                <Tooltip title="Sign In" arrow>
                 <div className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}></div>
+                </Tooltip>
               ) : (
+                <Tooltip title="Log Out" arrow>
                 <div className="logout-link" onClick={handleSignOut} style={{ cursor: 'pointer' }}>
                   <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
                 </div>
+                </Tooltip>
               )}
               {adminBoolean ? (
                 <div className="account-link">
@@ -189,10 +195,12 @@ const NavBar = () => {
                     <MenuButton
                       style={{ backgroundColor: '#F94892', border: 'none', cursor: 'pointer' }}
                     >
+                      <Tooltip title="Admin Menu" arrow>
                       <AdminPanelSettingsIcon
                         style={{ backgroundColor: '#F94892', cursor: 'pointer' }}
                         sx={{ color: 'white', marginLeft: 2 }}
                       />
+                      </Tooltip>
                     </MenuButton>
                     <Menu slots={{ listbox: Listbox }}>
                       <MenuItem onClick={() => navigate('/admin/users')}>List of Users</MenuItem>
@@ -202,11 +210,14 @@ const NavBar = () => {
                   </Dropdown>
                 </div>
               ) : (
+                <Tooltip title={token ? "Account Page" : "Sign In"} arrow>
                 <div className="account-link" onClick={handleAccountClick} style={{ cursor: 'pointer' }}>
                   <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
                 </div>
+                </Tooltip>
               )}
               {!adminBoolean && (
+               <Tooltip title="Go to Cart" arrow>
                 <IconButton
                   color="inherit"
                   component={Link}
@@ -221,6 +232,7 @@ const NavBar = () => {
                 >
                   <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
                 </IconButton>
+                </Tooltip> 
               )}
             </div>
           </Toolbar>
