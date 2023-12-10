@@ -81,9 +81,26 @@ async function main() {
             quantity: 10,
             categoryId: 3
         }
-
         
     });
+
+    // Phone Case
+    await prisma.product.upsert({
+        where: { title: 'Phone Case' },
+        update: {image: "https://lasercutwraps.com/cdn/shop/products/1640676387e77cbe4cc8b5f529d332ca7f63f3c7a4.jpg?v=1677738952"},
+        create: {
+            title: 'Phone Case',
+            image: './product_images/collectibles & art/Phone Case.jpg',
+            description: 'Vintage style collage phone case | iPhone 12 Plus',
+            price: 15,
+            available: true,
+            returnPolicy: true,
+            quantity: 8,
+            categoryId: 3
+        }
+        
+    });
+
 
     await prisma.product.upsert({
         where: { title: 'Watercolor Painting' },
@@ -128,6 +145,26 @@ async function main() {
             quantity: 8,
             categoryId: 1
         }
+
+    
+    });
+
+    // Earrings
+    await prisma.product.upsert({
+        where: { title: 'Rainbow Earrings' },
+        update: {image: "https://i.etsystatic.com/29743919/r/il/5c4f1c/4603159610/il_1080xN.4603159610_9trs.jpg"},
+        create: {
+            title: 'Rainbow Earrings',
+            image: './product_images/clothing & jewelry/Earrings.avif',
+            description: 'Handmade polymer clay drop earrings | Pastel rainbow arch',
+            price: 20,
+            available: true,
+            returnPolicy: true,
+            quantity: 15,
+            categoryId: 1
+        }
+
+    
     });
     await prisma.product.upsert({
         where: { title: 'Personalized Sweater' },

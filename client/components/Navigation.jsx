@@ -25,6 +25,7 @@ import { Menu } from '@mui/base/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
+
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -129,6 +130,7 @@ const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: '#F94892' }} position="static">
           <Toolbar>
+            <img src='https://logomaker.designfreelogoonline.com/media/productdesigner/logo/resized/00274_Design_Free_Lotus_Flower_Logo_Templates-01.png' alt="Mindful Harvest Logo" style={{ height: '30px', marginRight: '10px', cursor: 'pointer'}} onClick={handleMindfulAppClick} />
           <Typography
             variant="h6"
             noWrap
@@ -142,7 +144,7 @@ const NavBar = () => {
             onClick={handleMindfulAppClick}
             style={{ cursor: 'pointer' }}
           >
-            Mindful <br></br>Harvest
+            Mindful <br></br>Harvest 
           </Typography>
             <div className="categories">
               <Dropdown>
