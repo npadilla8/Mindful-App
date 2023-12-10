@@ -151,16 +151,16 @@ async function main() {
 
     // Earrings
     await prisma.product.upsert({
-        where: { title: 'Birthstone Necklace' },
-        update: {image: "https://i.etsystatic.com/5634743/c/1937/1937/314/688/il/de81c0/3537979898/il_300x300.3537979898_9u4g.jpg"},
+        where: { title: 'Rainbow Earrings' },
+        update: {image: "https://i.etsystatic.com/29743919/r/il/5c4f1c/4603159610/il_1080xN.4603159610_9trs.jpg"},
         create: {
-            title: 'Birthstone Necklace',
-            image: './product_images/clothing & jewelry/Birthstone Necklace.avif',
-            description: 'Raw Aquamarine Necklace | March Birthstone | Crystal Rough Gemstone',
-            price: 31,
+            title: 'Rainbow Earrings',
+            image: './product_images/clothing & jewelry/Earrings.avif',
+            description: 'Handmade polymer clay drop earrings | Pastel rainbow arch',
+            price: 20,
             available: true,
             returnPolicy: true,
-            quantity: 8,
+            quantity: 15,
             categoryId: 1
         }
 
