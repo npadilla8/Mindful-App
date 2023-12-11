@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import {Paper} from "@mui/material";
 
 const HomePage = () => {
   const categoryId = useSelector((state) => state.categoryId);
@@ -36,9 +37,9 @@ const HomePage = () => {
 
     if (searchBoxProducts.length === 0) {
       return (
-        <h3>
-          <Typography variant="h6">No products found. Please search for other items.</Typography>{' '}
-        </h3>
+        <Paper elevation={3} style={{ maxWidth: '50%', margin: 'auto', alignContent: 'left', marginTop: '5%', padding: '1%' }}>
+          <Typography variant="h6" style={{textAlign: 'center'}}>No products found. Please search for other items.</Typography>
+          </Paper> 
       );
     }
 

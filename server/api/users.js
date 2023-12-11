@@ -135,7 +135,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
                 delete (user.hashedPassword);
 
-                res.send({ user, token })
+                res.status(200).send({ user, token })
             }
         }
     } catch (error) {
