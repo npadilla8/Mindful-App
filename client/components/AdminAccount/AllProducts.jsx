@@ -3,7 +3,7 @@ import { useGetProductsQuery } from "../API/mindfulHarvestApi";
 import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Paper, Typography, Button, Grid } from "@mui/material";
+import { Paper, Typography, Button, Grid, Card, CardContent } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function AllProducts() {
@@ -14,11 +14,13 @@ export default function AllProducts() {
 
   if (adminBoolean === false) {
     return (
-      <Paper className="permissionMessageCard">
-        <Typography variant="body1">
-          Need Special Permissions to Access Page.
-        </Typography>
-      </Paper>
+      <Card className="permissionMessageCard">
+        <CardContent>
+          <Typography variant="body1">
+            Need Special Permissions to Access Page.
+          </Typography>
+        </CardContent>
+      </Card>
     );
   };
 
