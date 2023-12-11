@@ -33,7 +33,7 @@ export default function AllProducts() {
   // onClick function to delete product using function from delete mutation
   async function adminDeleteProduct(productId) {
     try {
-      const response = await deleteProduct(productId);
+      await deleteProduct(productId);
     } catch (error) {
       console.error(error);
     }

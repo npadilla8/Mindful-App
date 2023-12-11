@@ -47,7 +47,7 @@ const Cart = () => {
 
     async function handleCreateOrder() {
       try {
-        const response = await createOrder();
+        await createOrder();
       } catch (error) {
         console.error(error);
       }

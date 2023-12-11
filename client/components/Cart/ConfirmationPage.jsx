@@ -5,7 +5,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const ConfirmationPage = () => {
     const token = useSelector((state) => state.token);
-    const guestCart = useSelector((state) => state.cart)
 
     //to display current date and time for order
     const currentDate = new Date();

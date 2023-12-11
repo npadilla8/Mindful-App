@@ -46,12 +46,12 @@ export default function ProductForm(props) {
     };
 
     if (productId) {
-      const updateResponse = await updateProduct({
+      await updateProduct({
         productId: productId,
         product: updatedProduct
       });
     } else {
-      const addResponse = await addProduct({
+      await addProduct({
         title: title,
         image: image,
         description: description,

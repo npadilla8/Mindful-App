@@ -36,8 +36,6 @@ const RegistrationForm = () => {
 
     const response = await register(formData);
 
-    console.log(response)
-
     if (response && response.error) {
       setErrorMsg(response.error.data.message)
     } else {
