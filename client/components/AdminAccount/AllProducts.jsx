@@ -57,98 +57,113 @@ export default function AllProducts() {
       );
     }
     return (
-      <Grid container spacing={10} justifyContent="center" style={{ marginTop: '5px' }}>
-        {searchBoxProducts.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={3}>
-            <Paper className="ProductItem" elevation={3}>
-              <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
-              <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
-              <img className="ProductImage" src={product.image} alt={product.title} />
-              <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                <Button
-                  className="EditButton"
-                  onClick={() => navigate(`/adminEdit/${product.id}`)}
-                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  className="DeleteButton"
-                  onClick={() => adminDeleteProduct(product.id)}
-                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
-                >
-                  Delete
-                </Button>
-              </div>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+      <>
+        <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
+          <b>Instructions:</b> Search for products to edit or delete using filtering functionalities above.
+        </Typography>
+        <Grid container spacing={10} justifyContent="center" >
+          {searchBoxProducts.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={3}>
+              <Paper className="ProductItem" elevation={3}>
+                <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
+                <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
+                <img className="ProductImage" src={product.image} alt={product.title} />
+                <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                  <Button
+                    className="EditButton"
+                    onClick={() => navigate(`/adminEdit/${product.id}`)}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    className="DeleteButton"
+                    onClick={() => adminDeleteProduct(product.id)}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </>
     );
   }
   //admin can search for items by category
   if (categoryId && data) {
     const filteredProductsArray = data.filter((product) => product.categoryId === categoryId);
     return (
-      <Grid container spacing={10} justifyContent="center" style={{ marginTop: '5px' }}>
-        {filteredProductsArray.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={3}>
-            <Paper className="ProductItem" elevation={3}>
-              <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
-              <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
-              <img className="ProductImage" src={product.image} alt={product.title} />
-              <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                <Button
-                  className="EditButton"
-                  onClick={() => navigate(`/adminEdit/${product.id}`)}
-                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  className="DeleteButton"
-                  onClick={() => adminDeleteProduct(product.id)}
-                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
-                >
-                  Delete
-                </Button>
-              </div>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+      <>
+        <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
+          <b>Instructions:</b> Search for products to edit or delete using filtering functionalities above.
+        </Typography>
+        <Grid container spacing={10} justifyContent="center">
+          {filteredProductsArray.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={3}>
+              <Paper className="ProductItem" elevation={3}>
+                <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
+                <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
+                <img className="ProductImage" src={product.image} alt={product.title} />
+                <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                  <Button
+                    className="EditButton"
+                    onClick={() => navigate(`/adminEdit/${product.id}`)}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    className="DeleteButton"
+                    onClick={() => adminDeleteProduct(product.id)}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </>
     )
   }
   //all products rendered
   if (data) {
     return (
-      <Grid container spacing={10} justifyContent="center" style={{ marginTop: '5px' }}>
-        {data.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={3}>
-            <Paper className="ProductItem" elevation={3}>
-              <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
-              <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
-              <img className="ProductImage" src={product.image} alt={product.title} />
-              <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                <Button
-                  className="EditButton"
-                  onClick={() => navigate(`/adminEdit/${product.id}`)}
-                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  className="DeleteButton"
-                  onClick={() => adminDeleteProduct(product.id)}
-                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
-                >
-                  Delete
-                </Button>
-              </div>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+      <>
+        <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
+          <b>Instructions:</b> Search for products to edit or delete using filtering functionalities above.
+        </Typography>
+        <Grid container spacing={10} justifyContent="center" >
+          {data.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={3}>
+              <Paper className="ProductItem" elevation={3}>
+                <Typography variant="body1" className="ProductTitle"> {product.title}</Typography>
+                <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
+                <img className="ProductImage" src={product.image} alt={product.title} />
+                <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                  <Button
+                    className="EditButton"
+                    onClick={() => navigate(`/adminEdit/${product.id}`)}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    className="DeleteButton"
+                    onClick={() => adminDeleteProduct(product.id)}
+                    style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </>
     );
   }
 }
