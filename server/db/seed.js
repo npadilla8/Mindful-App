@@ -64,10 +64,10 @@ async function main() {
             quantity: 9,
             categoryId: 3
         }
-        
+
     });
 
-    // Coaster 
+    // Coaster
     await prisma.product.upsert({
         where: { title: 'Flower Coaster' },
         update: {image: "https://hayhaycrochet.com/wp-content/uploads/2021/09/IMG_5270_jpg.jpg"},
@@ -81,7 +81,7 @@ async function main() {
             quantity: 10,
             categoryId: 3
         }
-        
+
     });
 
     // Phone Case
@@ -98,7 +98,7 @@ async function main() {
             quantity: 8,
             categoryId: 3
         }
-        
+
     });
 
 
@@ -147,6 +147,81 @@ async function main() {
         }
     });
 
+    await prisma.product.upsert({
+        where: { title: 'Large Amethyst Crystal' },
+        update: {},
+        create: {
+            title: 'Large Amethyst Crystal',
+            image: 'https://i.etsystatic.com/21962105/r/il/fdcb53/4185744135/il_1588xN.4185744135_abk2.jpg',
+            description: 'Druze Geode | Natural Stone | 4 lbs',
+            price: 145,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wool Landscape Painting' },
+        update: {},
+        create: {
+            title: 'Wool Landscape Painting',
+            image: 'https://i.etsystatic.com/11818131/r/il/d2a147/3035694012/il_1588xN.3035694012_mpud.jpg',
+            description: '100% Wool | Felt Needle Art | Wall Decor',
+            price: 95,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Turkish Water Marbling Art' },
+        update: {},
+        create: {
+            title: 'Turkish Water Marbling Art',
+            image: 'https://i.etsystatic.com/45736886/r/il/291cd3/5235278585/il_1588xN.5235278585_50me.jpg',
+            description: 'Painted on Water | Wall Art',
+            price: 45,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Sheet Music Print' },
+        update: {},
+        create: {
+            title: 'Sheet Music Print',
+            image: 'https://i.etsystatic.com/8306577/r/il/8393f1/1789892574/il_1588xN.1789892574_7s4j.jpg',
+            description: 'Poster Print | 40 x 30 Inch',
+            price: 168,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Heart Wall Art' },
+        update: {},
+        create: {
+            title: 'Heart Wall Art',
+            image: 'https://i.etsystatic.com/5537772/r/il/fe469f/4677986555/il_1588xN.4677986555_ki0j.jpg',
+            description: 'Made from Recycled Paper | Textured | 6 Inch Heart',
+            price: 42,
+            available: true,
+            returnPolicy: true,
+            quantity: 10,
+            categoryId: 3
+        }
+    });
+
 
     //clothing & jewelry
     await prisma.product.upsert({
@@ -163,6 +238,7 @@ async function main() {
             categoryId: 1
         }
     });
+
     await prisma.product.upsert({
         where: { title: 'Birthstone Necklace' },
         update: {image: "https://i.etsystatic.com/5634743/c/1937/1937/314/688/il/de81c0/3537979898/il_300x300.3537979898_9u4g.jpg"},
@@ -176,8 +252,6 @@ async function main() {
             quantity: 8,
             categoryId: 1
         }
-
-    
     });
 
     // Earrings
@@ -194,11 +268,8 @@ async function main() {
             quantity: 15,
             categoryId: 1
         }
-
-    
     });
 
-    
     await prisma.product.upsert({
         where: { title: 'Head Bands' },
         update: {image: "https://static.wixstatic.com/media/e14a27_f122aad2be274f75bb6180a68c6bd708~mv2.jpg/v1/fill/w_520,h_520,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/e14a27_f122aad2be274f75bb6180a68c6bd708~mv2.jpg"},
@@ -213,6 +284,7 @@ async function main() {
             categoryId: 1
         }
     });
+
     await prisma.product.upsert({
         where: { title: 'Personalized Sweater' },
         update: {image: "https://i.etsystatic.com/28504538/r/il/b55b37/5318226455/il_300x300.5318226455_t2jn.jpg"},
@@ -256,7 +328,82 @@ async function main() {
         }
     });
 
-    
+    await prisma.product.upsert({
+        where: { title: 'Squirrel Skirt' },
+        update: {},
+        create: {
+            title: 'Squirrel Skirt',
+            image: "https://i.etsystatic.com/5961957/r/il/924b2a/4635152429/il_1588xN.4635152429_n3u8.jpg",
+            description: 'Handmade Cotton Skirt | Side Zipper | Knee Length',
+            price: 54,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wool Poncho' },
+        update: {},
+        create: {
+            title: 'Wool Poncho',
+            image: "https://i.etsystatic.com/7930340/r/il/2a5b09/4912035614/il_1588xN.4912035614_hxda.jpg",
+            description: 'Handmade Wool Blanket Poncho | OSFM',
+            price: 118,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wool Men`s Socks' },
+        update: {},
+        create: {
+            title: 'Wool Men`s Socks',
+            image: "https://i.etsystatic.com/24061159/r/il/747335/4412727619/il_1588xN.4412727619_4dzj.jpg",
+            description: '5 Handmade Wool Socks | Naturally Dyed',
+            price: 75,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Embroidered Fingerless Gloves' },
+        update: {},
+        create: {
+            title: 'Embroidered Fingerless Gloves',
+            image: "https://i.etsystatic.com/8370795/r/il/c2f458/2675123621/il_1588xN.2675123621_mhkz.jpg",
+            description: 'Hand Embroidered | Keeps Warm and Cozy',
+            price: 25,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Leather Purse' },
+        update: {},
+        create: {
+            title: 'Leather Purse',
+            image: "https://i.etsystatic.com/32646140/r/il/fa9e0b/3488616309/il_1588xN.3488616309_lqrk.jpg",
+            description: 'Handmade Leather Purse | Tanned with Natural Materials',
+            price: 175,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 1
+        }
+    });
+
+
     //toys
     await prisma.product.upsert({
         where: { title: 'Crochet Rattle' },
@@ -271,8 +418,6 @@ async function main() {
             quantity: 25,
             categoryId: 2
         }
-
-    
     });
 
     await prisma.product.upsert({
@@ -288,8 +433,6 @@ async function main() {
             quantity: 25,
             categoryId: 2
         }
-
-    
     });
 
     await prisma.product.upsert({
@@ -305,10 +448,8 @@ async function main() {
             quantity: 7,
             categoryId: 2
         }
-
-    
     });
-    
+
     await prisma.product.upsert({
         where: { title: 'Push Toy' },
         update: {image: "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/eac2e81aa99c001422f173aa77825b54.jpg"},
@@ -322,8 +463,6 @@ async function main() {
             quantity: 5,
             categoryId: 2
         }
-
-    
     });
 
     await prisma.product.upsert({
@@ -339,8 +478,6 @@ async function main() {
             quantity: 6,
             categoryId: 2
         }
-
-    
     });
 
 
@@ -430,6 +567,66 @@ async function main() {
             available: true,
             returnPolicy: true,
             quantity: 7,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wooden Toy Train' },
+        update: {},
+        create: {
+            title: 'Wooden Toy Train',
+            image: "https://i.etsystatic.com/47691392/r/il/9c715d/5454105286/il_1588xN.5454105286_eifo.jpg",
+            description: 'Handmade Non-toxic Wood | Soft Colors | 4 Wagons',
+            price: 28,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wooden Balance Board' },
+        update: {},
+        create: {
+            title: 'Wooden Balance Board',
+            image: "https://i.etsystatic.com/31310067/r/il/e718a6/5062587759/il_1588xN.5062587759_45iw.jpg",
+            description: 'Handmade Non-toxic Wood | Montessori Toy | Rocking Board',
+            price: 55,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Toddler Wooden Knife and Board' },
+        update: {},
+        create: {
+            title: 'Toddler Wooden Knife and Board',
+            image: "https://i.etsystatic.com/22537583/r/il/08ff18/4512738540/il_1588xN.4512738540_rli1.jpg",
+            description: 'Handmade Non-toxic Wood | 3 Knives and Cutting Board | Food Safe',
+            price: 45,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 2
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Musical Instruments' },
+        update: {},
+        create: {
+            title: 'Musical Instruments',
+            image: "https://i.etsystatic.com/26491724/r/il/7c0f78/3740119134/il_1588xN.3740119134_1p99.jpg",
+            description: 'Handmade Non-toxic Wood | 10 Instruments',
+            price: 90,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
             categoryId: 2
         }
     });
@@ -570,7 +767,7 @@ async function main() {
             categoryId: 4
         }
     });
-    
+
     await prisma.product.upsert({
         where: { title: 'Gift Box' },
         update: {},
@@ -600,7 +797,7 @@ async function main() {
             categoryId: 4
         }
     });
-    
+
 
     await prisma.product.upsert({
         where: { title: 'Bookish Metal' },
@@ -624,6 +821,81 @@ async function main() {
             title: 'Tote Bag',
             description: 'Books Tote Bag| Trendy Aesthetic For Book Lovers',
             price: 12,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Retro Ceramic Teapot' },
+        update: {},
+        create: {
+            title: 'Retro Ceramic Teapot',
+            image: "https://i.etsystatic.com/18448702/r/il/cdbee5/5485739396/il_1588xN.5485739396_1l8o.jpg",
+            description: 'Retro Ceramic Handmade Teapot | Food Safe',
+            price: 20,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Vintage Style Floral Curtains' },
+        update: {},
+        create: {
+            title: 'Vintage Style Floral Curtains',
+            image: "https://i.etsystatic.com/11986500/r/il/6da013/2271874143/il_1588xN.2271874143_jz59.jpg",
+            description: 'Small Print Floral Curtains | Single Planel | 120 Inch Length',
+            price: 36,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Glass Vase Plant Pot' },
+        update: {},
+        create: {
+            title: 'Glass Vase Plant Pot',
+            image: "https://i.etsystatic.com/37557891/r/il/5ff4fa/5235501137/il_1588xN.5235501137_fo65.jpg",
+            description: 'Glass Terrarium | Plant Propagation Stand',
+            price: 27,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Wavy Plant Stand' },
+        update: {},
+        create: {
+            title: 'Wavy Plant Stand',
+            image: "https://i.etsystatic.com/30991973/r/il/a0967c/5010934521/il_1588xN.5010934521_iqfg.jpg",
+            description: 'Plant Stand End Table | 3D Printed',
+            price: 40,
+            available: true,
+            returnPolicy: false,
+            quantity: 100,
+            categoryId: 4
+        }
+    });
+
+    await prisma.product.upsert({
+        where: { title: 'Insulated Christmas Glass Mug' },
+        update: {},
+        create: {
+            title: 'Insulated Christmas Glass Mug',
+            image: "https://i.etsystatic.com/27059597/r/il/954e85/2912231768/il_1588xN.2912231768_6h0w.jpg",
+            description: 'Hand Blown Glass | Mug with Silicone Lid',
+            price: 25,
             available: true,
             returnPolicy: false,
             quantity: 100,
