@@ -59,7 +59,7 @@ export default function AllProducts() {
     return (
       <>
         <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
-          <b>Instructions:</b> Search for products to edit or delete using filtering functionalities above.
+          <b>Instructions:</b> Search for products to edit or delete using the filtering features above.
         </Typography>
         <Grid container spacing={10} justifyContent="center" >
           {searchBoxProducts.map((product) => (
@@ -97,7 +97,7 @@ export default function AllProducts() {
     return (
       <>
         <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
-          <b>Instructions:</b> Search for products to edit or delete using filtering functionalities above.
+          <b>Instructions:</b> Search for products to edit or delete using the filtering features above.
         </Typography>
         <Grid container spacing={10} justifyContent="center">
           {filteredProductsArray.map((product) => (
@@ -134,7 +134,7 @@ export default function AllProducts() {
     return (
       <>
         <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
-          <b>Instructions:</b> Search for products to edit or delete using filtering functionalities above.
+          <b>Instructions:</b> Search for products to edit or delete using the filtering features above.
         </Typography>
         <Grid container spacing={10} justifyContent="center" >
           {data.map((product) => (

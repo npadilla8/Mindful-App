@@ -542,7 +542,7 @@ async function main() {
 
     await prisma.product.upsert({
         where: { title: 'Affirmations Glass Cup' },
-        update: {},
+        update: {image: 'https://i.etsystatic.com/34041488/r/il/a741b7/5391748469/il_1588xN.5391748469_4f8x.jpg'},
         create: {
             title: 'Affirmations Glass Cup',
             image: 'https://i.etsystatic.com/34041488/r/il/a741b7/5391748469/il_1588xN.5391748469_4f8x.jpg',
