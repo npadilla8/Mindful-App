@@ -12,7 +12,7 @@ import { Typography } from "@mui/material";
 
 const CartItem = (props) => {
     const item = props.item;
-    
+
     const [quantity, setQuantity] = useState(item.quantity);
     const [updateQuantityOfCartItem] = useUpdateQuantityOfCartItemMutation();
     const [deleteCartItem] = useDeleteCartItemFromCartMutation();
@@ -29,8 +29,7 @@ const CartItem = (props) => {
 
     async function handleCartItemRemoval(cartItemId) {
         try {
-          const response = await deleteCartItem(cartItemId);
-          console.log(response)
+          await deleteCartItem(cartItemId);
         } catch (error) {
           console.error(error);
         }
@@ -38,7 +37,7 @@ const CartItem = (props) => {
 
     async function handleEditItemQuantity() {
         if (quantity >= 1) {
-            const response = await updateQuantityOfCartItem({
+            await updateQuantityOfCartItem({
                 cartItemId: item.id,
                 quantity: Number(quantity),
             });

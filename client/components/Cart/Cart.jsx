@@ -12,6 +12,8 @@ import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
 import Typography from '@mui/material/Typography';
 import { Paper } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 const Cart = () => {
   const token = useSelector((state) => state.token);
@@ -49,24 +51,24 @@ const Cart = () => {
 
     //function to calculate total price for cart 
     async function calculatingCartTotal() {
-      const totalForEachCartItem = cartWithProduct.items.map((item) => {
-        return (
-          item.quantity * item.product.price
-        )
-      });
+      if (cartWithProduct.items.length > 0) {
+        const totalForEachCartItem = cartWithProduct.items.map((item) => {
+          return (
+            item.quantity * item.product.price
+          )
+        });
 
-      const priceForEachCartItemResolved = await Promise.all(totalForEachCartItem);
-      console.log(priceForEachCartItemResolved)
+        const priceForEachCartItemResolved = await Promise.all(totalForEachCartItem);
+        console.log(priceForEachCartItemResolved)
 
-      const totalPriceForCart = priceForEachCartItemResolved.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue;
-      })
-      console.log(totalPriceForCart)
+        const totalPriceForCart = priceForEachCartItemResolved.reduce((accumulator, currentValue) => {
+          return accumulator + currentValue;
+        })
 
-      setCartToal(totalPriceForCart)
-      console.log("carttotal", cartTotal)
+        setCartToal(totalPriceForCart)
+      }
     }
-    calculatingCartTotal()
+    calculatingCartTotal();
 
     async function handleCreateOrder() {
       try {
@@ -96,6 +98,9 @@ const Cart = () => {
               ))}
 
             </div>
+            <Paper elevation={3} style={{ width: '78%', margin: 'auto', alignContent: 'left', marginBottom: '1%', marginTop: '1%', padding: '1%' }}>
+              <Typography variant="h6" style={{ textAlign: 'right', marginRight: '2%' }}>Total Price: ${cartTotal}</Typography>
+            </Paper>
             <Button
               onClick={() => {
                 handleCreateOrder();
@@ -105,7 +110,7 @@ const Cart = () => {
               sx={{
                 width: '80%',
                 backgroundColor: '#F94892',
-                marginTop: '1em',
+                marginTop: '1%',
                 marginBottom: '2em',
                 marginLeft: '10%',
                 color: 'white',
@@ -149,7 +154,7 @@ const Cart = () => {
               sx={{
                 width: '80%',
                 backgroundColor: '#F94892',
-                marginTop: '1em',
+                marginTop: '1%',
                 marginBottom: '2em',
                 marginLeft: '10%',
                 color: 'white',
