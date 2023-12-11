@@ -28,8 +28,6 @@ const Users = () => {
         return <div>Unable to load users.</div>;
     };
 
-    console.log(data);
-
     return (
         <Card className="UsersContainer">
             <CardContent>

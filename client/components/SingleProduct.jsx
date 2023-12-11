@@ -6,7 +6,6 @@ import {
   useGetUserWithCartQuery,
 } from './API/mindfulHarvestApi';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
@@ -34,7 +33,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
-  const cardMediaHeight = '400px'; 
+  const cardMediaHeight = '400px';
 
   const setDecrease = () => {
     if (amount > 1) {

@@ -2,18 +2,20 @@ import React from "react";
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-import { Typography, CircularProgress, Paper, Card, CardContent } from "@mui/material";
+import { Typography, CircularProgress, Card, CardContent } from "@mui/material";
 import ProductForm from "./ProductForm";
 
 export default function EditProduct() {
     const adminBoolean = useSelector((state) => state.adminBoolean);
-    console.log("admin boolean", adminBoolean);
-
     if (adminBoolean === false) {
         return (
-            <Typography variant="body1">
-                Need Special Permissions to Access Page.
-            </Typography>
+            <Card className="permissionMessageCard">
+            <CardContent>
+                <Typography variant="body1">
+                    Need Special Permissions to Access Page.
+                </Typography>
+            </CardContent>
+        </Card>
         );
     }
 

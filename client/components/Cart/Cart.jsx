@@ -47,7 +47,7 @@ const Cart = () => {
 
     async function handleCreateOrder() {
       try {
-        const response = await createOrder();
+        await createOrder();
       } catch (error) {
         console.error(error);
       }
@@ -62,7 +62,7 @@ const Cart = () => {
 
     return (
       <div style={{ textAlign: 'left', marginLeft: '1em' }}>
-        <Typography variant="h5" style={{marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>{data.username}'s Shopping Cart</Typography>
+        <Typography variant="h5" style={{ marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>{data.username}'s Shopping Cart</Typography>
         {cartWithItems.length > 0 ? (
           <>
             <div>
@@ -112,7 +112,7 @@ const Cart = () => {
 
     return (
       <div style={{ textAlign: 'left', marginLeft: '1em' }}>
-        <Typography variant="h5" style={{marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>Guest Shopping Cart</Typography>
+        <Typography variant="h5" style={{ marginBottom: '2%', marginTop: '2%', marginLeft: '10%' }}>Guest Shopping Cart</Typography>
         {guestCart.length > 0 ? (
           <div>
             {guestCart.map((itemObj) => (
@@ -140,7 +140,7 @@ const Cart = () => {
           </div>
         ) : (
           <Paper elevation={3} style={{ maxWidth: '80%', margin: 'auto', alignContent: 'left', marginBottom: '5%' }}>
-            <Typography variant="h6" style={{padding: '1%'}}>Cart is empty. Please add items or sign in to your account.</Typography>
+            <Typography variant="h6" style={{ padding: '1%' }}>Cart is empty. Please add items or sign in to your account.</Typography>
           </Paper>
         )}
       </div>

@@ -32,7 +32,6 @@ const CartItem = (props) => {
                 cartItemId: item.id,
                 quantity: Number(quantity),
             });
-            console.log("cart item quantity change: ", response);
         };
     }
 

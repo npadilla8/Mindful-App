@@ -29,15 +29,15 @@ import Tooltip from '@mui/material/Tooltip';
 
 
 const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: 'auto',
+  },
 
 }));
 
@@ -132,33 +132,33 @@ const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: '#F94892' }} position="static">
           <Toolbar>
-            <img src='https://logomaker.designfreelogoonline.com/media/productdesigner/logo/resized/00274_Design_Free_Lotus_Flower_Logo_Templates-01.png' alt="Mindful Harvest Logo" style={{ height: '30px', marginRight: '10px', cursor: 'pointer'}} onClick={handleMindfulAppClick} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              textTransform: 'uppercase', 
-              fontWeight: 'semibold',
-              fontSize: '14px',
-            }}
-            onClick={handleMindfulAppClick}
-            style={{ cursor: 'pointer' }}
-          >
-            Mindful <br></br>Harvest 
-          </Typography>
+            <img src='https://logomaker.designfreelogoonline.com/media/productdesigner/logo/resized/00274_Design_Free_Lotus_Flower_Logo_Templates-01.png' alt="Mindful Harvest Logo" style={{ height: '30px', marginRight: '10px', cursor: 'pointer' }} onClick={handleMindfulAppClick} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                flexGrow: 1,
+                textTransform: 'uppercase',
+                fontWeight: 'semibold',
+                fontSize: '14px',
+              }}
+              onClick={handleMindfulAppClick}
+              style={{ cursor: 'pointer' }}
+            >
+              Mindful <br></br>Harvest
+            </Typography>
             <div className="categories">
               <Dropdown>
-              <IconButton
-                size="small"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              >
-              <MenuIcon />
-          </IconButton>
-                <MenuButton style={{ color: 'white', fontSize: '17px'}}>
+                <IconButton
+                  size="small"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <MenuButton style={{ color: 'white', fontSize: '17px' }}>
                   Categories
                 </MenuButton>
                 <Menu slots={{ listbox: Listbox }}>
@@ -180,13 +180,13 @@ const NavBar = () => {
               </Search>
               {!token ? (
                 <Tooltip title="Sign In" arrow>
-                <div className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}></div>
+                  <div className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}></div>
                 </Tooltip>
               ) : (
                 <Tooltip title="Log Out" arrow>
-                <div className="logout-link" onClick={handleSignOut} style={{ cursor: 'pointer' }}>
-                  <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
-                </div>
+                  <div className="logout-link" onClick={handleSignOut} style={{ cursor: 'pointer' }}>
+                    <LogoutIcon sx={{ color: 'white', marginLeft: 2 }} />
+                  </div>
                 </Tooltip>
               )}
               {adminBoolean ? (
@@ -196,10 +196,10 @@ const NavBar = () => {
                       style={{ backgroundColor: '#F94892', border: 'none', cursor: 'pointer' }}
                     >
                       <Tooltip title="Admin Menu" arrow>
-                      <AdminPanelSettingsIcon
-                        style={{ backgroundColor: '#F94892', cursor: 'pointer' }}
-                        sx={{ color: 'white', marginLeft: 2 }}
-                      />
+                        <AdminPanelSettingsIcon
+                          style={{ backgroundColor: '#F94892', cursor: 'pointer' }}
+                          sx={{ color: 'white', marginLeft: 2 }}
+                        />
                       </Tooltip>
                     </MenuButton>
                     <Menu slots={{ listbox: Listbox }}>
@@ -211,28 +211,28 @@ const NavBar = () => {
                 </div>
               ) : (
                 <Tooltip title={token ? "Account Page" : "Sign In"} arrow>
-                <div className="account-link" onClick={handleAccountClick} style={{ cursor: 'pointer' }}>
-                  <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
-                </div>
+                  <div className="account-link" onClick={handleAccountClick} style={{ cursor: 'pointer' }}>
+                    <AccountCircleIcon sx={{ color: 'white', marginLeft: 2 }} />
+                  </div>
                 </Tooltip>
               )}
               {!adminBoolean && (
-               <Tooltip title="Go to Cart" arrow>
-                <IconButton
-                  color="inherit"
-                  component={Link}
-                  to="/cart"
-                  sx={{
-                    textDecoration: 'none',
-                    '&:hover': {
-                      backgroundColor: 'transparent',
-                    },
-                  }}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
-                </IconButton>
-                </Tooltip> 
+                <Tooltip title="Go to Cart" arrow>
+                  <IconButton
+                    color="inherit"
+                    component={Link}
+                    to="/cart"
+                    sx={{
+                      textDecoration: 'none',
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                      },
+                    }}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <ShoppingCartIcon sx={{ color: 'white', marginLeft: 2 }} />
+                  </IconButton>
+                </Tooltip>
               )}
             </div>
           </Toolbar>

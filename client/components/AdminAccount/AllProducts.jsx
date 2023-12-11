@@ -3,7 +3,7 @@ import { useGetProductsQuery } from "../API/mindfulHarvestApi";
 import { useDeleteProductMutation } from "../API/mindfulHarvestApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Paper, Typography, Button, Grid } from "@mui/material";
+import { Paper, Typography, Button, Grid, Card, CardContent } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function AllProducts() {
@@ -14,17 +14,19 @@ export default function AllProducts() {
 
   if (adminBoolean === false) {
     return (
-      <Paper className="permissionMessageCard">
-        <Typography variant="body1">
-          Need Special Permissions to Access Page.
-        </Typography>
-      </Paper>
+      <Card className="permissionMessageCard">
+        <CardContent>
+          <Typography variant="body1">
+            Need Special Permissions to Access Page.
+          </Typography>
+        </CardContent>
+      </Card>
     );
   };
 
   // Handling error and loading states for getProductsQuery
   if (isLoading) {
-    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+    return <CircularProgress sx={{ color: 'black', marginTop: "40%", marginLeft: "40%" }} size={75} />
   }
   if (error) {
     return <div>Unable to Get Products</div>;
@@ -33,7 +35,7 @@ export default function AllProducts() {
   // onClick function to delete product using function from delete mutation
   async function adminDeleteProduct(productId) {
     try {
-      const response = await deleteProduct(productId);
+      await deleteProduct(productId);
     } catch (error) {
       console.error(error);
     }
@@ -49,21 +51,21 @@ export default function AllProducts() {
               <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
               <img className="ProductImage" src={product.image} alt={product.title} />
               <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-              <Button
-                className="EditButton"
-                onClick={() => navigate(`/adminEdit/${product.id}`)}
-                style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
-              >
-                Edit
-              </Button>
-              <Button
-                className="DeleteButton"
-                onClick={() => adminDeleteProduct(product.id)}
-                style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
-              >
-                Delete
-              </Button>
-            </div>
+                <Button
+                  className="EditButton"
+                  onClick={() => navigate(`/adminEdit/${product.id}`)}
+                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  className="DeleteButton"
+                  onClick={() => adminDeleteProduct(product.id)}
+                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+                >
+                  Delete
+                </Button>
+              </div>
             </Paper>
           </Grid>
         ))
