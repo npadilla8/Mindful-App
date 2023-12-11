@@ -39,11 +39,11 @@ const RegistrationForm = () => {
     if (response && response.error) {
       setErrorMsg(response.error.data.message)
     } else {
-       if (response && response.data.newUser.isAdmin === false) {
-      navigate('/account');
+      if (response && response.data.newUser.isAdmin === false) {
+        navigate('/account');
+      }
     }
-  }
-    
+
   };
 
   return (

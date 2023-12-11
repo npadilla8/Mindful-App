@@ -2,17 +2,7 @@
 import React, { useState } from 'react';
 import { useAddProductMutation, useUpdateProductMutation } from '../API/mindfulHarvestApi';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  TextField,
-  Typography
-} from '@mui/material';
+import {Button, MenuItem, Paper, TextField} from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 

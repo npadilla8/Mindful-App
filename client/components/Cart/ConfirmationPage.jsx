@@ -16,7 +16,7 @@ const ConfirmationPage = () => {
         const { data, error, isLoading } = useGetUserWithCartQuery();
 
         if (isLoading) {
-            return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+            return <CircularProgress sx={{ color: 'black', marginTop: "40%", marginLeft: "40%" }} size={75} />
         };
         if (error || !data) {
             return <div>Unable to get user with cart.</div>
@@ -29,25 +29,25 @@ const ConfirmationPage = () => {
             <Box p={3}>
                 <Grid container justifyContent="center">
                     <Grid item>
-                <Card> 
-                    <CardMedia
-                        component="img"
-                        image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
-                        style={{ objectFit: 'cover' }}
-                        />
-                    <CardContent style={{ textAlign: 'center'}}> 
+                        <Card>
+                            <CardMedia
+                                component="img"
+                                image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
+                                style={{ objectFit: 'cover' }}
+                            />
+                            <CardContent style={{ textAlign: 'center' }}>
 
-                <Typography variant="h5">Thank you for your order, {data.username}!</Typography>
-                <Typography variant="body1"><b>Order Number:</b> AUK89076896</Typography>
-                <Typography variant="body1"><b>Order Date:</b> {formattedDate}</Typography>
-                <Typography variant="body1"><b>Order Time:</b> {formattedTime}</Typography>
-                <Typography variant="body1">A summary of your order has been sent to {data.email}.</Typography>
-                     </CardContent>
-                </Card>
+                                <Typography variant="h5">Thank you for your order, {data.username}!</Typography>
+                                <Typography variant="body1"><b>Order Number:</b> AUK89076896</Typography>
+                                <Typography variant="body1"><b>Order Date:</b> {formattedDate}</Typography>
+                                <Typography variant="body1"><b>Order Time:</b> {formattedTime}</Typography>
+                                <Typography variant="body1">A summary of your order has been sent to {data.email}.</Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 </Grid>
-                </Grid>
-                </Box>
-            
+            </Box>
+
         )
 
     } else {
@@ -55,23 +55,23 @@ const ConfirmationPage = () => {
             <Box p={3}>
                 <Grid container justifyContent="center">
                     <Grid item>
-                <Card> 
-                    <CardMedia
-                        component="img"
-                        image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
-                        style={{ objectFit: 'cover' }}
-                        />
-                    <CardContent style={{ textAlign: 'center'}}> 
-                    <Typography variant="h5">Thank you for your order!</Typography>
-                    <Typography variant="body1"><b>Order Number:</b> AUK89076896</Typography>
-                    <Typography variant="body1"><b>Order Date:</b> {formattedDate}</Typography>
-                    <Typography variant="body1"><b>Order Time:</b> {formattedTime}</Typography>
-                    <Typography variant="body1">Your order should arrive between 3-5 days.</Typography>
-                </CardContent>
-                </Card>
+                        <Card>
+                            <CardMedia
+                                component="img"
+                                image="https://i.pinimg.com/564x/e5/4a/02/e54a0242d2db8a9bd57b590f8cb70698.jpg"
+                                style={{ objectFit: 'cover' }}
+                            />
+                            <CardContent style={{ textAlign: 'center' }}>
+                                <Typography variant="h5">Thank you for your order!</Typography>
+                                <Typography variant="body1"><b>Order Number:</b> AUK89076896</Typography>
+                                <Typography variant="body1"><b>Order Date:</b> {formattedDate}</Typography>
+                                <Typography variant="body1"><b>Order Time:</b> {formattedTime}</Typography>
+                                <Typography variant="body1">Your order should arrive between 3-5 days.</Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 </Grid>
-                </Grid>
-                </Box>
+            </Box>
         )
     }
 }

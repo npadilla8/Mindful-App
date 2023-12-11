@@ -7,8 +7,6 @@ import ProductForm from "./ProductForm";
 
 export default function EditProduct() {
     const adminBoolean = useSelector((state) => state.adminBoolean);
-    console.log("admin boolean", adminBoolean);
-
     if (adminBoolean === false) {
         return (
             <Typography variant="body1">

@@ -7,7 +7,6 @@ import ProductForm from "./ProductForm";
 
 export default function CreateProduct() {
   const adminBoolean = useSelector((state) => state.adminBoolean);
-  console.log("admin boolean", adminBoolean);
 
   if (adminBoolean === false) {
     return <p> Need Special Permissions to Access Page. </p>;

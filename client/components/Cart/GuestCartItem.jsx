@@ -47,10 +47,10 @@ const GuestCartItem = (props) => {
 
   function handleEnterKeyPress(event) {
     if (event.key === 'Enter') {
-        event.preventDefault();
-        handleEditItemQuantity();
+      event.preventDefault();
+      handleEditItemQuantity();
     }
-};
+  };
 
 
   return (
@@ -67,8 +67,8 @@ const GuestCartItem = (props) => {
           <Typography variant="body1">Quantity: {itemObj.quantity}</Typography>
           <br />
           <Typography variant="body1">
-            <input value={quantity} onChange={(event) => setQuantity(event.target.value)} 
-            style={{padding: '1%', fontSize: '90%'}} onKeyDown={handleEnterKeyPress} />
+            <input value={quantity} onChange={(event) => setQuantity(event.target.value)}
+              style={{ padding: '1%', fontSize: '90%' }} onKeyDown={handleEnterKeyPress} />
           </Typography>
           <br />
 

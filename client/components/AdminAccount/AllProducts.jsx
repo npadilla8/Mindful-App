@@ -24,7 +24,7 @@ export default function AllProducts() {
 
   // Handling error and loading states for getProductsQuery
   if (isLoading) {
-    return <CircularProgress sx={{color: 'black', marginTop: "40%", marginLeft: "40%"}} size={75}/>
+    return <CircularProgress sx={{ color: 'black', marginTop: "40%", marginLeft: "40%" }} size={75} />
   }
   if (error) {
     return <div>Unable to Get Products</div>;
@@ -49,21 +49,21 @@ export default function AllProducts() {
               <Typography variant="body1" className="ProductDescription"> {product.description}</Typography>
               <img className="ProductImage" src={product.image} alt={product.title} />
               <div className="ProductButtons" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-              <Button
-                className="EditButton"
-                onClick={() => navigate(`/adminEdit/${product.id}`)}
-                style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
-              >
-                Edit
-              </Button>
-              <Button
-                className="DeleteButton"
-                onClick={() => adminDeleteProduct(product.id)}
-                style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
-              >
-                Delete
-              </Button>
-            </div>
+                <Button
+                  className="EditButton"
+                  onClick={() => navigate(`/adminEdit/${product.id}`)}
+                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem' }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  className="DeleteButton"
+                  onClick={() => adminDeleteProduct(product.id)}
+                  style={{ backgroundColor: '#F94892', color: '#fff', fontSize: '0.7rem', marginLeft: '10px' }}
+                >
+                  Delete
+                </Button>
+              </div>
             </Paper>
           </Grid>
         ))
