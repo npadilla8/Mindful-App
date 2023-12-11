@@ -83,7 +83,11 @@ const NavBar = () => {
   const handleMindfulAppClick = () => {
     dispatch(setCategoryId({ categoryId: null }));
     dispatch(setSearchField({ searchField: null }));
-    navigate('/');
+    if (adminBoolean) {
+      navigate('admin/allproducts')
+    } else {
+      navigate('/');
+    }
   };
 
   const handleAccountClick = () => {
@@ -96,31 +100,55 @@ const NavBar = () => {
 
   const handleClothingJewelryClick = () => {
     dispatch(setCategoryId({ categoryId: Number(1) }));
-    navigate('/');
+    if (adminBoolean) {
+      navigate('/admin/allproducts')
+    } else {
+      navigate('/');
+    }
   };
   const handleToyClick = () => {
     dispatch(setCategoryId({ categoryId: Number(2) }));
-    navigate('/');
+    if (adminBoolean) {
+      navigate('admin/allproducts')
+    } else {
+      navigate('/');
+    }
   };
   const handleCollectibleArtClick = () => {
     dispatch(setCategoryId({ categoryId: Number(3) }));
-    navigate('/');
+    if (adminBoolean) {
+      navigate('admin/allproducts')
+    } else {
+      navigate('/');
+    }
   };
   const handleHomeLivingClick = () => {
     dispatch(setCategoryId({ categoryId: Number(4) }));
-    navigate('/');
+    if (adminBoolean) {
+      navigate('admin/allproducts')
+    } else {
+      navigate('/');
+    }
   };
   const handleAllCategoriesClick = () => {
     dispatch(setCategoryId({ categoryId: null }));
     dispatch(setSearchField({ searchField: null }))
-    navigate('/');
+    if (adminBoolean) {
+      navigate('admin/allproducts')
+    } else {
+      navigate('/');
+    }
   };
 
   const handleSearchBar = (event) => {
     event.preventDefault();
     dispatch(setCategoryId({ categoryId: null }));
-    navigate("/");
     setSearchTerm(event.target.value);
+    if (adminBoolean) {
+      navigate('admin/allproducts')
+    } else {
+      navigate("/");
+    }
   };
 
   useEffect(() => {

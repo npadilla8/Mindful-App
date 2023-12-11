@@ -9,11 +9,15 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {Paper} from "@mui/material";
 
 const HomePage = () => {
+  const adminBoolean = useSelector((state) => state.adminBoolean)
   const categoryId = useSelector((state) => state.categoryId);
   const searchField = useSelector((state) => state.searchField);
   const { data, isLoading, error } = useGetProductsQuery();
   const navigate = useNavigate();
 
+  if(adminBoolean) {
+    navigate('/admin/allproducts')
+  };
 
   const cardContentStyle = {
     padding: '16px',
