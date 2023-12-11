@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { useGetUserWithCartQuery } from '../API/mindfulHarvestApi';
 import { useGetUserCartQuery } from '../API/mindfulHarvestApi';
 import { useCreateNewOrderMutation } from '../API/mindfulHarvestApi';
+import { useDeleteCartItemFromCartMutation } from "../API/mindfulHarvestApi";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -12,8 +13,6 @@ import CartItem from './CartItem';
 import GuestCartItem from './GuestCartItem';
 import Typography from '@mui/material/Typography';
 import { Paper } from "@mui/material";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 
 const Cart = () => {
   const token = useSelector((state) => state.token);
@@ -23,6 +22,7 @@ const Cart = () => {
 
   if (token) {
     const [createOrder] = useCreateNewOrderMutation();
+    const [deleteCartItem] = useDeleteCartItemFromCartMutation();
     const { data, error: userError, isLoading: userIsLoading } = useGetUserWithCartQuery();
     const { data: cartWithProduct, error: cartWithProductError, isLoading: cartWithProductLoading } = useGetUserCartQuery();
 
@@ -59,7 +59,6 @@ const Cart = () => {
         });
 
         const priceForEachCartItemResolved = await Promise.all(totalForEachCartItem);
-        console.log(priceForEachCartItemResolved)
 
         const totalPriceForCart = priceForEachCartItemResolved.reduce((accumulator, currentValue) => {
           return accumulator + currentValue;
@@ -68,7 +67,9 @@ const Cart = () => {
         setCartToal(totalPriceForCart)
       }
     }
-    calculatingCartTotal();
+    if (cartWithProduct.items.length > 0) {
+      calculatingCartTotal();
+    }
 
     async function handleCreateOrder() {
       try {
