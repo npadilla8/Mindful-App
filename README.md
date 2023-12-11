@@ -1,4 +1,12 @@
-# React + Express Boilerplate
+# Grace Hopper Program Capstone Project 2023 - Mindful Harvest Store
+
+## Live: https://mindful-harvest.onrender.com/
+
+## Mindful Harvest Web-Store
+
+At Mindful Harvest, we belive in a world built slowly, with care, and compassion. The world we build around us should reflect who we are and how we live.
+To create a more connected community that cares about one another, we provide the customer with home-made and organic products like clothing, jewelry, toys, home living, and art, including customisable products. We bring small businesses together and connect customers to local and sustainable products.
+At our website, customers can make purchases and have them delivered to their home address. Customers can also make a profile so that the checkout process is easier, as their cart information will be saved for later use.
 
 ## Getting Started
 
@@ -65,11 +73,12 @@ Whichever provider you use, you will need to set the following settings:
 ├── dist (ignored by git)
 ├── mocks/
 ├── node_modules (ignored by git)
-├── prisma/
 ├── server/
 ├── .gitignore
+├── babel.config.js
 ├── index.html
 ├── jest.config.js
+├── package-lock.json
 ├── package.json
 ├── README.md
 └── vite.config.js
@@ -82,22 +91,42 @@ Whichever provider you use, you will need to set the following settings:
 ├── client/
 │   ├── components/
 │   │   ├── __tests__/
-│   │   │   └── MyComponent.test.js
-│   │   ├── MyComponent.jsx
-│   │   ├── ... (etc, with as many nested folders as needed to keep organized)
-│   │   └── profile/
-│   │       ├── Profile.jsx
-│   │       ├── ProfileImage.jsx
-│   │       └── ProfileHeader.jsx
-│   ├── app/
-│   │   └── store.js
-│   ├── features/
-│   │   ├── api/
-│   │   │   └── apiSlice.js
-│   │   ├── auth/
-│   │   │   └── authSlice.js
-│   │   └── counter/
-│   │       └── counterSlice.js
+│   │   │   └── app.test.js
+│   │   │   └── users.test.js
+│   │   ├── AdminAccount/
+│   │   │   └── AllProducts.jsx
+│   │   │   └── CreateProduct.jsx
+│   │   │   └── EditProduct.jsx
+│   │   │   └── ProductForm.jsx
+│   │   │   └── Users.jsx
+│   │   ├── API/
+│   │   │   └── adminBoolean.js
+│   │   │   └── cartSlice.js
+│   │   │   └── categoryIdSlice.js
+│   │   │   └── mindfulHarvestApi.js
+│   │   │   └── searchFieldSlice.js
+│   │   │   └── store.js
+│   │   │   └── tokenSlice.js
+│   │   ├── Cart/
+│   │   │   └── Cart.jsx
+│   │   │   └── CartItem.jsx
+│   │   │   └── ConfirmationPage.jsx
+│   │   │   └──  GuestCartItem.jsx
+│   │   ├── CSS/
+│   │   │   └── adminpage.css
+│   │   │   └── categoriesMenu.js
+│   │   │   └── homepage.css
+│   │   │   └── loginpage.css
+│   │   │   └── Logo-Mindful-Harvest.png
+│   │   │   └── registerpage.css
+│   │   ├── UserAccount/
+│   │   │   └── AccountPage.jsx
+│   │   │   └── OrderItem.jsx
+│   │   ├── HomePage.jsx
+│   │   ├── LoginPage.jsx
+│   │   ├── Navigation.jsx
+│   │   ├── Register.jsx
+│   │   └── SingleProduct.jsx
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
@@ -109,21 +138,29 @@ Whichever provider you use, you will need to set the following settings:
 .
 ├── server/
 │   ├── __tests__/
-│   │   └── app.test.js
+│   │   └── cart.test.js
+│   │   └── cartItem.test.js
+│   │   └── products.test.js
+│   │   └── users.test.js
 │   ├── api/
-│   │   ├── __tests__/
-│   │   │   └── user.test.js
-│   │   ├── index.js
-│   │   ├── user.js
-│   │   └── // ... (etc, with nested folders for sub-routes as needed to keep organized)
-│   ├── auth/
-│   │   ├── __tests__/
-│   │   │   └── auth.test.js
-│   │   └── index.js (used for authenticating with your app)
+│   │   └── cart.js
+│   │   └── cartItem.js
+│   │   └── index.js
+│   │   └── oder.js
+│   │   └── products.js
+│   │   └── users.js
+│   │   └── utils.js
 │   ├── db/
-│   │   ├── client.js
-│   │   ├── seed.js
-│   │   └── // ... (optionally, add files / sub-folders with helper methods for accessing the DB with Prisma)
+│   │   ├── prisma/
+│   │   │   └── migrations/
+│   │   │   │   └── 20231108025058_init/
+│   │   │   │   │   └── migration.sql
+│   │   │   │   └── 20231130051054_mindful_app_order_update
+│   │   │   │   │   └── migration.sql
+│   │   │   │   └── 20231203214414_orderitems_update
+│   │   │   │   │   └── migration.sql
+│   │   │   └── schema.prisma
+│   │   ├── product_images/
 │   ├── app.js (configure the app)
 │   └── index.js (start the app)
 ```
