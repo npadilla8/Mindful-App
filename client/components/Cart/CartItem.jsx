@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetSingleProductQuery } from "../API/mindfulHarvestApi";
 import { useUpdateQuantityOfCartItemMutation } from "../API/mindfulHarvestApi";
+import { useDeleteCartItemFromCartMutation } from "../API/mindfulHarvestApi";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,10 +12,10 @@ import { Typography } from "@mui/material";
 
 const CartItem = (props) => {
     const item = props.item;
-    const handleCartItemRemoval = props.onDelete;
 
     const [quantity, setQuantity] = useState(item.quantity);
     const [updateQuantityOfCartItem] = useUpdateQuantityOfCartItemMutation();
+    const [deleteCartItem] = useDeleteCartItemFromCartMutation();
 
     const { data: singleProductData, error: productError, isLoading: productIsLoading } = useGetSingleProductQuery(item.productId);
 
@@ -26,9 +27,17 @@ const CartItem = (props) => {
         return <div>Error in showing cart item.</div>;
     }
 
+    async function handleCartItemRemoval(cartItemId) {
+        try {
+          await deleteCartItem(cartItemId);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
     async function handleEditItemQuantity() {
         if (quantity >= 1) {
-            const response = await updateQuantityOfCartItem({
+            await updateQuantityOfCartItem({
                 cartItemId: item.id,
                 quantity: Number(quantity),
             });

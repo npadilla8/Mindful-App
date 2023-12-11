@@ -96,7 +96,7 @@ const mindfulHarvestApi = createApi({
                 method: "POST",
                 body: {productId, quantity},
             }),
-            invalidatesTags: ["userwithcart"]
+            invalidatesTags: ["userwithcart", "cart"]
         }),
         //PUT /api/cartItem/:cartItemId - update quanity in cart
         updateQuantityOfCartItem: builder.mutation({
@@ -105,7 +105,7 @@ const mindfulHarvestApi = createApi({
                 method: "PUT",
                 body: {quantity}
             }),
-            invalidatesTags: ["userwithcart"]
+            invalidatesTags: ["userwithcart", "cart"]
         }),
         //DELETE /api/cartItem/:cartItemId - delete cartItem from cart
         deleteCartItemFromCart: builder.mutation({
@@ -113,7 +113,7 @@ const mindfulHarvestApi = createApi({
                 url: `/api/cartItem/${cartItemId}`,
                 method: "DELETE",
             }),
-            invalidatesTags: ["userwithcart"]
+            invalidatesTags: ["userwithcart", "cart"]
         }),
 
         //---------------------CART ENDPOINTS-----------------------//
