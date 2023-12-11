@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGetProductsQuery } from './API/mindfulHarvestApi';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -6,14 +6,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box, Card, CardContent, CardMedia, CardActions, Grid } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import {Paper} from "@mui/material";
+import { Paper } from "@mui/material";
 
 const HomePage = () => {
+  const adminBoolean = useSelector((state) => state.adminBoolean)
   const categoryId = useSelector((state) => state.categoryId);
   const searchField = useSelector((state) => state.searchField);
   const { data, isLoading, error } = useGetProductsQuery();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (adminBoolean) {
+      navigate('/admin/allproducts')
+    };
+  }, [])
 
   const cardContentStyle = {
     padding: '16px',
@@ -38,8 +44,8 @@ const HomePage = () => {
     if (searchBoxProducts.length === 0) {
       return (
         <Paper elevation={3} style={{ maxWidth: '50%', margin: 'auto', alignContent: 'left', marginTop: '5%', padding: '1%' }}>
-          <Typography variant="h6" style={{textAlign: 'center'}}>No products found. Please search for other items.</Typography>
-          </Paper> 
+          <Typography variant="h6" style={{ textAlign: 'center' }}>No products found. Please search for other items.</Typography>
+        </Paper>
       );
     }
 
