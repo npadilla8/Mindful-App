@@ -8,6 +8,10 @@ At Mindful Harvest, we belive in a world built slowly, with care, and compassion
 To create a more connected community that cares about one another, we provide the customer with home-made and organic products like clothing, jewelry, toys, home living, and art, including customisable products. We bring small businesses together and connect customers to local and sustainable products.
 At our website, customers can make purchases and have them delivered to their home address. Customers can also make a profile so that the checkout process is easier, as their cart information will be saved for later use.
 
+## Database Model
+
+![Database Model](database_schema.JPG)
+
 ## Getting Started
 
 1. Make a new repository using this template
