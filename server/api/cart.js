@@ -10,8 +10,15 @@ cartRouter.get("/", requireUser, async (req, res, next) => {
         const cart = await prisma.cart.findUnique({
             where: {
                 userId: req.user.id
+            },
+            include: {
+                items: {
+                    include : {
+                        product: true
+                    }
+                }
             }
-        })
+        });
         if (!cart) {
             res.send({
                 message: "User does not have a cart."
