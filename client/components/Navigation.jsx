@@ -170,22 +170,16 @@ const NavBar = () => {
                 textTransform: 'uppercase',
                 fontWeight: 'semibold',
                 fontSize: '14px',
+                whiteSpace: 'nowrap',
+                display: { sm: 'none', md: 'block', xs: 'none', lg: 'block', xl: 'block'}, 
               }}
               onClick={handleMindfulAppClick}
               style={{ cursor: 'pointer' }}
             >
-              Mindful <br></br>Harvest
+              Mindful<br></br> Harvest
             </Typography>
             <div className="categories">
               <Dropdown>
-                <IconButton
-                  size="small"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                >
-                  <MenuIcon />
-                </IconButton>
                 <MenuButton style={{ color: 'white', fontSize: '17px' }}>
                   Categories
                 </MenuButton>
