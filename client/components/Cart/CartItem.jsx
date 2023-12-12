@@ -79,8 +79,8 @@ const CartItem = (props) => {
                     </IconButton>
                 </Grid>
                 <Grid item xs={2} style={{ marginLeft: '8%' }}>
-                    <Typography variant="body1">Price: $ {singleProductData.price * item.quantity}</Typography>
-                    <Typography variant="body1">{' ($ '} {singleProductData.price} {'per item)'}</Typography>
+                    <Typography variant="body1">Price: ${singleProductData.price * item.quantity}</Typography>
+                    <Typography variant="body1">(${singleProductData.price} per item)</Typography>
                 </Grid>
             </Grid>
         </Box>
