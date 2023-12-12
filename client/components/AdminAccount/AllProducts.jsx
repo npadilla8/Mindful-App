@@ -58,7 +58,7 @@ export default function AllProducts() {
     }
     return (
       <>
-        <Typography variant="body1" style={{ textAlign: 'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
+        <Typography variant="body1" style={{textAlign:'left', marginTop: "2%", marginLeft: "1%", marginBottom: '2%' }}>
           <b>Instructions:</b> Search for products to edit or delete using the filtering features above.
         </Typography>
         <Grid container spacing={10} justifyContent="center" >

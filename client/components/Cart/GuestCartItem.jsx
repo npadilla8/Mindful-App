@@ -83,8 +83,8 @@ const GuestCartItem = (props) => {
           </IconButton>
         </Grid>
         <Grid item xs={2} style={{ marginLeft: '8%' }}>
-          <Typography variant="body1">Price: $ {' $ '} {data.price * itemObj.quantity}</Typography>
-          <Typography variant="body1">{'($ '} {data.price} {'per item)'}</Typography>
+          <Typography variant="body1">Price: ${data.price * itemObj.quantity}</Typography>
+          <Typography variant="body1">(${data.price} per item)</Typography>
         </Grid>
       </Grid>
     </Box>
