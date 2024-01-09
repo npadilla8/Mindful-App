@@ -32,18 +32,13 @@ Administrator: As an administrator, you will have access to viewing all of the u
 2. Add your teammates as collaborators on the repository
 3. Clone your repository locally
 4. Run `npm install` to install all the dependencies
-5. Setup your `.env` file locally - you can use the `.env.example` as a guideline. In particular, you will need to setup `PORT` and `DATABASE_URL` environment variables. But you may as well at a `JWT_SECRET` while you're in there.
-6. Run `npm run dev` to run locally
+5. Make a database locally
+6. Setup your `.env` file locally. In particular, you will need to setup 'JWT', `PORT` and `DATABASE_URL` environment variables
+7. Run `npx prisma migrate`
+8. Run `npm run dev` to run locally
 
 
 ### Starting the App
-
-Start just the server (great while only working on API endpoints)
-```
-npm run server:dev
-```
-
-For starting the full-stack application - the server will restart whenever changes are made in the `server` directory, and the React app will rebuild whenever changes are made in the `client` directory.
 
 ```
 npm run dev
@@ -77,7 +72,7 @@ npm run seed
 
 You will need to create a Database in your hosting provider of choice (Render or Heroku both work well, but only Render is free).
 
-Once you have a Database URL setup, you will need to setup your Environment Variables to include your Database URL, as well as any other app secrets needed (eg. JWT secret, Client ID and Secret for OAuth, etc)
+Once you have a Database URL setup, you will need to setup your Environment Variables to include your Database URL, as well as any other app secrets needed (eg. JWT secret)
 
 Whichever provider you use, you will need to set the following settings:
 
