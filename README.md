@@ -1,5 +1,7 @@
 # Mindful Harvest Store
 
+![](mindfulHarvest.gif)
+
 ## Live: https://mindful-harvest.onrender.com/
 
 ## Mindful Harvest Web-Store
